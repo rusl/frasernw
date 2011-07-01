@@ -28,7 +28,7 @@ describe SpecializationsController do
   it "create action should redirect when model is valid" do
     Specialization.any_instance.stubs(:valid?).returns(true)
     post :create
-    response.should redirect_to(specialization_url(assigns[:specialization]))
+    response.should redirect_to(assigns[:specialization])
   end
 
   it "edit action should render edit template" do

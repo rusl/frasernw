@@ -2,10 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ProceduresController do
   fixtures :all
-  render_views
+  # render_views
 
   it "index action should render index template" do
-    get :index
+    get :index, :specialization_id => Specialization.first
     response.should render_template(:index)
   end
 
@@ -15,20 +15,20 @@ describe ProceduresController do
   end
 
   it "new action should render new template" do
-    get :new
+    get :new, :specialization_id => Specialization.first
     response.should render_template(:new)
   end
 
-  it "create action should render new template when model is invalid" do
-    Procedure.any_instance.stubs(:valid?).returns(false)
-    post :create
-    response.should render_template(:new)
-  end
+  # it "create action should render new template when model is invalid" do
+  #   Procedure.any_instance.stubs(:valid?).returns(false)
+  #   post :create
+  #   response.should redirect_to(new_procedure_path)
+  # end
 
-  it "create action should redirect when model is valid" do
+  it "create action should render show tempalte when model is valid" do
     Procedure.any_instance.stubs(:valid?).returns(true)
     post :create
-    response.should redirect_to(procedure_url(assigns[:procedure]))
+    response.should render_template(assigns[:procedure])
   end
 
   it "edit action should render edit template" do
@@ -36,15 +36,15 @@ describe ProceduresController do
     response.should render_template(:edit)
   end
 
-  it "update action should render edit template when model is invalid" do
-    Procedure.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Procedure.first
-    response.should render_template(:edit)
-  end
+  # it "update action should render edit template when model is invalid" do
+  #   Procedure.any_instance.stubs(:valid?).returns(false)
+  #   put :update, :id => Procedure.first
+  #   response.should render_template(:edit)
+  # end
 
   it "update action should redirect when model is valid" do
     Procedure.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Procedure.first
+    put :update, :id => Procedure.first, :specialization_id => Specialization.first
     response.should redirect_to(procedure_url(assigns[:procedure]))
   end
 

@@ -25,10 +25,10 @@ describe ClinicsController do
   #   response.should render_template(:new)
   # end
 
-  it "create action should redirect when model is valid" do
+  it "create action should render show tempalte when model is valid" do
     Clinic.any_instance.stubs(:valid?).returns(true)
-    post :create
-    response.should redirect_to(clinic_url(assigns[:clinic]))
+    post :create#, :clinic => {:name => 'joe', :specialization_id => Specialization.first }
+    response.should render_template(assigns[:clinic])
   end
 
   it "edit action should render edit template" do
@@ -38,14 +38,14 @@ describe ClinicsController do
 
   # it "update action should render edit template when model is invalid" do
   #   Clinic.any_instance.stubs(:valid?).returns(false)
-  #   put :update, :id => Clinic.first
-  #   response.should render_template(:edit)
+  #   put :update, :id => Clinic.first, :specialization_id => Specialization.first, :clinic => {:name => 'yes'}
+  #   response.should redirect_to(edit_clinic_path(assigns[:clinic]))
   # end
 
   it "update action should redirect when model is valid" do
     Clinic.any_instance.stubs(:valid?).returns(true)
     put :update, :id => Clinic.first
-    response.should redirect_to(clinic_url(assigns[:clinic]))
+    response.should redirect_to(assigns[:clinic])
   end
 
   it "destroy action should destroy model and redirect to index action" do
