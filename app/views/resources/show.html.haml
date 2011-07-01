@@ -1,0 +1,45 @@
+%p#notice= notice
+
+%p
+  %b Firstname:
+  = @resource.firstname
+%p
+  %b Lastname:
+  = @resource.lastname
+%p
+  %b Address1:
+  = @resource.address1
+%p
+  %b Address2:
+  = @resource.address2
+%p
+  %b Postalcode:
+  = @resource.postalcode
+%p
+  %b City:
+  = @resource.city
+%p
+  %b Province:
+  = @resource.province
+%p
+  %b Phone1:
+  = @resource.phone1
+%p
+  %b Fax:
+  = @resource.fax
+%p
+  %b Status:
+  = @resource.status
+%p
+  %b Interest:
+  = @resource.interest
+%p
+  %b Waittime:
+  = @resource.waittime
+%p
+  %b Type:
+  = @resource.type
+
+= link_to 'Edit', edit_resource_path(@resource)
+\|
+= link_to 'Back', resources_path

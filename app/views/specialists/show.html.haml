@@ -1,0 +1,34 @@
+/ - title "Specialist"
+
+%h1
+  = @specialist.firstname
+  = @specialist.lastname + ' - '
+  = @specialist.specialization.name
+%p
+  %i
+    = @specialist.address1 + ' ' + @specialist.address2 + ", "
+    = @specialist.city + ', ' + @specialist.province + ', ' +  @specialist.postalcode
+    %br
+    = @specialist.phone1 + ', '
+    = "fax: #{@specialist.fax}"
+%p
+  %strong Procedures:
+  - @specialist.procedures.each do |procedure|
+    %span.light-highlight= procedure.name
+%p
+  %strong Status:
+  = @specialist.status
+%p
+  %strong Interest:
+  = @specialist.interest
+%p
+  %strong Wait time (avg in days): #{@specialist.waittime}
+
+%p
+  = link_to "Edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)
+  |
+  = link_to "Destroy", @specialist, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All #{@specialist.specialization.name}", specialization_path(@specialist.specialization)
+  / |
+  / # = link_to "View All Specialists", specialists_path

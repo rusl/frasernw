@@ -1,0 +1,46 @@
+<% tree = Array.new 
+
+@specializations.each do |specialization|
+  next unless specialization
+  specialization_node = Array.new 
+  specialization_node[0] = specialization.name
+  specialization_node[1] = url_for(specialization) #.gsub!(/^\//, '')    
+  specialization_node[2] = ""
+  specialization_node[3] = Array.new
+
+  specialization.specialists.each do |specialist|
+    specialist_node = Array.new
+    specialist_node[0] = "#{specialist.name}"
+    specialist_node[1] = url_for(specialist) #.gsub!(/^\//, '')    
+    specialist_node[2] = ""
+    specialist_node[3] = Array.new
+    # sorted_credits = specialist.credits.sort_by {|credit| 
+    #   sort_order = credit.abbreviation.gsub('p', 'a') #p's come before c's
+    #   sort_order
+    #   }
+    specialization_node[3] << specialist_node
+    
+  end
+
+  specialization.clinics.each do |clinic|
+    clinic_node = Array.new
+    clinic_node[0] = clinic.name
+    clinic_node[1] = url_for(clinic) #.gsub!(/^\//, '')    
+    clinic_node[2] = ""
+    clinic_node[3] = Array.new
+    specialization_node[3] << clinic_node
+  end
+  
+  specialization.procedures.each do |procedure|
+    procedure_node = Array.new
+    procedure_node[0] = procedure.name
+    procedure_node[1] = url_for(procedure) #.gsub!(/^\//, '')    
+    procedure_node[2] = ""
+    procedure_node[3] = Array.new
+    specialization_node[3] << procedure_node
+  end
+
+  tree << specialization_node
+end
+-%>
+tree = <%= tree.to_json.html_safe %>

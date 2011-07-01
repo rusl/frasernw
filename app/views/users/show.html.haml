@@ -1,0 +1,6 @@
+- title @user.username
+%h2 Favorites
+
+- @user.favorites.each do |f|
+  %p= f.name
+

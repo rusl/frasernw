@@ -1,0 +1,9 @@
+= form_for @procedure do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+    = f.hidden_field :specialization_id
+  %p
+    = f.submit

@@ -1,0 +1,45 @@
+- title "Specialists - #{@specialization.name}"
+
+/ - @specializations.each do |specialization|
+/ # %h3= @specialization.name
+%ul
+  - @specialization.specialists.each do |specialist|
+    %li= link_to listed_specialist(specialist), specialization_specialist_path(@specialization, specialist)
+
+  / %td= link_to 'Show', specialist
+  / %td= link_to 'Edit', edit_specialist_path(specialist)
+  / %td= link_to 'Destroy', specialist, :confirm => 'Are you sure?', :method => :delete
+
+
+/ %table
+/   %tr
+/     %th Firstname
+/     %th Lastname
+/     %th Address1
+/     %th Address2
+/     %th Postalcode
+/     %th City
+/     %th Province
+/     %th Phone1
+/     %th Fax
+/     %th Status
+/     %th Interest
+/     %th Waittime
+/     %th Specialization
+/   - for specialist in @specialists
+/     %tr
+/       %td= specialist.firstname
+/       %td= specialist.lastname
+/       %td= specialist.address1
+/       %td= specialist.address2
+/       %td= specialist.postalcode
+/       %td= specialist.city
+/       %td= specialist.province
+/       %td= specialist.phone1
+/       %td= specialist.fax
+/       %td= specialist.status
+/       %td= specialist.interest
+/       %td= specialist.waittime
+/       %td= specialist.specialization_id
+
+%p= link_to "New Specialist", new_specialization_specialist_path

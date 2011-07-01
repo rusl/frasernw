@@ -1,0 +1,25 @@
+/ - title "Specialization"
+
+%h1= @specialization.name
+
+%h3 Specialists
+%ul
+  - @specialization.specialists.each do |specialist|
+    %li= link_to listed_specialist(specialist), specialization_specialist_path(@specialization)
+
+%h3 Procedures
+%ul
+  - @specialization.procedures.each do |procedure|
+    %li= link_to listed_procedure(procedure), specialization_procedure_path(@specialization)
+
+%p
+  = link_to "New specialist", new_specialization_specialist_path(@specialization)
+  |
+  = link_to "New procedure", new_specialization_procedure_path(@specialization)
+
+%p
+  = link_to "Edit", edit_specialization_path(@specialization)
+  |
+  = link_to "Destroy", @specialization, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", specializations_path

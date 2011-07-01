@@ -1,0 +1,27 @@
+one:
+  name: MyString
+  address1: MyString
+  address2: MyString
+  postalcode: MyString
+  city: MyString
+  province: MyString
+  phone1: MyString
+  fax: MyString
+  status: MyText
+  interest: MyText
+  waittime: 1
+  specialization_id: 1
+
+two:
+  name: MyString
+  address1: MyString
+  address2: MyString
+  postalcode: MyString
+  city: MyString
+  province: MyString
+  phone1: MyString
+  fax: MyString
+  status: MyText
+  interest: MyText
+  waittime: 1
+  specialization_id: 1

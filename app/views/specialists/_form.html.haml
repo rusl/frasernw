@@ -1,0 +1,64 @@
+= form_for @specialist do |f|
+  = f.error_messages
+  %p
+    = f.label :firstname, 'First name'
+    %br
+    = f.text_field :firstname
+  %p
+    = f.label :lastname, 'Last name'
+    %br
+    = f.text_field :lastname
+  %p
+    = f.label :address1, "Address line 1"
+    %br
+    = f.text_field :address1
+  %p
+    = f.label :address2, "Address line 2"
+    %br
+    = f.text_field :address2
+  %p
+    = f.label :city
+    %br
+    = f.text_field :city
+  %p
+    = f.label :province
+    %br
+    = f.text_field :province
+  %p
+    = f.label :postalcode, "Postal code"
+    %br
+    = f.text_field :postalcode
+  %p
+    = f.label :phone1, "Phone"
+    %br
+    = f.text_field :phone1
+  %p
+    = f.label :direct_phone, "Direct phone"
+    %br
+    = f.text_field :direct_phone
+  %p
+    = f.label :fax
+    %br
+    = f.text_field :fax
+  %p
+    = f.label :status
+    %br
+    = f.text_area :status
+  %p
+    = f.label :interest
+    %br
+    = f.text_area :interest
+  %p
+    = f.label :waittime, "Wait time (avg in days)"
+    %br
+    = f.number_field :waittime
+  %p
+    = f.label :procedures
+    %br
+    - @specialist.specialization.procedures.each do |procedure|
+      %br
+      = check_box_tag :procedure_ids, procedure.id, @specialist.procedures.include?(procedure), :name => 'specialist[procedure_ids][]'
+      = label_tag :procedure_ids, procedure.name
+    = f.hidden_field :specialization_id
+  %p
+    = f.submit
