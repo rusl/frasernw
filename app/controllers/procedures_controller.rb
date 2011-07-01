@@ -1,7 +1,11 @@
 class ProceduresController < ApplicationController
   def index
-    @specialization = Specialization.find params[:specialization_id]
-    @procedures = @specialization.procedures
+    if params[:specialization_id] != nil
+      @specialization = Specialization.find params[:specialization_id]
+      @procedures = @specialization.procedures
+    else
+      redirect_to 'specializations#index' and return
+    end
   end
 
   def show

@@ -9,8 +9,6 @@ class Specialist < ActiveRecord::Base
   has_many   :favorites
   has_many   :users, :through => :favorites
   
-  validates_length_of   :firstname, :minimum => 2
-  validates_length_of   :lastname,  :minimum => 2
   validates_presence_of :firstname, :on => :save, :message => "can't be blank"
   validates_presence_of :lastname, :on => :save, :message => "can't be blank"
   validates_presence_of :specialization_id, :on => :save, :message => "can't be blank"

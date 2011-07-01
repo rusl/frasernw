@@ -31,7 +31,7 @@ group :test do
 end
 
 group :development, :test do
-  # gem 'mocha'
+  gem 'mocha'
   gem "nifty-generators"
   gem 'rspec'
   gem 'rspec-rails'
