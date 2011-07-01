@@ -1,0 +1,35 @@
+- title "Clinics"
+
+%table
+  %tr
+    %th Name
+    %th Address1
+    %th Address2
+    %th Postalcode
+    %th City
+    %th Province
+    %th Phone1
+    %th Fax
+    %th Status
+    %th Interest
+    %th Waittime
+    %th Specialization
+  - for clinic in @clinics
+    %tr
+      %td= clinic.name
+      %td= clinic.address1
+      %td= clinic.address2
+      %td= clinic.postalcode
+      %td= clinic.city
+      %td= clinic.province
+      %td= clinic.phone1
+      %td= clinic.fax
+      %td= clinic.status
+      %td= clinic.interest
+      %td= clinic.waittime
+      %td= clinic.specialization_id
+      %td= link_to 'Show', clinic
+      %td= link_to 'Edit', edit_clinic_path(clinic)
+      %td= link_to 'Destroy', clinic, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Clinic", new_clinic_path

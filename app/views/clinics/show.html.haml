@@ -1,0 +1,45 @@
+- title "Clinic"
+
+%p
+  %strong Name:
+  = @clinic.name
+%p
+  %strong Address1:
+  = @clinic.address1
+%p
+  %strong Address2:
+  = @clinic.address2
+%p
+  %strong Postalcode:
+  = @clinic.postalcode
+%p
+  %strong City:
+  = @clinic.city
+%p
+  %strong Province:
+  = @clinic.province
+%p
+  %strong Phone1:
+  = @clinic.phone1
+%p
+  %strong Fax:
+  = @clinic.fax
+%p
+  %strong Status:
+  = @clinic.status
+%p
+  %strong Interest:
+  = @clinic.interest
+%p
+  %strong Waittime:
+  = @clinic.waittime
+%p
+  %strong Specialization:
+  = @clinic.specialization_id
+
+%p
+  = link_to "Edit", edit_clinic_path(@clinic)
+  |
+  = link_to "Destroy", @clinic, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", clinics_path

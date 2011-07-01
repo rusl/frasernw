@@ -1,0 +1,43 @@
+%h1 Listing resources
+
+%table
+  %tr
+    %th Firstname
+    %th Lastname
+    %th Address1
+    %th Address2
+    %th Postalcode
+    %th City
+    %th Province
+    %th Phone1
+    %th Fax
+    %th Status
+    %th Interest
+    %th Waittime
+    %th Type
+    %th
+    %th
+    %th
+
+  - @resources.each do |resource|
+    %tr
+      %td= resource.firstname
+      %td= resource.lastname
+      %td= resource.address1
+      %td= resource.address2
+      %td= resource.postalcode
+      %td= resource.city
+      %td= resource.province
+      %td= resource.phone1
+      %td= resource.fax
+      %td= resource.status
+      %td= resource.interest
+      %td= resource.waittime
+      %td= resource.type
+      %td= link_to 'Show', resource
+      %td= link_to 'Edit', edit_resource_path(resource)
+      %td= link_to 'Destroy', resource, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Resource', new_resource_path

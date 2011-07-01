@@ -1,0 +1,8 @@
+
+%h1 Supported Specializations
+
+%ul
+  - for specialization in @specializations
+    %li= link_to specialization.name, specialization
+
+%p= link_to "New Specialization", new_specialization_path

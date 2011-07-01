@@ -1,0 +1,105 @@
+<%
+search_data = Hash.new
+search_data['index'] = Hash.new
+search_data['badges'] = Array.new
+
+search_data['badges'] << "CIR"
+@longsearch = search_data['index']['longSearchIndex'] = Array.new
+@search = search_data['index']['searchIndex']         = Array.new
+@info = search_data['index']['info']                  = Array.new
+
+# options| name, breadcrumb, href, options, snippet, badge
+
+
+def create_node(options)
+ search_node = Array.new()
+ search_node[0] = options[:name]       || ""  
+ search_node[1] = options[:breadcrumb] || "" 
+ search_node[2] = options[:href] ? options[:href] : "" 
+ search_node[3] = " " + (options[:other] ? options[:other] : "")   || ""
+ search_node[4] = options[:snippet]    || "" 
+ search_node[5] = "" # what is this for?
+ search_node[6] = options[:badge] || "" #badge 
+ # search_node
+ 
+ @info << search_node
+ @search << options[:name]
+ @longsearch << options[:breadcrumb]
+end
+
+@specializations.each do |specialization|
+  search_data['badges'] << specialization.name
+  options = {  
+    :name => specialization.name,
+    :breadcrumb => "",
+    :href => url_for(specialization),
+    :other => "Specialization",
+  }
+  create_node(options);
+
+  specialization.specialists.each do |specialist|
+    # logger.info "badge is... @@@@@@@@@@@@@@"
+    # logger.info search_data['badges'].index(specialization.name)
+    options = {  
+      :name => specialist.name,
+      :breadcrumb => "", 
+      :href => url_for(specialist),
+      :other => "Specialist",
+      :nothing => '',
+      :badge => search_data['badges'].index(specialization.name)
+    }
+    create_node(options);
+  end
+
+  specialization.procedures.each do |procedure|
+    options = {  
+      :name => procedure.name,
+      :breadcrumb => "", 
+      :href => url_for(procedure),
+      :other => "Procedure",
+      :nothing => '',
+      :badge => search_data['badges'].index(specialization.name)
+    }
+    logger.info "SSSSSSSSSSSSSSSSS #{procedure.name}"
+    create_node(options);
+  end
+
+  specialization.clinics.each do |clinic|
+    options = {  
+      :name => clinic.name, 
+      :breadcrumb => "", 
+      :href => url_for(clinic),
+      :other => "Clinic",
+      :nothing => '',
+      :badge => search_data['badges'].index(specialization.name)
+       }
+      create_node(options);
+  end
+end
+
+
+# @cirs.each {| cir |
+#   crumbs = "#{cir.credits.first.rating.name if (cir.credits.first.rating && cir.credits.first) } > #{cir.credits.first.abbreviation }" if cir.credits.first 
+#   options = {  
+#     :name => "CIR ##{cir.number} #{cir.cleaned_subject}", 
+#     :breadcrumb => "#{cir.status}: #{crumbs}"  , 
+#     :href => url_for(cir),
+#     :other => "Cir",
+#     :badge => search_data['badges'].index("CIR")
+#   }
+#   create_node(options);
+# }
+
+# var search_data = {"index":
+#     {
+#     "longSearchIndex":["ssc4", "Demo"], 
+#     "searchIndex": [ "ssc4 Sustainable Sites", "someother"],
+#     "info":[
+#         ["ssc4 Sustainable sites selection", "file path", "actual HTML reference"," grey text ", "second line text",, 1],
+#         ["Title", "namespace", "path"," params", "snippet",, 1]
+#      ]
+#     },
+#    "badges": ["badge", "badge1"]
+# }
+-%>
+search_data = <%= search_data.to_json.html_safe %>
