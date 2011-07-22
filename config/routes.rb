@@ -9,6 +9,8 @@ Frasernw::Application.routes.draw do
   resources :specialists
   resources :procedures
   
+  match "specializations/:id/showalt" => 'specializations#showalt'
+  
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 

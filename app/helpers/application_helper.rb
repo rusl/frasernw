@@ -6,4 +6,12 @@ module ApplicationHelper
     "#{procedure.name} (#{procedure.specialists.length})"
   end
   
+  def specialists_procedures(specialist)
+    list = ""
+    specialist.procedures.each do |procedure|
+      list += procedure.name + " "
+    end
+    list
+  end
+  
 end
