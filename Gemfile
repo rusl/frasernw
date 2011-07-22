@@ -1,14 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc1'
+gem 'rails', '3.1.0.rc4'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
+# gem 'rails',      :git => "git://github.com/rails/rails.git", :branch => "3-1-stable"
 
 gem 'sqlite3'
 
 # Asset template engines
-gem 'sass'
+gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
 
