@@ -10,10 +10,11 @@
     = csrf_meta_tag
     = yield(:head)
 
-  %body
-    %div{:id => 'searchbox'}
-      %iframe{:src => "/searchbox.html", :id => 'searchbox_frame'}
-    #container
+  %body{:id => "#{params[:controller]}_page"}
+    - unless params[:controller] == 'user_sessions'
+      %div{:id => 'searchbox'}
+        %iframe{:src => "/searchbox.html", :id => 'searchbox_frame'}
+    #container{:class => "container_#{params[:controller]}"}
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       - if show_title?
