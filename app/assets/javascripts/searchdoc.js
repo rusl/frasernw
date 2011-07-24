@@ -400,30 +400,23 @@ Searchdoc.Panel.prototype = $.extend({}, Searchdoc.Navigation, new function() {
     }
 
     this.open = function(src) {
-      
-      // $.pjax({
-      //   url: src,
-      //   container: '#container'
-      // })
-
+      // manual PJAX
         $.ajax({
           url: src,
           dataType: 'html',
           beforeSend: function(xhr){
-            xhr.setRequestHeader('X-PJAX', 'true')
+            xhr.setRequestHeader('X-PJAX', 'true');
           },
           success: function(data){
-            $('#container', window.parent.document).html(data)
-            window.parent.history.pushState(null, $(data).filter('title').text(), src)
+            $('#container', window.parent.document).html(data);
+            window.parent.history.pushState(null, $(data).filter('title').text(), src);
+            tableToGrid($('.grid', window.parent.document));
           }
         });
-        // this.frame.location.href = '../' + src;
-        
+        // this.frame.location.href = '..' + src;
+
         if (this.frame.highlight) this.frame.highlight(src);
-        // console.log(src)
-/*          $('#content').load('../' + src);*/
-/*          $('#content').load('/' + src); */
-/*          $('#content').load(src);*/
+
     }
 
     this.select = function() {
