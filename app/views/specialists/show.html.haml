@@ -6,7 +6,7 @@
   = @specialist.specialization.name
 %p
   %i
-    = @specialist.address1 + ' ' + @specialist.address2 + ", "
+    = @specialist.address + ", "
     = @specialist.city + ', ' + @specialist.province + ', ' +  @specialist.postalcode
     %br
     = @specialist.phone1 + ', '
@@ -22,7 +22,7 @@
   %strong Interest:
   = @specialist.interest
 %p
-  %strong Wait time (avg in days): #{@specialist.waittime}
+  %strong Wait time (avg in weeks): #{@specialist.waittime}
 
 %p
   = link_to "Edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)

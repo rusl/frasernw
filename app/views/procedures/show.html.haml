@@ -3,10 +3,28 @@
 %h1
   = @procedure.name + ' - ' + @procedure.specialization.name
 
-%ul
-  - @procedure.specialists.each do |specialist|
-    %li
-      = link_to listed_specialist(specialist), specialization_specialist_path(specialist.specialization, specialist)
+  %table{:class => 'grid', :id => 'specialist_table'}
+    %tr
+      %th Name
+      %th Wait (weeks)
+      %th City
+      %th Hospital
+      %th Clinics
+    - @procedure.specialists.each do |specialist|
+      %tr
+        %td= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist)
+        %td= link_to "#{specialist.waittime}"
+        %td= link_to "#{specialist.city}"
+        %td
+        %td
+        / %td= link_to "#{specialist.interest}"
+        / %td= specialists_procedures(specialist)
+
+
+/ %ul
+/   - @procedure.specialists.each do |specialist|
+/     %li
+/       = link_to listed_specialist(specialist), specialization_specialist_path(specialist.specialization, specialist)
 
 %p
   = link_to "Edit", edit_procedure_path(@procedure)
