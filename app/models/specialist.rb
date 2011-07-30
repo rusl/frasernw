@@ -13,7 +13,17 @@ class Specialist < ActiveRecord::Base
   validates_presence_of :lastname, :on => :save, :message => "can't be blank"
   validates_presence_of :specialization_id, :on => :save, :message => "can't be blank"
   
+  default_scope order('lastname, firstname')
+  
   def name
     firstname + ' ' + lastname
   end
+
+  def address
+    address = ''
+    address += self.address1 || ''
+    address += self.address2 || ''
+    address
+  end
+  
 end

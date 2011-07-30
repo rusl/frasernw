@@ -4,11 +4,16 @@ gem 'rails', '3.1.0rc5'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
+# gem 'rails',      :git => "git://github.com/rails/rails.git", :branch => "3-1-stable"
 
-gem 'sqlite3'
+
+group :production do
+  gem 'pg'
+  gem 'therubyracer-heroku', '0.8.1.pre3'
+end
 
 # Asset template engines
-gem 'sass'
+gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
 
@@ -31,6 +36,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'mocha'
   gem "nifty-generators"
   gem 'rspec'

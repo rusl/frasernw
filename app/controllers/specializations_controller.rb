@@ -7,6 +7,12 @@ class SpecializationsController < ApplicationController
     @specialization = Specialization.find(params[:id])
     render :layout => false if request.headers['X-PJAX']
   end
+  
+  def showalt
+    @specialization = Specialization.find(params[:id])
+    render :layout => false if request.headers['X-PJAX']
+  end
+  
 
   def new
     @specialization = Specialization.new
