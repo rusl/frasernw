@@ -1,33 +1,32 @@
 <!DOCTYPE html>  
 <html lang="en"> 
 <head> 
-	<title>layout</title> 
-	<link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" media="screen" charset="utf-8" /> 
-	<link rel="stylesheet" href="/stylesheets/panel.css" type="text/css" media="screen" charset="utf-8" /> 
-	<script src="/assets/application.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" charset="utf-8"> 
-		//<![CDATA[
-      
-      var tree =  Stash.fetch('/searchtree.js')
-      var search_data =  Stash.fetch('/searchindex.js')
-  
-	    function placeholder() {
- 	       if (jQuery.browser.safari) return;
- 	       $('#search-label').click(function() {
- 	           $('#search').focus();
- 	           $('#search-label').hide();
- 	       });
+  <title>layout</title> 
+  <link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" media="screen" charset="utf-8" /> 
+  <link rel="stylesheet" href="/stylesheets/panel.css" type="text/css" media="screen" charset="utf-8" /> 
+  <script src="/assets/application.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8"> 
+    //<![CDATA[
+      var tree =  Stash.fetch('/searchtree.js');
+      var search_data =  Stash.fetch('/searchindex.js');
+
+      function placeholder() {
+         if (jQuery.browser.safari) return;
+         $('#search-label').click(function() {
+             $('#search').focus();
+             $('#search-label').hide();
+         });
  
- 	       $('#search').focus(function() {
- 	           $('#search-label').hide();
+         $('#search').focus(function() {
+             $('#search-label').hide();
             });
- 	       $('#search').blur(function() {
- 	           this.value == '' && $('#search-label').show()
- 	       });
+         $('#search').blur(function() {
+             this.value == '' && $('#search-label').show()
+         });
  
- 	       $('#search')[0].value == '' && $('#search-label').show();
-	    }
-	   $(function() {	          
+         $('#search')[0].value == '' && $('#search-label').show();
+      }
+     $(function() {           
            placeholder();
            // FIXME - this reloads the entire page, and it should just pjax in the right stuff
            var panel = new Searchdoc.Panel($('#panel'), search_data, tree, top);
@@ -42,9 +41,9 @@
                    panel.search(s, true);
                }
            }
-	   })
-		//]]>
-	</script> 
+     })
+    //]]>
+  </script> 
 </head> 
 <body> 
     <div class="panel panel_tree" id="panel"> 
