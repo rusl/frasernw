@@ -6,7 +6,5 @@ tmp/
 .DS_Store
 .rspec
 __MACOSX/
-<<<<<<< HEAD
 Gemfile.lock
-=======
->>>>>>> fc87c8273088a8952beb7daca4859c32b55ee537
+
