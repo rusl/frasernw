@@ -5,3 +5,5 @@
 require File.expand_path('../config/application', __FILE__)
 
 Frasernw::Application.load_tasks
+
+#bundle install --path=vendor/gems --without=production
