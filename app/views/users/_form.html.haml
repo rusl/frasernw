@@ -5,9 +5,14 @@
     %br
     = f.text_field :username
   %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
     = f.label :email, "Email Address"
     %br
     = f.text_field :email
+    /  example. text_field_tag :user, :email
   %p
     = f.label :password
     %br
