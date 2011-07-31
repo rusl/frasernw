@@ -5,12 +5,13 @@
   specialization_node = Array.new 
   specialization_node[0] = specialization.name
   specialization_node[1] = url_for(specialization) #.gsub!(/^\//, '')    
+  # this part of a node... is this for synonyms? -krh
   specialization_node[2] = ""
   specialization_node[3] = Array.new
 
   specialization.specialists.each do |specialist|
     specialist_node = Array.new
-    specialist_node[0] = "#{specialist.name}"
+    specialist_node[0] = specialist.name
     specialist_node[1] = url_for(specialist) #.gsub!(/^\//, '')    
     specialist_node[2] = ""
     specialist_node[3] = Array.new
