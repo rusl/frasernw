@@ -12,7 +12,7 @@
     = @specialist.phone1 + ', '
     = "fax: #{@specialist.fax}"
 %p
-  %strong Procedures:
+  %strong Scope of practice:
   - @specialist.procedures.each do |procedure|
     %span.light-highlight= procedure.name
 %p
