@@ -11,7 +11,7 @@
     %th Wait
     %th City
     %th Interests/Expertise
-    %th Procedures
+    %th Scope of practice
   - @specialization.specialists.each do |specialist|
     %tr
       %td= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@specialization, specialist)
@@ -26,7 +26,7 @@
 /   - @specialization.specialists.each do |specialist|
 /     %li= link_to listed_specialist(specialist), specialization_specialist_path(@specialization, specialist)
 
-%h3 Procedures
+%h3 Scope of practice
 %ul{:class => 'procedure_list'}
   - @specialization.procedures.each do |procedure|
     %li= link_to listed_procedure(procedure), specialization_procedure_path(@specialization, procedure)
