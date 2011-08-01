@@ -31,9 +31,15 @@ module ControllerAuthentication
   end
 
   def logged_in?
-    current_user
+    !current_user.nil?
   end
-
+  
+  def admin_required
+    if current_user.nil? || !current_user.admin?
+      redirect_to root_url, :alert => "You must be an admin to do that."
+    end
+  end
+  
   def login_required
     unless logged_in?
       store_target_location

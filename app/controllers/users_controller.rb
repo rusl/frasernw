@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create]
+ # before_filter :admin_required, :except => [:show]
   # FIXME need admin logins
 
   def index
