@@ -1,11 +1,12 @@
 
   $(document).ready(function() {
-      tableToGrid('.grid');
+      tableToGrid('.grid', {height:'auto'}
+	);
       $("#container a").pjax('#container').live('click', function(){})
       
       $('body').live('end.pjax', function() {
         $("#container a").pjax('#container');
-        tableToGrid('.grid');
+        tableToGrid('.grid', {height:'auto'});
         });
         
         // $('.grid').livequery(function(){ 
