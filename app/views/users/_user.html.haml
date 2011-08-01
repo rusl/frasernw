@@ -1,5 +1,10 @@
 %tr
   %td
-    =user.username
-    =user.name
+    %span.username 
+      =user.username
+    %span.name
+      =user.name
+    %span.role 
+      =user.role
+
     =link_to 'edit', edit_user_path(user)

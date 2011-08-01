@@ -3,4 +3,7 @@ class User < ActiveRecord::Base
   has_many :favorites
   has_many :specialists, :through => :favorites
   # has_many :clinics,     :through => :favorites
+  def admin?
+    role == 'admin'
+  end
 end
