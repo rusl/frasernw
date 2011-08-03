@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   has_many :specialists, :through => :favorites
   # has_many :clinics,     :through => :favorites
   def admin?
-    role == 'admin'
+    self.role == 'admin'
   end
 end
