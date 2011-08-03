@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create]
+ # before_filter :admin_required, :except => [:show]
   # FIXME need admin logins
 
   def index
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   # def update
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user, :notice  => "Successfully updated user."
+      redirect_to users_url, :notice  => "Successfully updated user."
     else
       render :action => 'edit'
     end

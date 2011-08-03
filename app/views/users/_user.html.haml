@@ -1,5 +1,10 @@
 %tr
   %td
-    =user.username
-    =user.name
-    =link_to 'edit', edit_user_path(user)
+    %span.username 
+      =user.username
+    %span.name
+      =user.name
+    %span.role 
+      =user.role if user.admin?
+
+    =link_to 'edit', edit_user_path(user) if current_user.admin?
