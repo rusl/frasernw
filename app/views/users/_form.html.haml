@@ -22,4 +22,8 @@
     %br
     = f.password_field :password_confirmation
   %p
+    = f.label :role
+    %br
+    = f.select :role, ['user', 'admin']
+  %p
     = f.submit (@user.new_record? ? "Sign up" : "Update")
