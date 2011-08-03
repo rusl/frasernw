@@ -16,7 +16,7 @@
         %iframe{:src => "/searchbox.html", :id => 'searchbox_frame'}
     #container{:class => "container_#{params[:controller]}"}
       %div{:style => "margin-bottom: 5px; float: right;"} 
-        = link_to("manage users", users_path) + ' | ' if current_user.admin?
+        = link_to("manage users", users_path) + ' | ' if current_user && current_user.admin?
         = link_to "logout", logout_url if logged_in?
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
