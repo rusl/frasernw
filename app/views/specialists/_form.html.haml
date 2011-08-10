@@ -49,13 +49,17 @@
     %br
     = f.text_area :interest
   %p
-    = f.label :red_flag, "Red Flag"
+    = f.label :red_flags, "Red Flag"
     %br
-    = f.text_area :red_flag
+    = f.text_area :red_flags
   %p
     = f.label :waittime, "Wait time (avg in weeks)"
     %br
     = f.number_field :waittime
+  %p
+    = f.label :clinics
+    %br
+    = f.select(:clinic_ids, options_for_select(@specialization_clinics, @specialist_clinics), {:include_blank => false, :id => "specialist_clinics"}, {:multiple => true, :size => 10})
   %p
     = f.label :procedures, "Scope of practice"
     %br

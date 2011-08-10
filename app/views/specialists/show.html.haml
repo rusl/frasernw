@@ -25,6 +25,9 @@
   %strong Red Flags:
   = @specialist.red_flags
 %p
+  %strong Clinics:
+  = @specialist.clinics.collect { |clinic| clinic.name }
+%p
   %strong Wait time (avg in weeks): #{@specialist.waittime}
 
 %p

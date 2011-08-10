@@ -14,6 +14,8 @@ class SpecialistsController < ApplicationController
   def new
     @specialization = Specialization.find(params[:specialization_id])
     @specialist     = Specialist.new :specialization_id => @specialization.id
+    @specialization_clinics = @specialization.clinics.collect { |clinic| [clinic.name, clinic.id] }.sort
+    @specialist_clinics = @specialist.clinics.collect {|c| c.id}
   end
 
   def create
@@ -28,6 +30,8 @@ class SpecialistsController < ApplicationController
   def edit
     @specialization = Specialization.find(params[:specialization_id])
     @specialist = Specialist.find(params[:id])
+    @specialization_clinics = @specialization.clinics.collect { |clinic| [clinic.name, clinic.id] }.sort
+    @specialist_clinics = @specialist.clinics.collect {|c| c.id}
   end
 
   def update
