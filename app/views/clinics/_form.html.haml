@@ -55,6 +55,6 @@
   %p
     = f.label :specialization_id
     %br
-    = f.number_field :specialization_id
+    = f.select(:specialization_id, options_for_select(Specialization.all.collect {|s| [s.name, s.id]}, [@clinic.specialization_id]), {:include_blank => true})
   %p
     = f.submit
