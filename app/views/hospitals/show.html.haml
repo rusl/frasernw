@@ -1,0 +1,33 @@
+- title "Hospital"
+
+%p
+  %strong Name:
+  = @hospital.name
+%p
+  %strong Address1:
+  = @hospital.address1
+%p
+  %strong Address2:
+  = @hospital.address2
+%p
+  %strong Postalcode:
+  = @hospital.postalcode
+%p
+  %strong City:
+  = @hospital.city
+%p
+  %strong Province:
+  = @hospital.province
+%p
+  %strong Phone1:
+  = @hospital.phone1
+%p
+  %strong Fax:
+  = @hospital.fax
+
+%p
+  = link_to "Edit", edit_hospital_path(@hospital)
+  |
+  = link_to "Destroy", @hospital, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", hospitals_path

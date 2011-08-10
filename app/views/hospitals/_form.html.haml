@@ -1,0 +1,36 @@
+= form_for @hospital do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :address1
+    %br
+    = f.text_field :address1
+  %p
+    = f.label :address2
+    %br
+    = f.text_field :address2
+  %p
+    = f.label :postalcode
+    %br
+    = f.text_field :postalcode
+  %p
+    = f.label :city
+    %br
+    = f.text_field :city
+  %p
+    = f.label :province
+    %br
+    = f.text_field :province
+  %p
+    = f.label :phone1
+    %br
+    = f.text_field :phone1
+  %p
+    = f.label :fax
+    %br
+    = f.text_field :fax
+  %p
+    = f.submit

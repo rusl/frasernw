@@ -1,0 +1,27 @@
+- title "Hospitals"
+
+%table
+  %tr
+    %th Name
+    %th Address1
+    %th Address2
+    %th Postalcode
+    %th City
+    %th Province
+    %th Phone1
+    %th Fax
+  - for hospital in @hospitals
+    %tr
+      %td= hospital.name
+      %td= hospital.address1
+      %td= hospital.address2
+      %td= hospital.postalcode
+      %td= hospital.city
+      %td= hospital.province
+      %td= hospital.phone1
+      %td= hospital.fax
+      %td= link_to 'Show', hospital
+      %td= link_to 'Edit', edit_hospital_path(hospital)
+      %td= link_to 'Destroy', hospital, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Hospital", new_hospital_path
