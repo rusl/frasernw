@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810030910) do
+ActiveRecord::Schema.define(:version => 20110810060427) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "specialist_id"
@@ -20,34 +20,36 @@ ActiveRecord::Schema.define(:version => 20110810030910) do
   end
 
   create_table "capacities", :force => true do |t|
-    t.integer   "specialist_id"
-    t.integer   "procedure_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "specialist_id"
+    t.integer  "procedure_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "clinics", :force => true do |t|
-    t.string    "name"
-    t.string    "address1"
-    t.string    "address2"
-    t.string    "postalcode"
-    t.string    "city"
-    t.string    "province"
-    t.string    "phone1"
-    t.string    "fax"
-    t.text      "status"
-    t.text      "interest"
-    t.integer   "waittime"
-    t.integer   "specialization_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "postalcode"
+    t.string   "city"
+    t.string   "province"
+    t.string   "phone1"
+    t.string   "fax"
+    t.text     "status"
+    t.text     "interest"
+    t.integer  "waittime"
+    t.integer  "specialization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "referral_criteria"
+    t.text     "referral_process"
   end
 
   create_table "favorites", :force => true do |t|
-    t.integer   "user_id"
-    t.integer   "specialist_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.integer  "specialist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "hospitals", :force => true do |t|
@@ -71,50 +73,50 @@ ActiveRecord::Schema.define(:version => 20110810030910) do
   end
 
   create_table "procedures", :force => true do |t|
-    t.string    "name"
-    t.integer   "specialization_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.integer  "specialization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "specialists", :force => true do |t|
-    t.string    "firstname"
-    t.string    "lastname"
-    t.string    "address1"
-    t.string    "address2"
-    t.string    "postalcode"
-    t.string    "city"
-    t.string    "province"
-    t.string    "phone1"
-    t.string    "fax"
-    t.text      "status"
-    t.text      "interest"
-    t.integer   "waittime"
-    t.integer   "specialization_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "direct_phone"
-    t.string    "moa_name"
-    t.string    "moa_phone"
-    t.string    "moa_email"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "postalcode"
+    t.string   "city"
+    t.string   "province"
+    t.string   "phone1"
+    t.string   "fax"
+    t.text     "status"
+    t.text     "interest"
+    t.integer  "waittime"
+    t.integer  "specialization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "direct_phone"
+    t.string   "moa_name"
+    t.string   "moa_phone"
+    t.string   "moa_email"
   end
 
   create_table "specializations", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string    "username"
-    t.string    "email"
-    t.string    "persistence_token"
-    t.string    "crypted_password"
-    t.string    "password_salt"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "name"
-    t.string    "role"
+    t.string   "username"
+    t.string   "email"
+    t.string   "persistence_token"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "role"
   end
 
 end
