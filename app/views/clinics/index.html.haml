@@ -8,12 +8,6 @@
     %th Postalcode
     %th City
     %th Province
-    %th Phone1
-    %th Fax
-    %th Status
-    %th Interest
-    %th Waittime
-    %th Specialization
   - for clinic in @clinics
     %tr
       %td= clinic.name
@@ -22,12 +16,6 @@
       %td= clinic.postalcode
       %td= clinic.city
       %td= clinic.province
-      %td= clinic.phone1
-      %td= clinic.fax
-      %td= clinic.status
-      %td= clinic.interest
-      %td= clinic.waittime
-      %td= clinic.specialization_id
       %td= link_to 'Show', clinic
       %td= link_to 'Edit', edit_clinic_path(clinic)
       %td= link_to 'Destroy', clinic, :confirm => 'Are you sure?', :method => :delete
