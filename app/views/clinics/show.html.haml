@@ -18,8 +18,33 @@
 %p
   %strong Province:
   = @clinic.province
+%p
+  %strong Phone1:
+  = @clinic.phone1
+%p
+  %strong Fax:
+  = @clinic.fax
+%p
+  %strong Status:
+  = @clinic.status
+%p
+  %strong Interest:
+  = @clinic.interest
+%p
+  %strong Waittime:
+  = @clinic.waittime
+%p
+  %strong Specialization:
+  = @clinic.specialization_id
 
+%p
+  %strong Referral Criteria:
+  = @clinic.referral_criteria
 
+%p
+  %strong Referral Process:
+  = @clinic.referral_process
+  
 %p
   = link_to "Edit", edit_clinic_path(@clinic)
   |
