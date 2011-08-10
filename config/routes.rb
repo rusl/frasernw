@@ -13,7 +13,9 @@ Frasernw::Application.routes.draw do
   
   match "specializations/:id/showalt" => 'specializations#showalt'
   
-
+  match "specialists/:id/:token/edit" => 'specialists_editor#edit'
+  match "specialists/:id/:token/update" => 'specialists_editor#update'
+  
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
   match 'signup' => 'users#new', :as => :signup
