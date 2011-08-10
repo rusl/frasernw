@@ -10,6 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20110810060427) do
 
   create_table "attendances", :force => true do |t|
@@ -80,25 +81,26 @@ ActiveRecord::Schema.define(:version => 20110810060427) do
   end
 
   create_table "specialists", :force => true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "postalcode"
-    t.string   "city"
-    t.string   "province"
-    t.string   "phone1"
-    t.string   "fax"
-    t.text     "status"
-    t.text     "interest"
-    t.integer  "waittime"
-    t.integer  "specialization_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "direct_phone"
-    t.string   "moa_name"
-    t.string   "moa_phone"
-    t.string   "moa_email"
+    t.string    "firstname"
+    t.string    "lastname"
+    t.string    "address1"
+    t.string    "address2"
+    t.string    "postalcode"
+    t.string    "city"
+    t.string    "province"
+    t.string    "phone1"
+    t.string    "fax"
+    t.text      "status"
+    t.text      "interest"
+    t.integer   "waittime"
+    t.integer   "specialization_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "direct_phone"
+    t.string    "moa_name"
+    t.string    "moa_phone"
+    t.string    "moa_email"
+    t.text      "red_flags"
   end
 
   create_table "specializations", :force => true do |t|
