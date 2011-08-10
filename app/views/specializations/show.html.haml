@@ -31,6 +31,11 @@
   - @specialization.procedures.each do |procedure|
     %li= link_to listed_procedure(procedure), specialization_procedure_path(@specialization, procedure)
 
+%h3 Clinics
+%ul{:class => 'procedure_list'}
+  - @specialization.clinics.each do |clinic|
+    %li= link_to clinic.name, clinic_path(clinic)
+
 %p
   = link_to "New specialist", new_specialization_specialist_path(@specialization)
   |
