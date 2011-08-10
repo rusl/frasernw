@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810030910) do
+ActiveRecord::Schema.define(:version => 20110810035008) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "specialist_id"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20110810030910) do
     t.string    "moa_name"
     t.string    "moa_phone"
     t.string    "moa_email"
+    t.text      "red_flags"
   end
 
   create_table "specializations", :force => true do |t|
