@@ -1,5 +1,7 @@
 Frasernw::Application.routes.draw do
 
+  resources :hospitals
+
   resources :specializations do
     resources :specialists
     resources :procedures

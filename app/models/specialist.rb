@@ -3,9 +3,19 @@ class Specialist < ActiveRecord::Base
 
   belongs_to :specialization
 
+  # specialists have the capacity to perform procedures
   has_many   :capacities
   has_many   :procedures, :through => :capacities
-
+  
+  # specialists attend clinics
+  has_many   :attendances
+  has_many   :clinics, :through => :attendances
+  
+  # specialists have "priviliges" at hospitals
+  has_many   :privileges
+  has_many   :hospitals, :through => :privileges
+  
+  # specialists are favorited by users of the system
   has_many   :favorites
   has_many   :users, :through => :favorites
   
