@@ -26,7 +26,8 @@
   = @specialist.red_flags
 %p
   %strong Clinics:
-  = @specialist.clinics.collect { |clinic| clinic.name }
+  - @specialist.clinics.each do |clinic|
+    = link_to(clinic.name, url_for(clinic)) + raw("<br/>")
 %p
   %strong Wait time (avg in weeks): #{@specialist.waittime}
 
