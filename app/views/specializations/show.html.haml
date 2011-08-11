@@ -37,6 +37,8 @@
     %li= link_to clinic.name, clinic_path(clinic)
 
 %p
+  = link_to "New clinic", new_specialization_clinic_path(@specialization)
+  |
   = link_to "New specialist", new_specialization_specialist_path(@specialization)
   |
   = link_to "New procedure", new_specialization_procedure_path(@specialization)
