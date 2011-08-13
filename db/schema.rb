@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(:version => 20110810060427) do
 
   create_table "attendances", :force => true do |t|
-    t.integer  "specialist_id"
-    t.integer  "clinic_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "specialist_id"
+    t.integer   "clinic_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "capacities", :force => true do |t|
@@ -53,23 +53,23 @@ ActiveRecord::Schema.define(:version => 20110810060427) do
   end
 
   create_table "hospitals", :force => true do |t|
-    t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "postalcode"
-    t.string   "city"
-    t.string   "province"
-    t.string   "phone1"
-    t.string   "fax"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.string    "address1"
+    t.string    "address2"
+    t.string    "postalcode"
+    t.string    "city"
+    t.string    "province"
+    t.string    "phone1"
+    t.string    "fax"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "privileges", :force => true do |t|
-    t.integer  "specialist_id"
-    t.integer  "hospital_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "specialist_id"
+    t.integer   "hospital_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "procedures", :force => true do |t|
