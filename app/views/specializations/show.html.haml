@@ -4,14 +4,15 @@
 
 %h3 Specialists
 
-%table{:class => 'grid', :id => 'specialist_table'}
-  %tr
-    %th Name
-    %th booking confirmation
-    %th Wait
-    %th City
-    %th Interests/Expertise
-    %th Scope of practice
+%table{:class => 'sortable', :id => 'specialist_table'}
+  %thead
+    %tr
+      %th Name
+      %th booking confirmation
+      %th Wait
+      %th City
+      %th Interests/Expertise
+      %th Scope of practice
   - @specialization.specialists.each do |specialist|
     %tr
       %td= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@specialization, specialist)
