@@ -8,16 +8,16 @@
     %thead
       %tr
         %th Name
-        %th Lag<br/>(weeks)
-        %th Wait<br/>(weeks)
+        %th Lag
+        %th Wait
         %th City
         %th Hospital
         %th Clinics
     - @procedure.specialists.each do |specialist|
       %tr
-        %td= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist)
-        %td{:class => "right"}
-        %td{:class => "right"}= specialist.waittime
+        %td{:class => "name_column"}= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist)
+        %td{:class => "number_column"}
+        %td{:class => "number_column"}= specialist.waittime
         %td= specialist.city
         %td= specialist.hospitals
         %td= specialist.clinics
