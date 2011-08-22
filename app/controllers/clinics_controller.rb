@@ -5,6 +5,7 @@ class ClinicsController < ApplicationController
 
   def show
     @clinic = Clinic.find(params[:id])
+    render :layout => false if request.headers['X-PJAX']
   end
 
   def new
