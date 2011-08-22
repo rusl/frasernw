@@ -16,8 +16,8 @@
     - @procedure.specialists.each do |specialist|
       %tr
         %td= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist)
-        %td{:class="right"}
-        %td{:class="right"}= specialist.waittime
+        %td{:class => "right"}
+        %td{:class => "right"}= specialist.waittime
         %td= specialist.city
         %td= specialist.hospitals
         %td= specialist.clinics
