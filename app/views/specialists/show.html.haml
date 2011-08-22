@@ -13,8 +13,10 @@
     = "fax: #{@specialist.fax}"
 %p
   %strong Scope of practice:
+  %br/
   - @specialist.procedures.each do |procedure|
     %span.light-highlight= procedure.name
+    %br/
 %p
   %strong Status:
   = @specialist.status
@@ -27,7 +29,8 @@
 %p
   %strong Clinics:
   - @specialist.clinics.each do |clinic|
-    = link_to(clinic.name, url_for(clinic)) + raw("<br/>")
+    = link_to(clinic.name, url_for(clinic))
+    %br/
 %p
   %strong Wait time (avg in weeks): #{@specialist.waittime}
 

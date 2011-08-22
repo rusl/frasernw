@@ -9,7 +9,7 @@ module ApplicationHelper
   def specialists_procedures(specialist)
     list = ""
     specialist.procedures.each do |procedure|
-      list += procedure.name + " "
+      list += procedure.name + (specialist.procedures.last == procedure ? '' : ", ")
     end
     list
   end

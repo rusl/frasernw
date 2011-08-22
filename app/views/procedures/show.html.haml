@@ -4,12 +4,12 @@
 %h1
   = @procedure.name + ' - ' + @procedure.specialization.name
 
-  %table{:class => 'tablesorter', :id => 'specialist_table'}
+  %table{:class => 'tablesorter {sortlist: [[2,0],[3,0]]}', :id => 'specialist_table'}
     %thead
       %tr
         %th Name
-        %th Lag
-        %th Wait
+        %th{:class => "{sorter: 'waittime'}"} Lag
+        %th{:class => "{sorter: 'waittime'}"} Wait
         %th City
         %th Hospital
         %th Clinics

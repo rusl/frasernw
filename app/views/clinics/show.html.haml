@@ -1,42 +1,21 @@
-- title "Clinic"
+/ - title "Specialist"
 
-%p
-  %strong Name:
+%h1
   = @clinic.name
 %p
-  %strong Address1:
-  = @clinic.address1
-%p
-  %strong Address2:
-  = @clinic.address2
-%p
-  %strong Postalcode:
-  = @clinic.postalcode
-%p
-  %strong City:
-  = @clinic.city
-%p
-  %strong Province:
-  = @clinic.province
-%p
-  %strong Phone1:
-  = @clinic.phone1
-%p
-  %strong Fax:
-  = @clinic.fax
+  %i
+    = @clinic.address + ", "
+    = @clinic.city + ', ' + @clinic.province + ', ' +  @clinic.postalcode
+    %br
+    = @clinic.phone1 + ', '
+    = "fax: #{@clinic.fax}"
+/ %p
+/   %strong Scope of practice:
+/   - @clinic.procedures.each do |procedure|
+/     %span.light-highlight= procedure.name
 %p
   %strong Status:
   = @clinic.status
-%p
-  %strong Interest:
-  = @clinic.interest
-%p
-  %strong Waittime:
-  = @clinic.waittime
-%p
-  %strong Specialization:
-  = @clinic.specialization.name
-
 %p
   %strong Referral Criteria:
   = @clinic.referral_criteria
@@ -44,10 +23,19 @@
 %p
   %strong Referral Process:
   = @clinic.referral_process
-  
 %p
-  = link_to "Edit", edit_clinic_path(@clinic)
+  %strong Attending physicians:
+  - @clinic.specialists.each do |specialist|
+    = link_to(specialist.name, url_for(specialist)) + raw("<br/>")
+%p
+  %strong Wait time (avg in weeks): #{@clinic.waittime}
+
+%p
+  = link_to "Edit", edit_specialization_specialist_path(@clinic.specialization, @clinic)
   |
   = link_to "Destroy", @clinic, :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", clinics_path
+  = link_to "View All #{@clinic.specialization.name}", specialization_path(@clinic.specialization)
+  / |
+  / # = link_to "View All Specialists", specialists_path
+

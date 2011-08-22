@@ -8,4 +8,12 @@ class Clinic < ActiveRecord::Base
   
   validates_presence_of :specialization_id, :on => :create, :message => "can't be blank"
   validates_presence_of :name, :on => :create, :message => "can't be blank"
+  
+  def address
+    address = ''
+    address += self.address1 || ''
+    address += self.address2 || ''
+    address
+  end
+  
 end
