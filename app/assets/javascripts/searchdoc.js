@@ -410,7 +410,7 @@ Searchdoc.Panel.prototype = $.extend({}, Searchdoc.Navigation, new function() {
           success: function(data){
             $('#container', window.parent.document).html(data);
             window.parent.history.pushState(null, $(data).filter('title').text(), src);
-            tableToGrid($('.grid', window.parent.document), {height:'auto'});
+            $('.tablesorter', window.parent.document).tablesorter();
           }
         });
         // this.frame.location.href = '..' + src;

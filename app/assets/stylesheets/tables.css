@@ -1,0 +1,14 @@
+td.name_column {
+  text-align: left;
+  min-width: 12em;
+}
+  
+td.number_column {
+  text-align: right;
+  width: 2em;
+}
+
+td.city_column {
+  text-align:left;
+  width: 9em;
+}
