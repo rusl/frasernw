@@ -11,4 +11,8 @@ class Procedure < ActiveRecord::Base
   validates_presence_of :specialization_id, :on => :save, :message => "can't be blank"
   validates_presence_of :name, :on => :save, :message => "can't be blank"
 
+  def to_s
+    self.name
+  end
+
 end

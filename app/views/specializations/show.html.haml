@@ -4,23 +4,25 @@
 
 %h3 Specialists
 
-%table{:class => 'sortable', :id => 'specialist_table'}
+%table{:class => 'tablesorter {sortlist: [[2,0],[3,0]]}', :id => 'specialist_table'}
   %thead
     %tr
       %th Name
-      %th booking confirmation
+      %th Lag
       %th Wait
       %th City
-      %th Interests/Expertise
-      %th Scope of practice
+      %th{:class => "{sorter: false}"} Scope of practice
+      / %th Interests/Expertise
   - @specialization.specialists.each do |specialist|
     %tr
-      %td= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@specialization, specialist)
-      %td= ""
-      %td= link_to "#{specialist.waittime}"
-      %td= link_to "#{specialist.city}"
-      %td= link_to "#{specialist.interest}"
+      %td{:class => 'name_column'  }= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@specialization, specialist)
+      %td{:class => 'number_column'}= ""
+      %td{:class => 'number_column'}= specialist.waittime
+      / FIXME - make a clink to specialists from a certain city
+      / %td= link_to "#{specialist.city}", specialization_city_path(@specialization, specialist.city)
+      %td{:class => 'city_column'}= specialist.city
       %td= specialists_procedures(specialist)
+      / %td= specialist.interest
 
 
 / %ul

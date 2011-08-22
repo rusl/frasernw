@@ -1,13 +1,15 @@
 
   $(document).ready(function() {
-      tableToGrid('.grid', {height:'auto'}
-	);
-      $("#container a").pjax('#container').live('click', function(){})
+      // tableToGrid('.grid', {height:'auto'}
+      $('.tablesorter').tablesorter();
+	});
+  $("#container a").pjax('#container').live('click', function(){})
       
-      $('body').live('end.pjax', function() {
-        $("#container a").pjax('#container');
-        tableToGrid('.grid', {height:'auto'});
-        });
+  $('body').live('end.pjax', function() {
+      $("#container a").pjax('#container');
+      // tableToGrid('.grid', {height:'auto'});
+      $('.tablesorter').tablesorter();
+    });
         
         // $('.grid').livequery(function(){ 
         // // use the helper function hover to bind a mouseover and mouseout event 
@@ -41,5 +43,5 @@
       //     alert('heoooollloo')
       //     tableToGrid('.grid')
       //     });
-  });
+  // });
   

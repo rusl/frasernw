@@ -1,0 +1,21 @@
+#flash_notice {
+  clear: both;
+}
+
+#flash_alert {
+  clear: both;
+}
+
+
+
+/* Sortable tables */
+
+table.sortable {
+  font-size: 10px;
+  thead {
+      background-color:#eee;
+      color:#666666;
+      font-weight: bold;
+      cursor: default;
+  }
+}

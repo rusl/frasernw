@@ -4,20 +4,23 @@
 %h1
   = @procedure.name + ' - ' + @procedure.specialization.name
 
-  %table{:class => 'sortable', :id => 'specialist_table'}
-    %tr
-      %th Name
-      %th Wait (weeks)
-      %th City
-      %th Hospital
-      %th Clinics
+  %table{:class => 'tablesorter', :id => 'specialist_table'}
+    %thead
+      %tr
+        %th Name
+        %th Lag<br/>(weeks)
+        %th Wait<br/>(weeks)
+        %th City
+        %th Hospital
+        %th Clinics
     - @procedure.specialists.each do |specialist|
       %tr
         %td= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist)
-        %td= link_to "#{specialist.waittime}"
-        %td= link_to "#{specialist.city}"
-        %td
-        %td
+        %td{:class="right"}
+        %td{:class="right"}= specialist.waittime
+        %td= specialist.city
+        %td= specialist.hospitals
+        %td= specialist.clinics
         / %td= link_to "#{specialist.interest}"
         / %td= specialists_procedures(specialist)
 
