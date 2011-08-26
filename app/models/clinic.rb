@@ -9,6 +9,10 @@ class Clinic < ActiveRecord::Base
   validates_presence_of :specialization_id, :on => :create, :message => "can't be blank"
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   
+  # specialists have the capacity to perform procedures
+  has_many   :focuses
+  has_many   :procedures, :through => :focuses
+  
   def address
     address = ''
     address += self.address1 || ''
