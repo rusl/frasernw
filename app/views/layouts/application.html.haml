@@ -11,14 +11,17 @@
     = yield(:head)
 
   %body{:id => "#{params[:controller]}_page"}
+    #header
+      = link_to("manage clinics", clinics_path) + ' | ' if current_user && current_user.admin?
+      = link_to("manage users", users_path) + ' | ' if current_user && current_user.admin?
+      = link_to "home", '/' if logged_in?
+      = link_to "logout", logout_url if logged_in?
     - unless params[:controller] == 'user_sessions'
       %div{:id => 'searchbox'}
         %iframe{:src => "/searchbox.html", :id => 'searchbox_frame'}
     #container{:class => "container_#{params[:controller]}"}
       %div{:style => "margin-bottom: 5px; float: right;"} 
-        = link_to("manage clinics", clinics_path) + ' | ' if current_user && current_user.admin?
-        = link_to("manage users", users_path) + ' | ' if current_user && current_user.admin?
-        = link_to "logout", logout_url if logged_in?
+
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       - if show_title?
