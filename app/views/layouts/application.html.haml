@@ -14,8 +14,10 @@
     #header
       = link_to("manage clinics", clinics_path) + ' | ' if current_user && current_user.admin?
       = link_to("manage users", users_path) + ' | ' if current_user && current_user.admin?
-      = link_to "home", '/' if logged_in?
-      = link_to "logout", logout_url if logged_in?
+      - if logged_in?
+        = link_to "home", '/'
+        | 
+        = link_to "logout", logout_url
     - unless params[:controller] == 'user_sessions'
       %div{:id => 'searchbox'}
         %iframe{:src => "/searchbox.html", :id => 'searchbox_frame'}
