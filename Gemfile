@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.1.0rc5'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -13,7 +13,7 @@ group :production do
 end
 
 # Asset template engines
-gem 'sass-rails', "~> 3.1.0.rc"
+gem 'sass-rails', "~> 3.1.0"
 gem 'coffee-script'
 gem 'uglifier'
 
@@ -50,6 +50,7 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'guard-spork'
   gem 'growl'
+  gem 'growl_notify'
 end
 
 # gem "mocha", :group => :test
