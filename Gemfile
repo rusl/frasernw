@@ -22,6 +22,7 @@ gem 'haml-rails'
 
 gem 'authlogic'
 gem 'carrierwave'
+gem 'paper_trail', '~> 2'
 
 # Use unicorn as the web server
 gem 'unicorn'
