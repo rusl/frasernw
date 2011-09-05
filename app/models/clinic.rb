@@ -20,4 +20,12 @@ class Clinic < ActiveRecord::Base
     address
   end
   
+  def waittime_or_blank
+    self.waittime.blank? ? "n/a" : self.waittime
+  end
+  
+  def waittime?
+    self.waittime.blank? ? 'muted' : ''
+  end
+
 end

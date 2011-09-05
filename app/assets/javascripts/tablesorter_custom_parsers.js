@@ -1,16 +1,35 @@
-// add parser through the tablesorter addParser method 
+
+// added by krh
 $.tablesorter.addParser({ 
     // set a unique id 
-    id: 'waitime', 
+    id: 'waittime', 
     is: function(s) { 
-        // return false so this parser is not auto detected 
-        return false; 
+      return false; 
     }, 
-    format: function(s) { 
-        // format your data for normalization 
-        alert(s);
-        return $.tablesorter.formatFloat(s.gsub('','0')); 
-    },
+		format: function(s) {
+			if (s === ('' || "n/a")) {
+  			return null;
+			} else {
+			  return s;
+			}
+		}, 
     // set type, either numeric or text 
     type: 'numeric' 
+});
+// added by krh to push blanks to bottom
+$.tablesorter.addParser({ 
+    // set a unique id 
+    id: 'blanks_to_bottom', 
+    is: function(s) { 
+      return false; 
+    }, 
+		format: function(s) {
+			if (s === ('' || "n/a")) {
+  			return null;
+			} else {
+			  return s;
+			}
+		}, 
+    // set type, either numeric or text 
+    type: 'text'
 });
