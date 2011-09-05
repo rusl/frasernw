@@ -9,10 +9,13 @@
     %br
     = @clinic.phone1 + ', '
     = "fax: #{@clinic.fax}"
-/ %p
-/   %strong Scope of practice:
-/   - @clinic.procedures.each do |procedure|
-/     %span.light-highlight= procedure.name
+%p
+  %strong Scope of practice:
+  %br/
+  - @clinic.procedures.each do |procedure|
+    %span.light-highlight= procedure.name
+    %br/
+
 %p
   %strong Status:
   = @clinic.status
@@ -31,7 +34,7 @@
   %strong Wait time (avg in weeks): #{@clinic.waittime}
 
 %p
-  = link_to "Edit", edit_specialization_specialist_path(@clinic.specialization, @clinic)
+  = link_to "Edit", edit_specialization_clinic_path(@clinic.specialization, @clinic)
   |
   = link_to "Destroy", @clinic, :confirm => 'Are you sure?', :method => :delete
   |

@@ -53,6 +53,14 @@
     %br
     = f.number_field :waittime
   %p
+    = f.label :procedures, "Scope of practice"
+    %br
+    - @clinic.specialization.procedures.each do |procedure|
+      %br
+      = check_box_tag :procedure_ids, procedure.id, @clinic.procedures.include?(procedure), :name => 'clinic[procedure_ids][]'
+      = label_tag :procedure_ids, procedure.name
+  / FIXME - this should probably be done as specialists - hidden field
+  %p
     = f.label :specialization_id
     %br
     = f.select(:specialization_id, options_for_select(Specialization.all.collect {|s| [s.name, s.id]}, [@clinic.specialization_id]), {:include_blank => true})

@@ -44,7 +44,7 @@ end
       :name => specialist.name,
       :breadcrumb => "", 
       :href => url_for(specialist),
-      :other => "Specialist",
+      :other => "Specialists",
       :nothing => '',
       :badge => search_data['badges'].index(specialization.name)
     }
@@ -66,9 +66,9 @@ end
   specialization.clinics.each do |clinic|
     options = {  
       :name => clinic.name, 
-      :breadcrumb => "", 
+      :breadcrumb => "#{specialization.name} > Clinic > #{clinics_procedures(clinic)}", 
       :href => url_for(clinic),
-      :other => "Clinic",
+      :other => clinics_procedures(clinic),
       :nothing => '',
       :badge => search_data['badges'].index(specialization.name)
        }

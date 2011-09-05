@@ -14,6 +14,8 @@ module ApplicationHelper
     list
   end
   
+  alias :clinics_procedures :specialists_procedures
+  
   def compressed_procedures(specialist)
     puts 'yyyyyyyy ' + specialist.procedures.to_s
     p = specialist.procedures.to_a

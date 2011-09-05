@@ -67,6 +67,6 @@
       %br
       = check_box_tag :procedure_ids, procedure.id, @specialist.procedures.include?(procedure), :name => 'specialist[procedure_ids][]'
       = label_tag :procedure_ids, procedure.name
-    = f.hidden_field :specialization_id
   %p
+    = f.hidden_field :specialization_id
     = f.submit
