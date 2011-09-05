@@ -24,7 +24,7 @@
         / FIXME - make a clink to specialists from a certain city
         / %td= link_to "#{specialist.city}", specialization_city_path(@specialization, specialist.city)
         %td{:class => 'city_column'}= specialist.city
-        %td= specialists_procedures(specialist)
+        %td= compressed_procedures(specialist)
         / %td= specialist.interest
 
 
