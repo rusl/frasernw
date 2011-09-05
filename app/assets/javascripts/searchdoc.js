@@ -400,7 +400,8 @@ Searchdoc.Panel.prototype = $.extend({}, Searchdoc.Navigation, new function() {
     }
 
     this.open = function(src) {
-      // manual PJAX
+
+      // manual PJAX modification by krh
         $.ajax({
           url: src,
           dataType: 'html',
@@ -498,6 +499,8 @@ Searchdoc.Tree.prototype = $.extend({}, Searchdoc.Navigation, new function() {
     }
 
     this.select = function($li) {
+        // added this line in to cause trees to open up on click issue #17
+        this.toggle($li);
         this.highlight($li);
         var path = $li[0].searchdoc_tree_data.path;
         if (path) this.panel.open(path);
