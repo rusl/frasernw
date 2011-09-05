@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905063225) do
+ActiveRecord::Schema.define(:version => 20110905070012) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110905063225) do
     t.timestamp "updated_at"
     t.text      "referral_criteria"
     t.text      "referral_process"
+    t.string    "responds_via"
   end
 
   create_table "favorites", :force => true do |t|
@@ -108,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20110905063225) do
     t.string    "moa_phone"
     t.string    "moa_email"
     t.text      "red_flags"
+    t.string    "responds_via"
   end
 
   create_table "specializations", :force => true do |t|

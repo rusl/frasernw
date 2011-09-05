@@ -1,6 +1,7 @@
 class Specialist < ActiveRecord::Base
-  attr_accessible :firstname, :lastname, :address1, :address2, :postalcode, :city, :province, :phone1, :fax, :status, :interest, :waittime, :specialization_id, :procedure_ids, :direct_phone, :red_flags, :clinic_ids
-
+  attr_accessible :firstname, :lastname, :address1, :address2, :postalcode, :city, :province, :phone1, :fax, :status, :interest, :waittime, :specialization_id, :procedure_ids, :direct_phone, :red_flags, :clinic_ids, :responds_via
+  has_paper_trail
+  
   belongs_to :specialization
 
   # specialists have the capacity to perform procedures
@@ -23,7 +24,7 @@ class Specialist < ActiveRecord::Base
   validates_presence_of :lastname, :on => :save, :message => "can't be blank"
   validates_presence_of :specialization_id, :on => :save, :message => "can't be blank"
   
-  default_scope order('lastname, firstname')
+  default_scope order('lastname, firstname')  
   
   def name
     firstname + ' ' + lastname
