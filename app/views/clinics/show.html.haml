@@ -15,10 +15,12 @@
   - @clinic.procedures.each do |procedure|
     %span.light-highlight= procedure.name
     %br/
-
 %p
   %strong Status:
   = @clinic.status
+%p
+  %strong Responds via:
+  = @clinic.responds_via
 %p
   %strong Referral Criteria:
   = @clinic.referral_criteria
