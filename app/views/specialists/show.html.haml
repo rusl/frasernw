@@ -14,9 +14,10 @@
 %p
   %strong Scope of practice:
   %br/
-  - @specialist.procedures.each do |procedure|
-    %span.light-highlight= procedure.name
-    %br/
+  = compressed_procedures_indented(@specialist).html_safe
+  / .procedures.each do |procedure|
+  / %span.light-highlight= procedure.name
+  / %br/
 %p
   %strong Status:
   = @specialist.status

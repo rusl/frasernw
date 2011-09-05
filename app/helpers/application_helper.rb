@@ -16,20 +16,43 @@ module ApplicationHelper
   
   alias :clinics_procedures :specialists_procedures
   
+  def grouped_procedures(specialist)
+    procedures = specialist.procedures.collect {|p| p.name}
+    procedures.group_by {|p| p.split(' - ')[0]}  
+  end
+  
   def compressed_procedures(specialist)
     output = []
-    procedures = specialist.procedures.collect {|p| p.name}
-    grouped_procedures = procedures.group_by {|p| p.split(' - ')[0]}
-    grouped_procedures.each do |key, value| 
+    grouped_procedures(specialist).each do |key, values|
       output << key + "("
-      value.each do |value|
+      values.each do |value|
         if value.match("#{key} - ")
           output << value.gsub("#{key} - ","")
         end
       end
       output << ")"
     end
-    output.join(', ').gsub("(, ","(").gsub(", )", ")").gsub("()","")
+    output.join(', ').gsub("(, ","(").gsub(", )", ")").gsub("()","").gsub(/\([G|g]eneral\)/,'')
+  end
+  
+  def compressed_procedures_indented(specialist)
+    output = ["<ul class='procedure'>"]
+    grouped_procedures(specialist).each do |key,values|
+      if values.length > 1
+        output << "<li>#{key}</li>"
+        output << "<ul>"
+        values.each do |value|
+          if value.match("#{key} - ")
+            output << "<li>" + value.gsub("#{key} - ","") + "</li>"
+          end
+        end
+        output << "</ul>"
+      else
+        output << "<li>#{key}</li>"
+      end
+    end
+    output << "</ul>"
+    output.join()
   end
   
 end
