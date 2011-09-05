@@ -13,16 +13,17 @@
         %th City
         %th Hospital
         %th Clinics
-    - @procedure.specialists.each do |specialist|
-      %tr
-        %td{:class => "name_column"}= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist)
-        %td{:class => "number_column"}
-        %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_or_blank
-        %td= specialist.city
-        %td= specialist.hospitals
-        %td= specialist.clinics
-        / %td= link_to "#{specialist.interest}"
-        / %td= specialists_procedures(specialist)
+    %tbody
+      - (@procedure.specialists + @procedure.clinics).each do |specialist|
+        %tr
+          %td{:class => "name_column"}= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist), :class => specialist.class.to_s.downcase
+          %td{:class => "number_column"}
+          %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_or_blank
+          %td= specialist.city
+          %td= specialist.hospitals
+          %td= specialist.clinics
+          / %td= link_to "#{specialist.interest}"
+          / %td= specialists_procedures(specialist)
 
 
 / %ul
