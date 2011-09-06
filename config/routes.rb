@@ -1,5 +1,10 @@
 Frasernw::Application.routes.draw do
 
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+
+  match "/specialists/:id/versions" => "versions#index", :as => "show_versions", :model => 'specialists'
+  match "/versions/:id"       => "versions#show",        :as => "show_version"
+
   resources :hospitals
 
   resources :specializations do

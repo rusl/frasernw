@@ -1,5 +1,8 @@
 / - title "Specialist"
 
+- if @is_version
+  = render 'versions/info'
+
 %h1
   = @specialist.firstname
   = @specialist.lastname + ' - '
@@ -42,6 +45,8 @@
   %strong Wait time (avg in weeks): #{@specialist.waittime}
 
 %p
+  = link_to "History", show_versions_path(@specialist)
+  |
   = link_to "Edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)
   |
   = link_to "Destroy", @specialist, :confirm => 'Are you sure?', :method => :delete

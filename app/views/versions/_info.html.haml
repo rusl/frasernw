@@ -1,0 +1,14 @@
+#partial.error_messages
+  %h2 You are viewing an older version of this #{@klass} record
+  %p
+    This version was saved #{time_ago_in_words(@version.created_at)} ago because #{User.find(@version.whodunnit).username} did an #{@version.event}. The changes made to this version included: 
+  %p
+    #{@version.changeset.to_s}
+  %p
+    (note that currently, changes to lists of procedures are not versioned).
+  %p
+    View the
+    = link_to "previous version", show_version_path(@version.previous)
+    - if @version.next
+      or 
+      = link_to "next version", show_version_path(@version.next)

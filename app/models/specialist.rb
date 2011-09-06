@@ -44,6 +44,5 @@ class Specialist < ActiveRecord::Base
   def waittime?
     self.waittime.blank? ? 'muted' : ''
   end
-  
-  
+
 end
