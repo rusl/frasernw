@@ -47,10 +47,10 @@ module ControllerAuthentication
     end
   end
   
-  def specialist_token_required
-    
-    unless params[:token] == 'poop'
-      redirect_to login_url, :alert => "You must first log in or sign up before accessing this page."
+  def specialist_token_required(token, specialist_id)
+    specialist = Specialist.find(specialist_id)
+    unless token == specialist.token
+      redirect_to login_url, :alert => "Please email millerjc@shaw.ca to request or reset you secret url for editing."
     end
   end
   

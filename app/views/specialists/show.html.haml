@@ -3,6 +3,13 @@
 - if @is_version
   = render 'versions/info'
 
+- if current_user.admin?
+  #flash_notice
+    %p
+      Special url for editing by specialists office
+    %p
+      = specialist_self_edit_path(@specialist, @specialist.token, :only_path => false)
+
 %h1
   = @specialist.firstname
   = @specialist.lastname + ' - '

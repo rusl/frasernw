@@ -45,4 +45,14 @@ class Specialist < ActiveRecord::Base
     self.waittime.blank? ? 'muted' : ''
   end
 
+  def token
+    if self.saved_token
+      return self.saved_token
+    else
+      self.saved_token = SecureRandom.hex(16)
+      self.save
+      return self.saved_token
+    end
+  end
+
 end

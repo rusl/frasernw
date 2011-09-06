@@ -15,9 +15,9 @@
       - if logged_in? and current_user.admin?
         = link_to "manage users", users_path
         |
-      - if logged_in?
         = link_to "activity", all_versions_path
         |
+      - if logged_in?
         = link_to "home", '/'
         | 
         = link_to "logout", logout_url

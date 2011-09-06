@@ -1,6 +1,15 @@
 %h1 Users
 
-%table
+%table{:class => 'tablesorter'}
+  %tr
+    %th{:class => "{sorter: 'text'}"}
+      username
+    %th{:class => "{sorter: 'text'}"}
+      name
+    %th{:class => "{sorter: 'text'}"}
+      role
+    %th
+
   = render @users
 
 %p= link_to "add user", new_user_path

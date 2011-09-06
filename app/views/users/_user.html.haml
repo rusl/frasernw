@@ -2,9 +2,11 @@
   %td
     %span.username 
       =user.username
+  %td
     %span.name
       =user.name
+  %td
     %span.role 
       =user.role if user.admin?
-
+  %td
     =link_to 'edit', edit_user_path(user) if current_user.admin?
