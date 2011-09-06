@@ -44,7 +44,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'wirble'
   # To use debugger
-  #gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
   # guard for rspeccin
   # gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
