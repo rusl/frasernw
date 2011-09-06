@@ -23,6 +23,7 @@ gem 'haml-rails'
 gem 'authlogic'
 gem 'carrierwave'
 gem 'paper_trail', '~> 2'
+gem 'will_paginate', '~> 3.0.0'
 
 # Use unicorn as the web server
 gem 'unicorn'
