@@ -41,13 +41,13 @@
     %br
     = f.text_field :fax
   %p
+    = f.label :responds_via, "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+    %br
+    = f.text_field :responds_via
+  %p
     = f.label :status
     %br
     = f.text_area :status
-  %p
-    = f.label :responds_via, "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
-    %br
-    = f.text_area :responds_via
   %p
     = f.label :referral_criteria, "Criteria for referral, what forms and investigations are required for referrals for different procedures"
     %br
