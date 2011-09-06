@@ -1,0 +1,14 @@
+%h2 Recent activity
+
+= will_paginate @versions
+
+%ul
+- @versions.each do |version|
+  %li
+    - if version.reify and version.reify.id
+      = link_to "#{version.reify.name}", version.reify
+    - else
+      unkown
+    = link_to "#{version.evented}", show_version_path(version)
+    by #{User.find(version.whodunnit).username}
+    %span{:class=> "muted"}= "#{time_ago_in_words(version.created_at)} ago"

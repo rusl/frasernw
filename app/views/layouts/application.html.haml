@@ -12,9 +12,12 @@
 
   %body{:id => "#{params[:controller]}_page"}
     #header
-      = link_to("manage clinics", clinics_path) + ' | ' if current_user && current_user.admin?
-      = link_to("manage users", users_path) + ' | ' if current_user && current_user.admin?
+      - if logged_in? and current_user.admin?
+        = link_to "manage users", users_path
+        |
       - if logged_in?
+        = link_to "activity", all_versions_path
+        |
         = link_to "home", '/'
         | 
         = link_to "logout", logout_url

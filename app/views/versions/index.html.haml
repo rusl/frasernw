@@ -3,6 +3,6 @@
 %ul
   - @versions.reverse.each_with_index do |version, idx|
     %li
-      =link_to "#{version.event}", show_version_path(version)
+      =link_to "#{version.evented}", show_version_path(version)
       by #{User.find(version.whodunnit).username}
       %span{:class=> "muted"}= "#{time_ago_in_words(version.created_at)} ago"
