@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110906091203) do
+ActiveRecord::Schema.define(:version => 20110907214104) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -105,13 +105,14 @@ ActiveRecord::Schema.define(:version => 20110906091203) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "direct_phone"
-    t.string   "moa_name"
-    t.string   "moa_phone"
-    t.string   "moa_email"
+    t.string   "contact_name"
+    t.string   "contact_phone"
+    t.string   "contact_email"
     t.text     "red_flags"
     t.string   "responds_via"
     t.string   "referral_criteria"
     t.string   "saved_token"
+    t.string   "contact_notes"
   end
 
   create_table "specializations", :force => true do |t|
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20110906091203) do
     t.timestamp "updated_at"
     t.string    "name"
     t.string    "role"
+    t.boolean   "notify"
   end
 
   create_table "versions", :force => true do |t|

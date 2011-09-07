@@ -1,5 +1,24 @@
 = form_for @specialist do |f|
   = f.error_messages
+  - if current_user.admin?    
+    .error_messages
+      %h2 Edit contact information to allow specialists to edit their own forms - this information is only visible to admins.
+      %p
+        = f.label :contact_name
+        %br
+        = f.text_field :contact_name
+      %p
+        = f.label :contact_email
+        %br
+        = f.text_field :contact_email
+      %p
+        = f.label :contact_phone
+        %br
+        = f.text_field :contact_phone
+      %p
+        = f.label :contact_notes, 'Contact notes - Is this an MOA, or someone else in the office? anything else we should know.'
+        %br
+        = f.text_field :contact_notes
   %p
     = f.label :firstname, 'First name'
     %br

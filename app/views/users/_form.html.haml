@@ -26,4 +26,9 @@
     %br
     = f.select :role, ['user', 'admin']
   %p
+    = f.label :nofity, "email notifications (only if admin)"
+    %br
+    = f.check_box :notify
+  
+  %p
     = f.submit (@user.new_record? ? "Sign up" : "Update")

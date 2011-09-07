@@ -1,0 +1,10 @@
+
+Greetings!
+
+You've been invited to view and edit the entry for <%= @specialist.name %> on the resource site for the Fraser NW Division of Family Practice.
+
+To edit your record simply click the special url below, or paste it into a web browser. This url is secret and acts like a password, automatically logging you into the site. It only gives you access to your own record in the database.  Keep this email so that you can go back to the site to make updates.
+
+<%= specialist_self_edit_path(@specialist, @specialist.token, :only_path => false, :host => 'frasernw.heroku.com') %>
+
+This site is in beta, so if you have any feedback, please email it to frasernw@gmail.com.

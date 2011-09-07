@@ -9,4 +9,7 @@
     %span.role 
       =user.role if user.admin?
   %td
+    %span.notify
+      =user.notify
+  %td
     =link_to 'edit', edit_user_path(user) if current_user.admin?

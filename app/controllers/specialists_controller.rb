@@ -55,4 +55,10 @@ class SpecialistsController < ApplicationController
     view_context.link_to("undo", revert_version_path(@specialist.versions.scoped.last), :method => :post).html_safe
   end
   
+  def email
+    @specialist = Specialist.find params[:id]
+    SpecialistMailer.invite_specialist(@specialist).deliver
+    redirect_to @specialist, :notice => "Sent email to #{@specialist.contact_email}"
+  end
+  
 end
