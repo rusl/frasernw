@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110907214104) do
+ActiveRecord::Schema.define(:version => 20110907231500) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -46,6 +46,26 @@ ActiveRecord::Schema.define(:version => 20110907214104) do
     t.text     "referral_process"
     t.string   "responds_via"
   end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "specialist_id"
+    t.integer  "user_id"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["specialist_id"], :name => "index_contacts_on_specialist_id"
+  add_index "contacts", ["user_id"], :name => "index_contacts_on_user_id"
+
+  create_table "edits", :force => true do |t|
+    t.integer  "specialist_id"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "edits", ["specialist_id"], :name => "index_edits_on_specialist_id"
 
   create_table "favorites", :force => true do |t|
     t.integer   "user_id"
@@ -145,5 +165,14 @@ ActiveRecord::Schema.define(:version => 20110907214104) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+  create_table "views", :force => true do |t|
+    t.integer  "specialist_id"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "views", ["specialist_id"], :name => "index_views_on_specialist_id"
 
 end

@@ -1,6 +1,13 @@
+/ FIXME - form target needs to change based on who is accessing it
+
 = form_for @specialist do |f|
   = f.error_messages
-  - if current_user.admin?    
+  - if @view
+    .error_messages
+      %h2 You are editing your record in the Fraser NW Division of Family Practice Resource database
+      %p This database exists to make make our practices, and your practice more efficient. By providing the information requested below you are making it easier for family doctors to find your practice, ensure that they are providing you with the correct information, and that your scopes of practice are fully understood.
+  
+  - if current_user && current_user.admin?    
     .error_messages
       %h2 Edit contact information to allow specialists to edit their own forms - this information is only visible to admins.
       %p

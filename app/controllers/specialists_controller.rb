@@ -38,8 +38,7 @@ class SpecialistsController < ApplicationController
     params[:specialist][:procedure_ids] ||= []
     @specialist = Specialist.find(params[:id])
     if @specialist.update_attributes(params[:specialist])
-      redirect_to @specialist, :notice => "Successfully updated specialist. #{undo_link}"  
-      
+      redirect_to @specialist, :notice => "Successfully updated specialist. #{undo_link}"
     else
       render :action => 'edit'
     end
@@ -50,14 +49,16 @@ class SpecialistsController < ApplicationController
     @specialist.destroy
     redirect_to specialists_url, :notice => "Successfully destroyed specialist. #{undo_link}"
   end
-  
+
   def undo_link
     view_context.link_to("undo", revert_version_path(@specialist.versions.scoped.last), :method => :post).html_safe
   end
-  
+
   def email
     @specialist = Specialist.find params[:id]
     SpecialistMailer.invite_specialist(@specialist).deliver
+    @contact = @specialist.contacts.build(:user_id => current_user, :notes => @specialist.contact_email)
+    @contact.save
     redirect_to @specialist, :notice => "Sent email to #{@specialist.contact_email}"
   end
   

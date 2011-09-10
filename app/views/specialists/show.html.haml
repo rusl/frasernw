@@ -6,13 +6,16 @@
 - if current_user.admin?
   #flash_notice
     - if @specialist.contact_email
-      %h2 Email an invitation to participate to this specialist
+      %h2 Email an invitation to this specialist
       %p Clicking the below link will send an invitation to edit this record with the following special url.
       %p= specialist_self_edit_path(@specialist, @specialist.token, :only_path => false)
       %p=link_to "Email #{@specialist.contact_email}", specialist_email_path(@specialist), :method => :post
     - else
       %p To send this link with an invitation to #{link_to "edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)} this specialist and add contact information
-      
+    %h4
+      This specialist was contacted through the application
+      = "never" if @specialist.contacts.length < 1
+    = render @specialist.contacts
 
 %h1
   = @specialist.firstname

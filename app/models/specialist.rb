@@ -19,7 +19,14 @@ class Specialist < ActiveRecord::Base
   # specialists are favorited by users of the system
   has_many   :favorites
   has_many   :users, :through => :favorites
-  
+
+  # has many contacts - dates and times they were contacted
+  has_many  :contacts
+
+  # dates and tiems they looked at and changed their own record
+  has_many  :views
+  has_many  :edits
+
   validates_presence_of :firstname, :on => :save, :message => "can't be blank"
   validates_presence_of :lastname, :on => :save, :message => "can't be blank"
   validates_presence_of :specialization_id, :on => :save, :message => "can't be blank"

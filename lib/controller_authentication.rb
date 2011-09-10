@@ -50,7 +50,7 @@ module ControllerAuthentication
   def specialist_token_required(token, specialist_id)
     specialist = Specialist.find(specialist_id)
     unless token == specialist.token
-      redirect_to login_url, :alert => "Please email millerjc@shaw.ca to request or reset you secret url for editing."
+      redirect_to login_url, :alert => "Invalid token. Please email millerjc@shaw.ca to request or reset your secret url for editing."
     end
   end
   
