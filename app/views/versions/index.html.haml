@@ -1,7 +1,7 @@
 %h2 History for #{@item.name}
 
 %ul
-  - @versions.reverse.each_with_index do |version, idx|
+  - @versions.each_with_index do |version, idx|
     %li
       =link_to "#{version.evented}", show_version_path(version)
       by #{User.find(version.whodunnit).username}
