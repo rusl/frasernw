@@ -21,7 +21,7 @@ Frasernw::Application.routes.draw do
   
   match "specialists/:id/:token/edit"   => 'specialists_editor#edit',  :as => 'specialist_self_edit'
   match "specialists/:id/:token/update" => 'specialists_editor#update'
-  post  "email_specialists/:id"         => 'specialists#email', :as => 'email_specialists'
+  post  "email_specialists/:id"         => 'specialists#email', :as => 'specialist_email'
   
   match 'user/edit' => 'users#edit', :as => :edit_current_user
 
