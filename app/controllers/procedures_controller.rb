@@ -33,8 +33,7 @@ class ProceduresController < ApplicationController
     @procedure = Procedure.find(params[:id])
   end
 
-  def update
-    debugger
+  def update_attributes
     @procedure = Procedure.find(params[:id])
     if @procedure.update_attributes(params[:procedure])
       redirect_to @procedure, :notice  => "Successfully updated procedure."
