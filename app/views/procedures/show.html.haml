@@ -16,12 +16,18 @@
     %tbody
       - (@procedure.specialists + @procedure.clinics).each do |specialist|
         %tr
-          %td{:class => "name_column"}= link_to "#{specialist.firstname} #{specialist.lastname}", specialization_specialist_path(@procedure, specialist), :class => specialist.class.to_s.downcase
+          %td{:class => "name_column"}
+            - type_of_row = specialist.class.to_s.downcase
+            - case type_of_row
+              - when 'specialist'
+                = link_to specialist.name, specialization_specialist_path(@procedure.specialization, specialist), :class => type_of_row
+              - when 'clinic'
+                = link_to specialist.name, specialization_clinic_path(@procedure.specialization, specialist), :class => type_of_row
           %td{:class => "number_column"}
           %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_or_blank
           %td= specialist.city
-          %td= specialist.hospitals
-          %td= specialist.clinics
+          %td= specialist.hospitals if type_of_row == 'specialist'
+          %td= specialist.clinics if type_of_row == 'specialist'
           / %td= link_to "#{specialist.interest}"
           / %td= specialists_procedures(specialist)
 
