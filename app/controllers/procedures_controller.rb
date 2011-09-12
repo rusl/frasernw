@@ -3,8 +3,9 @@ class ProceduresController < ApplicationController
     if params[:specialization_id] != nil
       @specialization = Specialization.find params[:specialization_id]
       @procedures = @specialization.procedures
+      redirect_to specialization_procedures_path(@specialization, @specialization.procedures) and return
     else
-      redirect_to 'specializations#index' and return
+      redirect_to specialization_path(@specialization) and return
     end
   end
 
@@ -23,7 +24,7 @@ class ProceduresController < ApplicationController
   def create
     @procedure = Procedure.new(params[:procedure])
     if @procedure.save
-      redirect_to @procedure, :notice => "Successfully created procedure."
+      redirect_to @procedure, :notice => "Successfully created scope of practice."
     else
       render :action => 'new'
     end
@@ -36,7 +37,7 @@ class ProceduresController < ApplicationController
   def update
     @procedure = Procedure.find(params[:id])
     if @procedure.update_attributes(params[:procedure])
-      redirect_to @procedure, :notice  => "Successfully updated procedure."
+      redirect_to @procedure, :notice  => "Successfully updated scope of practice."
     else
       render :action => 'edit'
     end
@@ -45,6 +46,7 @@ class ProceduresController < ApplicationController
   def destroy
     @procedure = Procedure.find(params[:id])
     @procedure.destroy
+    # redirect_to '/specializations', :notice => "Successfully destroyed scope of practice."
     redirect_to procedures_url, :notice => "Successfully destroyed procedure."
   end
 end
