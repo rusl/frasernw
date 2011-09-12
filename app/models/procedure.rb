@@ -1,5 +1,5 @@
 class Procedure < ActiveRecord::Base
-  attr_accessible :name, :specialization_id
+  attr_accessible :name, :specialization_id, :done_by_specialists, :done_by_clinics
   has_paper_trail
 
   has_many :capacities

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110907231500) do
+ActiveRecord::Schema.define(:version => 20110912043514) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(:version => 20110907231500) do
     t.integer   "specialization_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.boolean   "done_by_clinics"
+    t.boolean   "done_by_specialists"
   end
 
   create_table "specialists", :force => true do |t|

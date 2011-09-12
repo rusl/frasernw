@@ -1,9 +1,18 @@
 = form_for @procedure do |f|
+  - debugger
   = f.error_messages
   %p
     = f.label :name
     %br
     = f.text_field :name
+  %p
+    = f.label :done_by_specialists
+    %br
+    = f.check_box :done_by_specialists
+  %p
+    = f.label :done_by_clinics
+    %br
+    = f.check_box :done_by_clinics
     = f.hidden_field :specialization_id
   %p
     = f.submit "Update Scope"

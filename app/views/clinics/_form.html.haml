@@ -60,7 +60,7 @@
   %p
     = f.label :procedures, "Scope of practice"
     %br
-    - @clinic.specialization.procedures.each do |procedure|
+    - @clinic.specialization.procedures.where(:done_by_clinics => true).each do |procedure|
       %br
       = check_box_tag :procedure_ids, procedure.id, @clinic.procedures.include?(procedure), :name => 'clinic[procedure_ids][]'
       = label_tag :procedure_ids, procedure.name
