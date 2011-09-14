@@ -13,9 +13,9 @@ class VersionsController < ApplicationController
     @is_version = true
     render :template => "#{@klass.pluralize}/show"
   end
-  
+
   def show_all
-    @versions = Version.paginate(:page => params[:page], :per_page => 50)
+    @versions = Version.order('id desc').paginate(:page => params[:page], :per_page => 50)
   end
 
   def revert
