@@ -53,6 +53,8 @@ group :development, :test do
   gem 'guard-spork'
   gem 'growl'
   gem 'growl_notify'
+  gem 'heroku'
+  gem 'taps'
 end
 
 # gem "mocha", :group => :test
