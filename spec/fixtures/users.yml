@@ -5,6 +5,7 @@ foo:
   persistence_token: d5ddba13ed4408ea2b0a12ab18ed2d2eda086279736bdc121ca726a11f1e4b99217d9c534c2cc4ebb22729349c8c5fdbe1529e1f2c3c5859c62ef4dd9feea25c
   crypted_password: 3d16c326648cccafe3d4b4cb024475c381dda92f430dfedf6f933e1f61203bacb6bae2437849bdb43b06be335e23790e4aa03902b3c28c3bbbbe27d501e521f3
   password_salt: n6z_wtpWoIsHgQb5IcFd
+  role: admin
 
 bar:
   username: bar
