@@ -1,6 +1,11 @@
 class ClinicsController < ApplicationController
   def index
-    @clinics = Clinic.all
+    unless params[:specialization_id]
+      redirect_to specializations_path, :notice => "Need to specify a specialization" and return
+    else
+      @specialization = Specialization.find(params[:specialization_id])
+      @clinics = Clinic.all
+    end
   end
 
   def show
@@ -9,7 +14,12 @@ class ClinicsController < ApplicationController
   end
 
   def new
-    @clinic = Clinic.new
+    unless params[:specialization_id]
+      redirect_to specializations_path, :notice => "Need to specify a specialization" and return
+    else
+      @specialization = Specialization.find(params[:specialization_id])
+      @clinic = Clinic.new
+    end
   end
 
   def create

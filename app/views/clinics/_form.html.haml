@@ -60,14 +60,12 @@
   %p
     = f.label :procedures, "Scope of practice"
     %br
-    - @clinic.specialization.procedures.where(:done_by_clinics => true).each do |procedure|
+    - @specialization.procedures.where(:done_by_clinics => true).each do |procedure|
       %br
       = check_box_tag :procedure_ids, procedure.id, @clinic.procedures.include?(procedure), :name => 'clinic[procedure_ids][]'
       = label_tag :procedure_ids, procedure.name
-  / FIXME - this should probably be done as specialists - hidden field
-  %p
-    = f.label :specialization_id
-    %br
-    = f.select(:specialization_id, options_for_select(Specialization.all.collect {|s| [s.name, s.id]}, [@clinic.specialization_id]), {:include_blank => true})
-  %p
+      / FIXME - this should probably be done as specialists - hidden field
+      = f.hidden_field :specialization_id
+
+    %p
     = f.submit

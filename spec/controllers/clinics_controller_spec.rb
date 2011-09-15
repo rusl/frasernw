@@ -2,14 +2,16 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ClinicsController do
   fixtures :all
-  render_views
-  before :each do
-    activate_authlogic
-    UserSession.create(users(:foo))
+  # render_views
+  
+  before(:each) do
+    controller.stub!(:logged_in?).and_return(true)
+    # controller.class.skip_before_filter :login_required
   end
   
+  
   it "index action should render index template" do
-    get :index
+    get :index, :specialization_id => Specialization.first
     response.should render_template(:index)
   end
 
@@ -18,8 +20,16 @@ describe ClinicsController do
     response.should render_template(:show)
   end
 
-  it "new action should render new template" do
+  it "new action should redirect if there's no specialization_id" do
     get :new
+    response.should redirect_to(specializations_url)
+  end
+
+  it "new action should render new template" do
+    get :new, :specialization_id => Specialization.first
+    # FIXME - need to test that @specialization is assinged but rspec2 syntax...
+    # Specialization.should_receive(:find)
+    # assigns[:specialization]
     response.should render_template(:new)
   end
 

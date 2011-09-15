@@ -6,8 +6,6 @@ Frasernw::Application.routes.draw do
   match "/specialists/:id/versions" => "versions#index",    :as => "show_versions", :model => 'specialists'
   match "/versions/:id"             => "versions#show",     :as => "show_version"
 
-  resources :hospitals
-
   resources :specializations do
     resources :specialists
     resources :procedures
@@ -16,6 +14,8 @@ Frasernw::Application.routes.draw do
   resources :clinics
   resources :specialists
   resources :procedures
+  resources :hospitals
+
   
   match "specializations/:id/showalt" => 'specializations#showalt'
   

@@ -2,6 +2,7 @@ class SpecialistsController < ApplicationController
 
   def index
     # @specializations = Specialization.find(:all, :include => :specialists)
+    redirect_to specializations_path, :notice => "Need to specify a specialization" unless params[:specialization_id]
     @specialization = Specialization.find(params[:specialization_id])
     @specialists = @specialization.specialists
   end

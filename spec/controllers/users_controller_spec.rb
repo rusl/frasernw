@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UsersController do
   fixtures :all
-  render_views
+  # render_views
   
   # before :all do
   #   let(:user) => User.first
@@ -32,7 +32,7 @@ describe UsersController do
 
   it "edit action should render edit template" do
     @controller.stubs(:current_user).returns(User.first)
-    get :edit, :id => "ignored"
+    get :edit, :id => User.first.id
     response.should render_template(:edit)
   end
 
@@ -51,8 +51,8 @@ describe UsersController do
   it "update action should redirect when user is valid" do
     @controller.stubs(:current_user).returns(User.first)
     User.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => "ignored"
-    response.should redirect_to(root_url)
+    put :update, :id => User.first, :user => {:name => "Spiro Agnew"} # need to pass a change otherwise - no update
+    response.should redirect_to(users_url)
   end
   
   it 'show action should render show template' do

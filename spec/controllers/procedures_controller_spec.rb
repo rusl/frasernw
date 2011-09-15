@@ -3,11 +3,15 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ProceduresController do
   fixtures :all
   # render_views
-
-  it "index action should render index template" do
-    get :index, :specialization_id => Specialization.first
-    response.should render_template(:index)
+  before(:each) do
+    controller.stub!(:logged_in?).and_return(true)
+    # controller.class.skip_before_filter :login_required
   end
+
+  # it "index action should render index template" do
+  #   get :index, :specialization_id => Specialization.first
+  #   response.should render_template(:index)
+  # end
 
   it "show action should render show template" do
     get :show, :id => Procedure.first
