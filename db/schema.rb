@@ -11,20 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912043514) do
+ActiveRecord::Schema.define(:version => 20110915083224) do
 
   create_table "attendances", :force => true do |t|
-    t.integer   "specialist_id"
-    t.integer   "clinic_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "specialist_id"
+    t.integer  "clinic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "capacities", :force => true do |t|
-    t.integer   "specialist_id"
-    t.integer   "procedure_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "specialist_id"
+    t.integer  "procedure_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "clinics", :force => true do |t|
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(:version => 20110912043514) do
   add_index "edits", ["specialist_id"], :name => "index_edits_on_specialist_id"
 
   create_table "favorites", :force => true do |t|
-    t.integer   "user_id"
-    t.integer   "specialist_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.integer  "specialist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "focuses", :force => true do |t|
@@ -82,33 +82,43 @@ ActiveRecord::Schema.define(:version => 20110912043514) do
   end
 
   create_table "hospitals", :force => true do |t|
-    t.string    "name"
-    t.string    "address1"
-    t.string    "address2"
-    t.string    "postalcode"
-    t.string    "city"
-    t.string    "province"
-    t.string    "phone1"
-    t.string    "fax"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "postalcode"
+    t.string   "city"
+    t.string   "province"
+    t.string   "phone1"
+    t.string   "fax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "privileges", :force => true do |t|
-    t.integer   "specialist_id"
-    t.integer   "hospital_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "specialist_id"
+    t.integer  "hospital_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "procedures", :force => true do |t|
-    t.string    "name"
-    t.integer   "specialization_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "done_by_clinics"
-    t.boolean   "done_by_specialists"
+    t.string   "name"
+    t.integer  "specialization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "done_by_clinics"
+    t.boolean  "done_by_specialists"
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "specialists", :force => true do |t|
     t.string   "firstname"
@@ -138,22 +148,22 @@ ActiveRecord::Schema.define(:version => 20110912043514) do
   end
 
   create_table "specializations", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string    "username"
-    t.string    "email"
-    t.string    "persistence_token"
-    t.string    "crypted_password"
-    t.string    "password_salt"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "name"
-    t.string    "role"
-    t.boolean   "notify"
+    t.string   "username"
+    t.string   "email"
+    t.string   "persistence_token"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "role"
+    t.boolean  "notify"
   end
 
   create_table "versions", :force => true do |t|
