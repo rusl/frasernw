@@ -2,15 +2,8 @@
 
 %p== Don't have an account? Email John Yap.
 
-= form_for @user_session do |f|
+= simple_form_for @user_session do |f|
   = f.error_messages
-  %p
-    = f.label :username
-    %br
-    = f.text_field :username
-  %p
-    = f.label :password
-    %br
-    = f.password_field :password
-  %p
-    = f.submit "Log in"
+  =f.input :username, autofocus: true
+  =f.input :password
+  =f.button :submit, "Log In"
