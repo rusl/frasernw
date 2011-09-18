@@ -1,6 +1,6 @@
 / FIXME - form target needs to change based on who is accessing it
 
-= form_for @specialist do |f|
+= simple_form_for @specialist do |f|
   = f.error_messages
   - if @view
     .error_messages
@@ -10,90 +10,31 @@
   - if current_user && current_user.admin?    
     .error_messages
       %h2 Edit contact information to allow specialists to edit their own forms - this information is only visible to admins.
-      %p
-        = f.label :contact_name
-        %br
-        = f.text_field :contact_name
-      %p
-        = f.label :contact_email
-        %br
-        = f.text_field :contact_email
-      %p
-        = f.label :contact_phone
-        %br
-        = f.text_field :contact_phone
-      %p
-        = f.label :contact_notes, 'Contact notes - Is this an MOA, or someone else in the office? anything else we should know.'
-        %br
-        = f.text_field :contact_notes
-  %p
-    = f.label :firstname, 'First name'
-    %br
-    = f.text_field :firstname
-  %p
-    = f.label :lastname, 'Last name'
-    %br
-    = f.text_field :lastname
-  %p
-    = f.label :address1, "Address line 1"
-    %br
-    = f.text_field :address1
-  %p
-    = f.label :address2, "Address line 2"
-    %br
-    = f.text_field :address2
-  %p
-    = f.label :city
-    %br
-    = f.text_field :city
-  %p
-    = f.label :province
-    %br
-    = f.text_field :province
-  %p
-    = f.label :postalcode, "Postal code"
-    %br
-    = f.text_field :postalcode
-  %p
-    = f.label :phone1, "Phone"
-    %br
-    = f.text_field :phone1
-  %p
-    = f.label :direct_phone, "Direct phone"
-    %br
-    = f.text_field :direct_phone
-  %p
-    = f.label :fax
-    %br
-    = f.text_field :fax
-  %p
-    = f.label :responds_via, "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
-    %br
-    = f.text_field :responds_via
-  %p
-    = f.label :status
-    %br
-    = f.text_area :status
-  %p
-    = f.label :referral_criteria, "Criteria for referral, what forms and investigations are required for referrals for different procedures"
-    %br
-    = f.text_area :referral_criteria
-  %p
-    = f.label :interest
-    %br
-    = f.text_area :interest
-  %p
-    = f.label :red_flags, "Red Flag (urgent situations, and process for having them addressed)"
-    %br
-    = f.text_area :red_flags
-  %p
-    = f.label :waittime, "Wait time (avg in weeks)"
-    %br
-    = f.number_field :waittime
-  %p
-    = f.label :clinics
-    %br
+      = f.input :contact_name
+      = f.input :contact_email
+      = f.input :contact_phone
+      = f.input :contact_notes, hint: 'Is this an MOA, or someone else in the office? anything else we should know.'
+
+  = f.input :firstname
+  = f.input :lastname
+  = f.input :address1, label: "Address line 1"
+  = f.input :address2, label: "Address line 2"
+  = f.input :city
+  = f.input :province
+  = f.input :postalcode, label: "Postal Code"
+  = f.input :phone1, label: "Phone"
+  = f.input :direct_phone, label: "Direct phone"
+  = f.input :fax
+  = f.input :responds_via, as: :text, hint: "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+  = f.input :status, as: :text
+  = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
+  = f.input :interest, as: :text
+  = f.input :red_flags, as: :text, hint: "Red Flag (urgent situations, and process for having them addressed)"
+  = f.input :waittime, label: "Wait time", hint: "(avg in weeks)", as: :integer, min: 0
+
+  = f.input :clinics do
     = f.select(:clinic_ids, options_for_select(@specialization_clinics, @specialist_clinics), {:include_blank => false, :id => "specialist_clinics"}, {:multiple => true, :size => 10})
+
   %p
     = f.label :procedures, "Scope of practice"
     %br
@@ -101,6 +42,9 @@
       %br
       = check_box_tag :procedure_ids, procedure.id, @specialist.procedures.include?(procedure), :name => 'specialist[procedure_ids][]'
       = label_tag :procedure_ids, procedure.name
+
+  / FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p
-    = f.hidden_field :specialization_id
+    = f.input :specialization_id, as: :hidden
+
     = f.submit
