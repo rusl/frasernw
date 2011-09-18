@@ -5,12 +5,15 @@
     margin-top:50px;
     padding:25px;
     /*FIXME - needs Compass mixins to generate cross browser compatible markup. */
-    box-shadow:0 0 5px #666;
+    box-shadow:0 0 5px #888;
     border-radius:4px;
     border-color:#bbb;
     > h1 {
       margin-top:0;
     }
+  }
+  p{
+    margin:0;
   }
   form {
     position:relative;
@@ -23,6 +26,9 @@
     line-height:2em;
     abbr {
       display:none;
+    }
+    &:after {
+      content:":";
     }
   }
   input[type=password], input[type=text]{
@@ -38,7 +44,10 @@
     }
   }
   input[type=submit]{
-    margin:15px;
-    float:right;
-  }  
+/*    margin:1.3em 0;*/
+/*    float:right;*/
+  }
+  .input{
+    margin:1.6em 0;
+  }
 }
