@@ -29,19 +29,12 @@
   = f.input :status, as: :text
   = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
   = f.input :interest, as: :text
-  = f.input :red_flags, as: :text, hint: "Red Flag (urgent situations, and process for having them addressed)"
-  = f.input :waittime, label: "Wait time", hint: "(avg in weeks)", as: :integer, min: 0
+  = f.input :red_flags, as: :text, hint: "Urgent situations, and process for having them addressed"
+  = f.input :waittime, label: "Wait time", hint: "(avg in weeks)", as: :integer, input_html: {min: 0}
 
-  = f.input :clinics do
-    = f.select(:clinic_ids, options_for_select(@specialization_clinics, @specialist_clinics), {:include_blank => false, :id => "specialist_clinics"}, {:multiple => true, :size => 10})
+  = f.association :clinics, as: :select, collection: @specialization_clinics
 
-  %p
-    = f.label :procedures, "Scope of practice"
-    %br
-    - @specialist.specialization.procedures.where(:done_by_specialists => true).each do |procedure|
-      %br
-      = check_box_tag :procedure_ids, procedure.id, @specialist.procedures.include?(procedure), :name => 'specialist[procedure_ids][]'
-      = label_tag :procedure_ids, procedure.name
+  = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists
 
   / FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p
