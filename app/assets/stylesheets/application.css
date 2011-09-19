@@ -4,5 +4,6 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require ./all/normalize
+ *= require ./all/1140
  *= require_tree ./all 
 */
