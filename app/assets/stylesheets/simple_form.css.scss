@@ -1,0 +1,57 @@
+form.simple_form {
+  fieldset{
+    margin-left:-0.625em;
+    border-radius:3px;
+    width:303px;
+  }
+  input:not([type=submit]), textarea {
+    padding:5px;
+    color:#222;
+    border:1px solid #ccc;
+    border-top-color:#999;
+    border-left-color:#999;
+    font-size:1.2em;
+    width:291px;
+    &:focus{
+      border:1px solid #4D90FE;
+      outline:none;
+      box-shadow:0 0 2px #666 inset;
+    }
+  }
+  label {
+    color:#333;
+    display:block;
+    font-size:1.1em;
+    line-height:1.5em;
+    abbr {
+      display:none;
+    }
+  }
+  div.input {
+    margin-top:10px;
+  }
+  .firstname, .lastname, .city, .province, .postalcode {
+    display:inline-block;
+    label{
+      display:block;
+    }
+  }
+  .firstname, .lastname {
+    input {
+      width:138px;
+    }
+  }
+  .city input{
+    width:136px;
+  }
+  .province input{
+    width:50px;
+  }
+  .postalcode input{
+    width:75px;
+  }
+  .hint{
+    display:block;
+    font-style:italic;
+  }
+}

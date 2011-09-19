@@ -6,6 +6,7 @@
         z-index: 2;
         font-family: "Helvetica Neue", "Arial", sans-serif;
         //zoom: 1;
+        margin:-8px;
 /*        border: 1px solid #ccc;*/
     }
     
@@ -113,6 +114,7 @@
             font-size: 13px;
             font-weight: normal;
             color: #333;
+            margin-top:0;
             margin-bottom: 2px;
             white-space: nowrap;
         }
@@ -121,6 +123,7 @@
         {
             font-size: 11px;
             color: #333;
+            margin-top:0;
             margin-bottom: 2px;
             white-space: nowrap;
         }
@@ -313,6 +316,7 @@
             font-size: 13px;
             font-weight: normal;
             color: #000;
+            margin-top:0;
             margin-bottom: 2px;
             white-space: nowrap;
         }

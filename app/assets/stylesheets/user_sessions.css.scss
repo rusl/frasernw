@@ -27,9 +27,6 @@
     abbr {
       display:none;
     }
-    &:after {
-      content:":";
-    }
   }
   input[type=password], input[type=text]{
     display:block;
@@ -37,6 +34,8 @@
     padding:5px;
     color:#555;
     border:1px solid #ccc;
+    border-top-color:#aaa;
+    border-left-color:#aaa;
     &:focus{
       border:1px solid #4D90FE;
       outline:none;
@@ -44,8 +43,6 @@
     }
   }
   input[type=submit]{
-/*    margin:1.3em 0;*/
-/*    float:right;*/
   }
   .input{
     margin:1.6em 0;

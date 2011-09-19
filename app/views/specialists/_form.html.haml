@@ -8,23 +8,27 @@
       %p This database exists to make make our practices, and your practice more efficient. By providing the information requested below you are making it easier for family doctors to find your practice, ensure that they are providing you with the correct information, and that your scopes of practice are fully understood.
   
   - if current_user && current_user.admin?    
-    .error_messages
-      %h2 Edit contact information to allow specialists to edit their own forms - this information is only visible to admins.
+    %fieldset
+      %legend Edit contact information to allow specialists to edit their own forms - this information is only visible to admins.
       = f.input :contact_name
       = f.input :contact_email
       = f.input :contact_phone
-      = f.input :contact_notes, hint: 'Is this an MOA, or someone else in the office? anything else we should know.'
+      = f.input :contact_notes, hint: "Include contact's role (MOA, etc.) and anything else we should know."
+    %fieldset
+      %legend Doctor Information
+      = f.input :firstname, label: 'First Name', wrapper_html: {class: 'firstname'}
+      = f.input :lastname, label: 'Last Name', wrapper_html: {class: 'lastname'}
+      = f.input :phone1, label: "Phone"
+      = f.input :direct_phone, label: "Direct Phone"
+      = f.input :fax
 
-  = f.input :firstname
-  = f.input :lastname
-  = f.input :address1, label: "Address line 1"
-  = f.input :address2, label: "Address line 2"
-  = f.input :city
-  = f.input :province
-  = f.input :postalcode, label: "Postal Code"
-  = f.input :phone1, label: "Phone"
-  = f.input :direct_phone, label: "Direct phone"
-  = f.input :fax
+  %fieldset
+    %legend Address
+    = f.input :address1, label: "Street Address"
+    = f.input :address2, label: "Apt, Suite, Bldg. (Optional)"
+    = f.input :city, wrapper_html: {class: 'city'}
+    = f.input :province, wrapper_html: {class: 'province'}
+    = f.input :postalcode, label: "Postal Code", wrapper_html: {class: 'postalcode'}
   = f.input :responds_via, as: :text, hint: "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
   = f.input :status, as: :text
   = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
