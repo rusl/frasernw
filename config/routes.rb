@@ -16,6 +16,7 @@ Frasernw::Application.routes.draw do
   resources :procedures
   resources :hospitals
 
+  match "tracker" => 'tracker#index', :as => 'tracker'
   
   match "specializations/:id/showalt" => 'specializations#showalt'
   

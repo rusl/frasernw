@@ -13,13 +13,15 @@
   %body{:id => "#{params[:controller]}_page"}
     #header
       - if logged_in? and current_user.admin?
+        = link_to "track specialists", tracker_path
+        |     
         = link_to "manage users", users_path
         |
         = link_to "activity", all_versions_path
         |
       - if logged_in?
         = link_to "home", '/'
-        | 
+        |
         = link_to "logout", logout_url
     - unless params[:controller] == 'user_sessions'
       %div{:id => 'searchbox'}

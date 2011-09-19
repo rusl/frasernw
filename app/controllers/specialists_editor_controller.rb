@@ -3,8 +3,6 @@ class SpecialistsEditorController < ApplicationController
   before_filter { |controller|  controller.send(:specialist_token_required, params[:token], params[:id]) }
   
   def edit
-    # specialist_token_required(params[:token])
-    # TODO: before filter
     @token      = params[:token]
     @specialist = Specialist.find(params[:id])
     @specialization = @specialist.specialization
