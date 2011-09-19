@@ -19,7 +19,7 @@ class SpecialistsEditorController < ApplicationController
     if @specialist.update_attributes(params[:specialist])
       @edit = @specialist.edits.build(:notes => request.remote_ip)
       @edit.save
-      redirect_to edit_specialist(@specialist), :notice => "Successfully updated."
+      redirect_to specialist_self_edit_path(@specialist), :notice => "Successfully updated."
     else
       render :action => 'edit'
     end

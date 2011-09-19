@@ -1,6 +1,4 @@
-/ FIXME - form target needs to change based on who is accessing it
-
-= form_for @specialist do |f|
+= form_for @specialist, :url => {:action => 'update', :controller => params[:controller]} do |f|
   = f.error_messages
   - if @view
     .error_messages
