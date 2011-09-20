@@ -7,3 +7,17 @@
 //= require jquery-1.5.2.min
 //= require jquery_ujs
 //= require_tree .
+
+var searchboxResize;
+
+searchboxResize = function () {
+  $('#searchbox').height($(window).height() - $('#header').height());
+};
+
+$(document).ready( function() {
+  searchboxResize();
+});
+
+$(window).resize( function() {
+  searchboxResize();
+});
