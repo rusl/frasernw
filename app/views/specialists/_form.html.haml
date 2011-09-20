@@ -1,6 +1,4 @@
-/ FIXME - form target needs to change based on who is accessing it
-
-= simple_form_for @specialist do |f|
+= simple_form_for @specialist, :url => {:action => 'update', :controller => params[:controller]} do |f|
   = f.error_messages
   - if @view
     .error_messages
@@ -37,6 +35,8 @@
   = f.input :waittime, label: "Wait time", hint: "(avg in weeks)", as: :integer, input_html: {min: 0}
 
   = f.association :clinics, as: :select, collection: @specialization_clinics
+
+  = f.association :hospitals, as: :check_boxes
 
   = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists
 

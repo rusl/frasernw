@@ -3,8 +3,6 @@ class SpecialistsEditorController < ApplicationController
   before_filter { |controller|  controller.send(:specialist_token_required, params[:token], params[:id]) }
   
   def edit
-    # specialist_token_required(params[:token])
-    # TODO: before filter
     @token      = params[:token]
     @specialist = Specialist.find(params[:id])
     @specialization = @specialist.specialization
@@ -21,7 +19,7 @@ class SpecialistsEditorController < ApplicationController
     if @specialist.update_attributes(params[:specialist])
       @edit = @specialist.edits.build(:notes => request.remote_ip)
       @edit.save
-      redirect_to edit_specialist(@specialist), :notice => "Successfully updated."
+      redirect_to specialist_self_edit_path(@specialist), :notice => "Successfully updated."
     else
       render :action => 'edit'
     end

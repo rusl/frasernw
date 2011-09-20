@@ -1,0 +1,35 @@
+/ - title "Specialization"
+
+%h1 Specialist Tracker
+
+%p For tracking who has been contacted, and how they have responded.
+
+%table{:class => 'tablesorter {sortlist: [[2,0],[3,0]]}', :id => 'specialist_table'}
+  %thead
+    %tr{:class => 'tableheader'}
+      / see tablesorter docx for sorters 
+      %th Name
+      %th Specialization
+      %th City
+      %th{:class => "{sorter: 'isoDate'}"} Contacted
+      %th{:class => "{sorter: 'isoDate'}"} Viewed
+      %th{:class => "{sorter: 'isoDate'}"} Edited
+      %th email
+      / %th Interests/Expertise
+      / we're treating clinics as if they are specialists
+  %tbody
+    - @specialists.each do |specialist|
+      %tr
+        %td{:class => 'name_column'}
+          = link_to specialist.name, specialization_specialist_path(specialist.specialization, specialist) if specialist.specialization
+        %td{:class => 'name_column'}= specialist.specialization.name if specialist.specialization
+        %td{:class => 'city_column'}= specialist.city
+        %td= specialist.contacts.last.created_at.strftime("%Y-%m-%d")  if specialist.contacts.last
+        %td= specialist.views.last.created_at.strftime("%Y-%m-%d")  if specialist.views.last
+        %td= specialist.edits.last.created_at.strftime("%Y-%m-%d")  if specialist.edits.last
+        %td{:class => "number_column"}
+          - if specialist.contact_email
+            = link_to(specialist.contact_email, specialist_email_path(specialist), :method => :post) if specialist.contact_email
+          - else
+            \-
+

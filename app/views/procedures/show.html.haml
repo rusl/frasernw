@@ -26,8 +26,8 @@
           %td{:class => "number_column"}
           %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_or_blank
           %td= specialist.city
-          %td= specialist.hospitals if type_of_row == 'specialist'
-          %td= specialist.clinics if type_of_row == 'specialist'
+          %td= compressed_clinics(specialist.hospitals) if type_of_row == 'specialist'
+          %td= compressed_clinics(specialist.clinics) if type_of_row == 'specialist'
           / %td= link_to "#{specialist.interest}"
           / %td= specialists_procedures(specialist)
 

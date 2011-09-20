@@ -16,11 +16,12 @@ Frasernw::Application.routes.draw do
   resources :procedures
   resources :hospitals
 
+  match "tracker" => 'tracker#index', :as => 'tracker'
   
   match "specializations/:id/showalt" => 'specializations#showalt'
   
   match "specialists/:id/:token/edit"   => 'specialists_editor#edit',  :as => 'specialist_self_edit'
-  match "specialists/:id/:token/update" => 'specialists_editor#update'
+  put  "specialists/:id/:token/update" => 'specialists_editor#update', :as => 'specialist_self_update'
   post  "specialists/email/:id"         => 'specialists#email', :as => 'specialist_email'
   
   match 'user/edit' => 'users#edit', :as => :edit_current_user

@@ -25,6 +25,7 @@ gem 'carrierwave'
 gem 'paper_trail', '~> 2'
 gem 'will_paginate', '~> 3.0.0'
 gem "simple_form", "~> 1.5.1"
+gem 'exception_notification'
 
 # Use unicorn as the web server
 gem 'unicorn'

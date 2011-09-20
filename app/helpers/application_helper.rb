@@ -55,4 +55,12 @@ module ApplicationHelper
     output.join()
   end
   
+  def compressed_clinics(clinics)
+    output = ''
+    clinics.each do |clinic|
+      output += (clinic.name + ', ')
+    end
+    output.gsub(/\,\ $/,'')
+  end
+  
 end
