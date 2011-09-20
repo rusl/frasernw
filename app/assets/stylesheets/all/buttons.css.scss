@@ -1,0 +1,93 @@
+
+
+a.button,
+input[type=submit] {
+    color: #484848;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    font: bold 12px Helvetica, Arial, sans-serif;
+    line-height: 35px;
+    height: 35px;
+    display: inline-block;
+/*    float: left;*/
+    margin-right: 10px;
+    padding: 0 10px;
+    background: #f0f0f0;
+    background: -webkit-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background: -moz-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background: -ms-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background: -o-linear-gradient(top, #f7f7f7, #d1d1d1);
+    border: solid 1px #7f7f7f;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#ffffff')";
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#ffffff');
+    -webkit-transition: border-color .218s;
+    -moz-transition: border .218s;
+    -o-transition: border-color .218s;
+    transition: border-color .218s;
+}
+a.button:hover,
+input[type=submit]:hover {
+    border: solid 1px #333;
+    color: #282828;
+    background: -webkit-linear-gradient(top, #ffffff, #dfdfdf);
+    background: -moz-linear-gradient(top, #ffffff, #dfdfdf);
+    background: -ms-linear-gradient(top, #ffffff, #dfdfdf);
+    background: -o-linear-gradient(top, #ffffff, #dfdfdf);
+}
+a.button:active,
+input[type=submit]:active {
+    border: solid 1px #7f7f7f;
+    background: #d0d0d0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a8a8a8), color-stop(0.15, #c6c6c6), to(#d8d8d8));
+    background: -webkit-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+    background: -moz-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+    background: -ms-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+    background: -o-linear-gradient(top, #a8a8a8, #c6c6c6 15%, #d8d8d8);
+}
+a.button:focus,
+input[type=submit]:focus {
+  border-color:#4D90FE;
+  outline:0;
+  box-shadow:0 0 2px #4D90FE inset;
+}
+
+/* FIXME - Can do this better with CSS :first-child and :last-child selectors. */
+a.left {
+    margin: 0;
+    margin-right:-3px;
+    border-right: solid 1px #b0b0b0;
+    -webkit-border-top-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    border-bottom-right-radius: 0;
+}
+a.middle {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    margin: 0;
+    margin-right:-3px;
+    border-left: solid 1px rgba(255, 255, 255, 0);
+    border-right: solid 1px #b0b0b0;
+}
+a.middle:hover,
+a.right:hover { border-left: solid 1px #333 }
+a.middle:active,
+a.right:active { border-left: solid 1px #7f7f7f }
+a.right {
+    border-left: solid 1px rgba(255, 255, 255, 0);
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-bottom-left-radius: 0;
+}
