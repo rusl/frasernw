@@ -1,13 +1,5 @@
 #searchbox {
-  height: 90%;
-//  background-color: #ccc;
-  position: absolute;
-  left: 48px;
-  width: 305px;
-//  opacity: 0.7;
-  margin-top:48px;
-}
-
-#searchbox_frame {
-  height: 90%;
+  height: 380px;
+  overflow-y:hidden;
+  margin-top:-.675em;
 }

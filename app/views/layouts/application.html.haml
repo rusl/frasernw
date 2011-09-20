@@ -5,6 +5,7 @@
     %title
       = yield(:title) || "Untitled"
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+
     /[if lte IE 9]
       =stylesheet_link_tag 'application-ie'
 
@@ -14,26 +15,27 @@
     = yield(:head)
 
   %body{:id => "#{params[:controller]}_page"}
-    #header
-      - if logged_in? and current_user.admin?
-        = link_to "track specialists", tracker_path
-        |     
-        = link_to "manage users", users_path
-        |
-        = link_to "activity", all_versions_path
-        |
-      - if logged_in?
-        = link_to "home", '/'
-        |
-        = link_to "logout", logout_url
-    - unless params[:controller] == 'user_sessions'
-      %div{:id => 'searchbox'}
-        %iframe{:src => "/searchbox.html", :id => 'searchbox_frame'}
-    #container{:class => "container_#{params[:controller]}"}
-      %div{:style => "margin-bottom: 5px; float: right;"} 
+    .container
+      #header.row
+        / FIXME - nav should be a %ul for accessibility.
+        #nav.twelvecol.last
+          - if logged_in? and current_user.admin?
+            = link_to "Track Specialists", tracker_path, class: "left button"
+            = link_to "Manage Users", users_path, class: "middle button"
+            = link_to "Activity", all_versions_path, class: "middle button"
+          - if logged_in?
+            = link_to "Home", '/', class: "middle button"
+            = link_to "Logout", logout_url, class: "right button"
 
-      - flash.each do |name, msg|
-        = content_tag :div, raw(msg), :id => "flash_#{name}"
-      - if show_title?
-        %h1= yield(:title)
-      = yield
+      #content.row
+        - unless params[:controller] == 'user_sessions'
+          %iframe.threecol{:src => "/searchbox.html", :id => 'searchbox'}
+
+        #container.eightcol.last{:class => "container_#{params[:controller]}"}
+          %div{:style => "margin-bottom: 5px; float: right;"} 
+
+          - flash.each do |name, msg|
+            = content_tag :div, raw(msg), :id => "flash_#{name}"
+          - if show_title?
+            %h1= yield(:title)
+          = yield
