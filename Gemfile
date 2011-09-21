@@ -49,7 +49,7 @@ group :development, :test do
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
   # guard for rspeccin
-  # gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
