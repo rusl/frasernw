@@ -1,4 +1,9 @@
-= simple_form_for @specialist, :url => {:action => 'update', :controller => params[:controller]} do |f|
+/ a bit messy, and probably there is a better way of handling multiple controllers reusing this form
+- form_method    = params[:action]     == 'new' ? :post   : :put
+- current_action = params[:action]     == 'new' ? :create : :update
+- form_action    = params[:controller] == 'specialists_editor' ? :update : current_action
+- debugger
+= simple_form_for @specialist, :url => {:controller => params[:controller], :action => form_action}, :method => form_method do |f|
   = f.error_messages
   - if @view
     .error_messages

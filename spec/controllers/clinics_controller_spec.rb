@@ -39,9 +39,9 @@ describe ClinicsController do
   #   response.should render_template(:new)
   # end
 
-  it "create action should render show tempalte when model is valid" do
+  it "create action should render show template when model is valid" do
     Clinic.any_instance.stubs(:valid?).returns(true)
-    post :create#, :clinic => {:name => 'joe', :specialization_id => Specialization.first }
+    post :create, :clinic => {:name => 'joe', :specialization_id => Specialization.first }
     response.should render_template(assigns[:clinic])
   end
 
@@ -58,7 +58,7 @@ describe ClinicsController do
 
   it "update action should redirect when model is valid" do
     Clinic.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Clinic.first
+    put :update, :id => Clinic.first, :clinic => {:param => true}
     response.should redirect_to(assigns[:clinic])
   end
 

@@ -18,15 +18,16 @@ class ClinicsController < ApplicationController
       redirect_to specializations_path, :notice => "Need to specify a specialization" and return
     else
       @specialization = Specialization.find(params[:specialization_id])
-      @clinic = Clinic.new
+      @clinic = Clinic.new(:specialization_id => params[:specialization_id])
     end
   end
 
   def create
     @clinic = Clinic.new(params[:clinic])
     if @clinic.save
-      redirect_to @clinic, :notice => "Successfully created clinic."
+      redirect_to specialization_clinic_path(@clinic.specialization, @clinic), :notice => "Successfully created clinic."
     else
+      @specialization = Specialization.find(params[:specialization_id])
       render :action => 'new'
     end
   end
@@ -36,10 +37,12 @@ class ClinicsController < ApplicationController
   end
 
   def update
+    params[:clinic][:procedure_ids] ||= []
     @clinic = Clinic.find(params[:id])
     if @clinic.update_attributes(params[:clinic])
       redirect_to @clinic, :notice  => "Successfully updated clinic."
     else
+      @specialization = Specialization.find(params[:specialization_id])
       render :action => 'edit'
     end
   end

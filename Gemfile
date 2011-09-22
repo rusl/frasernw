@@ -48,7 +48,7 @@ group :development, :test do
   gem 'wirble'
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
-  # guard for rspeccin
+  # can't include rb-fsevent here as heroku doesn't like it
   # gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
   gem 'guard-livereload'
