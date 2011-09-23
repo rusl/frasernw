@@ -1,9 +1,33 @@
 form.simple_form {
   fieldset{
+    width:303px;
+    float:left;
+    p, legend{
+      font-weight:bold;
+      font-size:1.1em;
+      text-shadow:1px 1px 1px #fff;
+    }
+  }
+  fieldset, div.text, div.check_boxes{
+    margin-right:3.8%;
+    border:1px solid #BBB;
+    border-top-color:#999;
+    vertical-align:top;
+    padding:0 5px 5px 5px;
+    border-radius:3px;
+    box-shadow:2px 2px 3px 1px #EEE;
+    background:#ECEFED;
+    margin-bottom:1em;
+    hr{
+      width:313px;
+      margin-left:-5px;
+      border:none;
+      border-top:1px solid #BBB;
+    }
   }
   input:not([type=submit]), textarea {
     padding:5px;
-    color:#222;
+    color:#111;
     border:1px solid #ccc;
     border-top-color:#999;
     border-left-color:#999;
@@ -15,17 +39,58 @@ form.simple_form {
       box-shadow:0 0 2px #666 inset;
     }
   }
-  label {
-    color:#333;
+  label{
+    color:#111;
     display:block;
-    font-size:1.1em;
+    font-weight:bold;
+    font-size:1.2em;
     line-height:1.5em;
+    text-shadow:1px 1px 1px #ddd;
     abbr {
       display:none;
     }
+    &.collection_check_boxes{
+      display:inline-block;
+      font-weight:normal;
+    }
+    &.text{
+      width:98%;
+    }
+    &.integer{
+      display:inline-block;
+      padding-right:0.4em;
+    }
   }
-  div.input {
-    margin-top:10px;
+  textarea{
+    width:98%;
+    height:3em;
+  }
+  div{
+    &.input {
+      margin-top:10px;
+      clear:both;
+    }
+    &.numeric.integer > span {
+      display:inline-block;
+      padding-left:.4em;
+    }
+    &.check_boxes{
+      padding:0;
+      & > label {
+        margin-left:5px;
+      }     
+      & > span {
+        padding:.2em 0;
+        width:100%;
+        display:block;
+        background:white;
+        border-top:1px solid #bbb;
+        position:relative;
+        input.check_boxes{
+          margin-left:5px;
+        }
+      }
+    }
   }
   .firstname, .lastname, .city, .province, .postalcode {
     display:inline-block;
@@ -50,5 +115,19 @@ form.simple_form {
   .hint{
     display:block;
     font-style:italic;
+  }
+  .check_boxes span{
+    display:block;
+  }
+  input{
+    &.integer{
+      display:inline;
+      width:2em;
+    }
+    &.check_boxes{
+      width:auto;
+      margin-right:5px;
+      display:inline-block;
+    }
   }
 }
