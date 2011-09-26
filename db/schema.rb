@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110923042847) do
+ActiveRecord::Schema.define(:version => 20110926183000) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(:version => 20110923042847) do
     t.boolean   "done_by_specialists"
   end
 
+  create_table "reviews", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string    "session_id", :null => false
     t.text      "data"
@@ -154,17 +163,17 @@ ActiveRecord::Schema.define(:version => 20110923042847) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "persistence_token"
-    t.string   "crypted_password"
-    t.string   "password_salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.string   "role"
-    t.boolean  "notify"
-    t.string   "perishable_token",  :default => "", :null => false
+    t.string    "username"
+    t.string    "email"
+    t.string    "persistence_token"
+    t.string    "crypted_password"
+    t.string    "password_salt"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "name"
+    t.string    "role"
+    t.boolean   "notify"
+    t.string    "perishable_token",  :default => "", :null => false
   end
 
   create_table "versions", :force => true do |t|
