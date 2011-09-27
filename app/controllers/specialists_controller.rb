@@ -36,12 +36,23 @@ class SpecialistsController < ApplicationController
   end
 
   def update
-    params[:specialist][:procedure_ids] ||= []
     @specialist = Specialist.find(params[:id])
-    if @specialist.update_attributes(params[:specialist])
-      redirect_to @specialist, :notice => "Successfully updated specialist. #{undo_link}"
+    if current_user.admin?
+      debugger
+      if @specialist.update_attributes(params[:specialist])
+        redirect_to @specialist, :notice => "Successfully updated specialist. #{undo_link}"
+      else
+        render :edit
+      end
     else
-      render :action => 'edit'
+      @specialist.attributes = params[:specialist]
+      Review.create({
+          :item_type => @specialist.class.name,
+          :item_id => @specialist.id,
+          :object => @specialist.attributes.to_yaml,
+          :whodunnit => current_user,
+          :object_changes => @specialist.changes})
+      redirect_to @specialist, notice: "Your update has been submitted for review"
     end
   end
 

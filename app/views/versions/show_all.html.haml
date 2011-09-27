@@ -8,7 +8,7 @@
     - if version.reify and version.reify.id
       = link_to "#{version.reify.name}", version.reify
     - else
-      unkown
+      unknown
     = link_to "#{version.evented}", show_version_path(version)
     by #{version.whodunnit.to_i.to_s == version.whodunnit ? User.find(version.whodunnit).username : 'unknown'}
     %span{:class=> "muted"}= "#{time_ago_in_words(version.created_at)} ago"
