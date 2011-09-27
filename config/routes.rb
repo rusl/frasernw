@@ -1,8 +1,7 @@
 Frasernw::Application.routes.draw do
 
-  resources :reviews, :only => [:index, :show] do
+  resources :reviews, :only => [:index, :destroy] do
     put :accept
-    put :reject
   end
 
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"

@@ -11,4 +11,13 @@
       unknown
     was updated by #{review.whodunnit.to_i.to_s == review.whodunnit ? User.find(review.whodunnit).username : 'unknown'}
     %span{:class=> "muted"}= "#{time_ago_in_words(review.created_at)} ago"
-    
+    %p
+      - YAML::load(review.object_changes).each do |k, v|
+        %b= k.titleize
+        from
+        %em= v[0]
+        to
+        %em= v[1]
+        %br
+    = button_to "Accept", review_accept_path(review), method: :put
+    = button_to "Reject", review_path(review), action: :destroy, method: :delete
