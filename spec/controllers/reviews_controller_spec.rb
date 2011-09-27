@@ -14,11 +14,6 @@ describe ReviewsController do
     response.should render_template(:index)
   end
 
-  it "show action should render show template" do
-    get :show, :id => 1
-    response.should render_template(:show)
-  end
-
   describe "PUT 'accept'" do
     it "should be successful" do
       # put 'accept'
