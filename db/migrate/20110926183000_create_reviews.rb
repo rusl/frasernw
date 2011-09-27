@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :item_id,  null: false
       t.string :whodunnit
       t.text :object
+      t.text :object_changes
 
       t.timestamps
     end

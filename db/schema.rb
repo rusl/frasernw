@@ -111,10 +111,11 @@ ActiveRecord::Schema.define(:version => 20110926183000) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.string   "item_type",  :null => false
-    t.integer  "item_id",    :null => false
+    t.string   "item_type",      :null => false
+    t.integer  "item_id",        :null => false
     t.string   "whodunnit"
     t.text     "object"
+    t.text     "object_changes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
