@@ -1,0 +1,14 @@
+%h2 Updates Review Queue
+
+= will_paginate @reviews
+
+%ul
+- @reviews.each do |review|
+  %li
+    - if review.reify and review.reify.id  
+      = link_to "#{review.reify.name}", eval("#{review.item_type.downcase}_path(review.reify)")
+    - else
+      unknown
+    was updated by #{review.whodunnit.to_i.to_s == review.whodunnit ? User.find(review.whodunnit).username : 'unknown'}
+    %span{:class=> "muted"}= "#{time_ago_in_words(review.created_at)} ago"
+    
