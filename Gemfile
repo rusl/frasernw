@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'wirble'
+  gem 'spork', '> 0.9.0rc'
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
   # can't include rb-fsevent here as heroku doesn't like it
