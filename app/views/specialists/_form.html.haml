@@ -45,7 +45,7 @@
 
   = f.association :hospitals, as: :check_boxes
 
-  = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists
+  = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists, label: "Scope of Practice"
 
   / FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p
