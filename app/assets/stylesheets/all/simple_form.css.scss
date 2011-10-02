@@ -62,7 +62,8 @@ form.simple_form {
     }
   }
   textarea{
-    width:98%;
+    width:100%;
+    margin-left:-6px;
     height:3em;
   }
   div{
@@ -115,6 +116,7 @@ form.simple_form {
   .hint{
     display:block;
     font-style:italic;
+    padding-top:5px;
   }
   .check_boxes span{
     display:block;

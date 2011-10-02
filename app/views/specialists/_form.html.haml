@@ -8,10 +8,10 @@
   - if @view
     .error_messages
       %h2 You are editing your record in the Fraser NW Division of Family Practice Resource database
-      %p This database exists to make make our practices, and your practice more efficient. By providing the information requested below you are making it easier for family doctors to find your practice, ensure that they are providing you with the correct information, and that your scopes of practice are fully understood.
+      %p This database exists to make make our practices, and your practice more efficient. By providing the information requested below you are making it easier for family doctors to find your practice, ensure that they are providing you with the correct information, and that your scope of practice is fully understood.
 
   %fieldset
-    %legend Doctor Information
+    %legend Office Information
     = f.input :firstname, label: 'First Name', wrapper_html: {class: 'firstname'}
     = f.input :lastname, label: 'Last Name', wrapper_html: {class: 'lastname'}
     = f.input :phone1, label: "Phone"
@@ -34,18 +34,21 @@
       = f.input :contact_phone
       = f.input :contact_notes, hint: "Include contact's role (MOA, etc.) and anything else we should know."
 
-  = f.input :responds_via, as: :text, hint: "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+  = f.input :responds_via, :as => :text, :hint => "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+
   = f.input :status, as: :text
-  = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
+
+  = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists, label: "Pertinent Areas of Practice/Expertise"
+
   = f.input :interest, as: :text
+
+  = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
+
   = f.input :red_flags, as: :text, hint: "Urgent situations, and process for having them addressed"
-  = f.input :waittime, label: "Wait Time", hint: "(avg in weeks)", as: :integer, input_html: {min: 0}
+  = f.input :waittime, label: "Wait Time", hint: "in weeks", as: :integer, input_html: {min: 0}
 
-  = f.association :clinics, as: :check_boxes, collection: @specialization_clinics
-
-  = f.association :hospitals, as: :check_boxes
-
-  = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists, label: "Scope of Practice"
+  = f.association :hospitals, as: :check_boxes, label: "Hospital Privileges"
+  = f.association :clinics, as: :check_boxes, label: "Sub-Specialty Clinics", collection: @specialization_clinics
 
   / FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p
