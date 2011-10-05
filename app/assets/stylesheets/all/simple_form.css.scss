@@ -8,7 +8,7 @@ form.simple_form {
       text-shadow:1px 1px 1px #fff;
     }
   }
-  fieldset, div.text, div.check_boxes{
+  fieldset, div.text, div.check_boxes, div.nested{
     margin-right:3.8%;
     border:1px solid #BBB;
     border-top-color:#999;
@@ -67,6 +67,10 @@ form.simple_form {
     height:3em;
   }
   div{
+    &.add{
+      padding:5px;
+      border-top:1px solid #bbb;
+    }
     &.input {
       margin-top:10px;
       clear:both;
@@ -75,10 +79,28 @@ form.simple_form {
       display:inline-block;
       padding-left:.4em;
     }
+    &.nested{
+      padding:0;
+      & > label {
+        padding-left:5px;
+        border-bottom:1px solid #999;
+      }
+      & > div.fields {
+        padding:.2em 0;
+        width:100%;
+        display:block;
+        background:white;
+        border-bottom:1px solid #bbb;
+        position:relative;
+      }
+      input {
+        width:50%;
+      }
+    }
     &.check_boxes{
       padding:0;
       & > label {
-        margin-left:5px;
+        padding-left:5px;
       }     
       & > span {
         padding:.2em 0;
@@ -87,21 +109,18 @@ form.simple_form {
         background:white;
         border-top:1px solid #bbb;
         position:relative;
-        &.investigation {
-          input{
-            width:400px;
-          }
-        }
       }
     }
     & > p{
       font-style:normal;
-      padding:0 5px;
-      margin-bottom:.5em;
+      padding:.5em 5px;
       font-size:1.1em;
+      margin:0;
+      border-bottom:1px solid #bbb;
+      background:#FAFAFA;
       span.quiet {
+        color:#555;
         font-size:0.9em;
-        font-style:italic;
       }
     }
   }
@@ -179,4 +198,14 @@ select{
     background-image: none;
     padding: 0;
   }
+}
+.button.add_nested_fields{
+  margin:5px;
+}
+.button.remove_nested_fields{
+  height:auto;
+  line-height:normal;
+  padding:3px;
+  vertical-align:top;
+  margin:2px 0;
 }
