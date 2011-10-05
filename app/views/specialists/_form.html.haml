@@ -38,7 +38,19 @@
 
   = f.input :status, as: :text
 
-  = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists, label: "Pertinent Areas of Practice/Expertise"
+  .check_boxes
+    %label Pertinent Areas of Practice/Expertise
+    %p
+      Referrals accepted in the following Areas of Practice
+    %p
+      Indicate Information and Investigations Required in the Text Field
+      %br
+      %span.quiet (e.g. XRs, MRI, scans, blood work etc. in addition to: History, PH, Meds, Allergies, Pt. Stability, Previous OR / Consultation Reports)
+
+    = f.simple_fields_for :investigations do |i|
+      %span.investigation.fields
+        = i.association :procedure, as: :select, label: false, collection: @specialist.specialization.procedures.done_by_specialists, wrapper: false
+        = i.input :details, label: false, wrapper: false
 
   = f.input :interest, as: :text
 
@@ -50,7 +62,7 @@
   = f.association :hospitals, as: :check_boxes, label: "Hospital Privileges"
   = f.association :clinics, as: :check_boxes, label: "Sub-Specialty Clinics", collection: @specialization_clinics
 
-  / FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
+  -# FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p
     = f.input :specialization_id, as: :hidden
 

@@ -38,7 +38,6 @@ class SpecialistsController < ApplicationController
   def update
     @specialist = Specialist.find(params[:id])
     if current_user.admin?
-      debugger
       if @specialist.update_attributes(params[:specialist])
         redirect_to @specialist, :notice => "Successfully updated specialist. #{undo_link}"
       else
