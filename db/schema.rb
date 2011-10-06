@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002201317) do
+ActiveRecord::Schema.define(:version => 20111006175341) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -25,7 +25,10 @@ ActiveRecord::Schema.define(:version => 20111002201317) do
     t.integer   "procedure_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.string    "investigation"
   end
+
+  add_index "capacities", ["specialist_id", "procedure_id"], :name => "index_capacities_on_specialist_id_and_procedure_id"
 
   create_table "clinics", :force => true do |t|
     t.string    "name"
@@ -95,11 +98,11 @@ ActiveRecord::Schema.define(:version => 20111002201317) do
   end
 
   create_table "investigations", :force => true do |t|
-    t.string   "details"
-    t.integer  "specialist_id"
-    t.integer  "procedure_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "details"
+    t.integer   "specialist_id"
+    t.integer   "procedure_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "investigations", ["specialist_id", "procedure_id"], :name => "index_investigations_on_specialist_id_and_procedure_id"
@@ -121,13 +124,13 @@ ActiveRecord::Schema.define(:version => 20111002201317) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.string   "item_type",      :null => false
-    t.integer  "item_id",        :null => false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.text     "object_changes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "item_type",      :null => false
+    t.integer   "item_id",        :null => false
+    t.string    "whodunnit"
+    t.text      "object"
+    t.text      "object_changes"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "sessions", :force => true do |t|
