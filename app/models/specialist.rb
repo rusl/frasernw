@@ -8,7 +8,7 @@ class Specialist < ActiveRecord::Base
   has_many   :capacities
   has_many   :procedures, :through => :capacities
   has_many   :investigations, :dependent => :destroy
-  accepts_nested_attributes_for :investigations, :reject_if => lambda { |a| a[:procedure_id].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :capacities, :reject_if => lambda { |a| a[:procedure_id].blank? }, :allow_destroy => true
   
   # specialists attend clinics
   has_many   :attendances

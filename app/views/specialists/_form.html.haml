@@ -45,12 +45,12 @@
       %br
       %span.quiet (e.g. XRs, MRI, scans, blood work etc. in addition to: History, PH, Meds, Allergies, Pt. Stability, Previous OR / Consultation Reports)
 
-    = f.simple_fields_for :investigations do |i|
+    = f.simple_fields_for :capacities do |i|
       = i.association :procedure, as: :select, label: false, collection: @specialist.specialization.procedures.done_by_specialists, wrapper: false
-      = i.input :details, label: false, wrapper: false
+      = i.input :investigation, label: false, wrapper: false
       = i.hidden_field :_destroy
       = i.link_to_remove "×", class: "button"
-    = f.link_to_add "Add an Area of Expertise", :investigations, class: "button"
+    = f.link_to_add "Add an Area of Expertise", :capacities, class: "button"
 
   = f.input :interest, as: :text
 
