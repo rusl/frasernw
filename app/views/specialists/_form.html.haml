@@ -27,16 +27,19 @@
 
   - if current_user && current_user.admin?    
     %fieldset.contact
-      %legend Contact Information
+      %legend Senior MOA Contact Information
       Allow specialists to edit their own forms - this information is only visible to admins.
-      = f.input :contact_name
-      = f.input :contact_email
-      = f.input :contact_phone
+      = f.input :contact_name, label: "Name"
+      = f.input :contact_email, label: "Email Address"
+      = f.input :contact_phone, label: "Phone Number"
       = f.input :contact_notes, hint: "Include contact's role (MOA, etc.) and anything else we should know."
 
-  = f.input :responds_via, :as => :text, :hint => "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+  -#= f.input :responds_via, :as => :text, :hint => "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+  -# FIXME - deprecated field?
 
   = f.input :status, as: :text
+
+  = f.input :all_procedure_info
 
   .nested
     %label Pertinent Areas of Practice/Expertise
@@ -52,18 +55,19 @@
       = i.link_to_remove "×", class: "button"
     = f.link_to_add "Add an Area of Expertise", :capacities, class: "button"
 
-  = f.input :interest, as: :text
+  = f.input :interest, as: :text, label: "Most interested in"
+  = f.input :not_interested, label: "Does not see or do"
 
-  = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
+  .referals
+    = f.input :referral_criteria, as: :text, label: "Referral Details", hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures", wrapper: false
 
-  = f.input :red_flags, as: :text, hint: "Urgent situations, and process for having them addressed"
-  = f.input :waittime, label: "Wait Time", hint: "in weeks", as: :integer, input_html: {min: 0}
+    = f.input :red_flags, as: :text, hint: "Urgent situations, and process for having them addressed", wrapper: false
+    = f.input :waittime, label: "Wait Time", hint: "in weeks", as: :integer, input_html: {min: 0}
 
   = f.association :hospitals, as: :check_boxes, label: "Hospital Privileges"
   = f.association :clinics, as: :check_boxes, label: "Sub-Specialty Clinics", collection: @specialization_clinics
 
   -# FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
-  %p
-    = f.input :specialization_id, as: :hidden
+  = f.input :specialization_id, as: :hidden
 
-    = f.submit
+  = f.submit
