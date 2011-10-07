@@ -4,7 +4,6 @@ class Procedure < ActiveRecord::Base
 
   has_many :capacities
   has_many :specialists, :through => :capacities
-  has_many :investigations
   
   has_many :focuses
   has_many :clinics, :through => :focuses
