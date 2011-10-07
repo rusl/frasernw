@@ -24,7 +24,7 @@ class Specialist < ActiveRecord::Base
   # has many contacts - dates and times they were contacted
   has_many  :contacts
 
-  # dates and tiems they looked at and changed their own record
+  # dates and times they looked at and changed their own record
   has_many  :views
   has_many  :edits
 
