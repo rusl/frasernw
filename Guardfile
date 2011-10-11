@@ -6,7 +6,9 @@ guard 'livereload' do
   watch(%r{app/.+\.(erb|haml)})
   watch(%r{app/helpers/.+\.rb})
   # watch(%r{app/assets/.+\.(css|js)})
-  watch(%r{app/assets/.+\.(sass|scss)})                { '/assets/application.css' }
+  watch(%r{app/assets/stylesheets/(.+\.css).*$})  { |m| "assets/#{m[1]}" }
+  watch(%r{app/assets/javascripts/(.+\.js).*$})   { |m| "assets/#{m[1]}" }
+  # watch(%r{app/assets/.+\.(sass|scss)})                { '/assets/application.css' }
   watch(%r{public/.+\.(css|js|html)})
   watch(%r{config/locales/.+\.yml})
 end
