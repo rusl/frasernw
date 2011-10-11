@@ -1,8 +1,4 @@
 - title "Edit #{@specialist.name} - #{@specialist.specialization.name}"
 
 = render 'specialists/form'
-
-%p
-  = link_to "Show", @specialist
-  |
-  = link_to "View All", specialists_path
+= link_to "cancel", @specialist

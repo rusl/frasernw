@@ -11,35 +11,42 @@
       %p This database exists to make make our practices, and your practice more efficient. By providing the information requested below you are making it easier for family doctors to find your practice, ensure that they are providing you with the correct information, and that your scope of practice is fully understood.
 
   %fieldset
-    %legend Office Information
-    = f.input :firstname, label: 'First Name', wrapper_html: {class: 'firstname'}
-    = f.input :lastname, label: 'Last Name', wrapper_html: {class: 'lastname'}
+    %h2 
+      Specialist: 
+      =@specialization.name
+    = f.input :firstname, label: 'First Name'
+    = f.input :lastname, label: 'Last Name'
+
+  %fieldset.contact_info
+    %h2 Office / Contact Information
     = f.input :phone1, label: "Phone"
     = f.input :direct_phone, label: "Direct Phone"
     = f.input :fax
-    %hr
-    %p Address
+
     = f.input :address1, label: "Street Address"
     = f.input :address2, label: "Apt, Suite, Bldg. (Optional)"
-    = f.input :city, wrapper_html: {class: 'city'}
-    = f.input :province, wrapper_html: {class: 'province'}
-    = f.input :postalcode, label: "Postal Code", wrapper_html: {class: 'postalcode'}
+    = f.input :city
+    = f.input :province
+    = f.input :postalcode, label: "Postal Code"
 
   - if current_user && current_user.admin?    
-    %fieldset.contact
-      %legend Contact Information
-      Allow specialists to edit their own forms - this information is only visible to admins.
-      = f.input :contact_name
-      = f.input :contact_email
-      = f.input :contact_phone
-      = f.input :contact_notes, hint: "Include contact's role (MOA, etc.) and anything else we should know."
+    %fieldset
+      %h2 Senior MOA Contact Information
+      %p Allows specialists to edit their own form. This information is only visible to admins.
+      = f.input :contact_name, label: "Name"
+      = f.input :contact_email, label: "Email"
+      = f.input :contact_phone, label: "Phone"
+      = f.input :contact_notes, label: "Notes", hint: "Include contact's role (MOA, etc.) and anything else we should know."
 
-  = f.input :responds_via, :as => :text, :hint => "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+  %fieldset
+    %h2 Status
+    = f.input :status, as: :text, label: "Details"
 
-  = f.input :status, as: :text
+  %fieldset.nested
+    %h2 Areas of Practise
+    = f.input :required_investigations, label: "Required Investigations", hint: 'in addition to history, PH, meds, allergies and previous OR/consultation reports for all patients'
 
-  .nested
-    %label Pertinent Areas of Practice/Expertise
+    %h3 Pertinent Areas of Practice/Expertise
     %p
       Indicate Information and Investigations Required in the Text Field
       %br
@@ -52,15 +59,28 @@
       = i.link_to_remove "×", class: "button"
     = f.link_to_add "Add an Area of Expertise", :capacities, class: "button"
 
-  = f.input :interest, as: :text
+    = f.input :interest, as: :text, label: "Interested In"
+    = f.input :not_performed, as: :text, label: "Does not see or do"
 
-  = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
+  %fieldset.referral_details
+    %h2 Referral Details
+    = f.input :responds_via, :as => :text, :hint => "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
+    = f.input :referral_mechanism, label: "Mechanism(s) of Referral", hint: "fax, phone, other (please explain)"
+    -# = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
+    = f.input :lagtime, label: "Booking Lag", hint: "in weeks", as: :integer, input_html: {min: 0}
+    = f.input :referral_request, label: "Referral Request", hint: "To office or directly to patient"
+    = f.input :patient_can_book, as: :select, label: "Patient can book appointment?"
+    = f.input :red_flags, label: "Red Flags", as: :text, hint: "Urgent situations, and process for having them addressed"
+    = f.input :waittime, label: "Wait Time", hint: "in weeks", as: :integer, input_html: {min: 0}
+    = f.input :urgent_mechanism, label: "Urgent Referral Contact", hint: "fax, phone, other (please explain)"
 
-  = f.input :red_flags, as: :text, hint: "Urgent situations, and process for having them addressed"
-  = f.input :waittime, label: "Wait Time", hint: "in weeks", as: :integer, input_html: {min: 0}
-
-  = f.association :hospitals, as: :check_boxes, label: "Hospital Privileges"
-  = f.association :clinics, as: :check_boxes, label: "Sub-Specialty Clinics", collection: @specialization_clinics
+  %fieldset
+    %h2 Hospital Privileges
+    = f.association :hospitals, as: :check_boxes, label: false
+  
+  %fieldset
+    %h2 Sub-Specialty Clinics
+    = f.association :clinics, as: :check_boxes, label: false, collection: @specialization_clinics
 
   -# FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p
