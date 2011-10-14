@@ -45,7 +45,7 @@
   %fieldset.nested
     %h2 Areas of Practise
     = f.input :required_investigations, label: "Required Investigations", hint: 'in addition to history, PH, meds, allergies and previous OR/consultation reports for all patients'
-
+    
     %h3 Pertinent Areas of Practice/Expertise
     %p
       Indicate Information and Investigations Required in the Text Field
@@ -58,6 +58,8 @@
       = i.hidden_field :_destroy
       = i.link_to_remove "×", class: "button"
     = f.link_to_add "Add an Area of Expertise", :capacities, class: "button"
+
+    %hr
 
     = f.input :interest, as: :text, label: "Interested In"
     = f.input :not_performed, as: :text, label: "Does not see or do"
@@ -77,10 +79,13 @@
   %fieldset
     %h2 Hospital Privileges
     = f.association :hospitals, as: :check_boxes, label: false
+    = link_to "Add a Hospital", new_hospital_path, class: "button"
   
   %fieldset
     %h2 Sub-Specialty Clinics
     = f.association :clinics, as: :check_boxes, label: false, collection: @specialization_clinics
+    = link_to "Add a Clinic", new_specialization_clinic_path(@specialization), class: "button"
+
 
   -# FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p

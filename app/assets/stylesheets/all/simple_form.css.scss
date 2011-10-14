@@ -1,4 +1,10 @@
 form.simple_form {
+  hr {
+    border:none;
+    border-bottom:1px solid #DDD;
+    margin-left:-5px;
+    margin-right:-5px;
+  }
   fieldset{
     border:1px solid #DDD;
     border-radius:3px;
@@ -17,7 +23,15 @@ form.simple_form {
       margin-top:-14px;
     }
     h3{
-      margin-top:1em;
+      padding-left:5px;
+      padding-top:5px;
+      margin-top:10px;
+      margin-left:-5px;
+      margin-right:-5px;
+      border-top:1px solid #DDD;
+    }
+    .button{
+      margin-top:5px;
     }
     &.nested{
       p {
@@ -182,9 +196,6 @@ select{
     background-image: none;
     padding: 0;
   }
-}
-.button.add_nested_fields{
-  margin:5px 5px 5px 0;
 }
 .button.remove_nested_fields{
   height:auto;
