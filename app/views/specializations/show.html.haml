@@ -38,7 +38,7 @@
 /   - @specialization.specialists.each do |specialist|
 /     %li= link_to listed_specialist(specialist), specialization_specialist_path(@specialization, specialist)
 
-%h3 Scope of practice
+%h3 Areas of Practice/Expertise
 %ul{:class => 'procedure_list'}
   - @specialization.procedures.each do |procedure|
     %li= link_to listed_procedure(procedure), specialization_procedure_path(@specialization, procedure)
@@ -53,7 +53,7 @@
   |
   = link_to "New specialist", new_specialization_specialist_path(@specialization)
   |
-  = link_to "New procedure", new_specialization_procedure_path(@specialization)
+  = link_to "New Area of Practise", new_specialization_procedure_path(@specialization)
 
 %p
   = link_to "Edit", edit_specialization_path(@specialization)
