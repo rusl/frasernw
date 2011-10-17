@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011191817) do
+ActiveRecord::Schema.define(:version => 20111014201059) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(:version => 20111011191817) do
     t.timestamp "updated_at"
   end
 
+  create_table "moderations", :force => true do |t|
+    t.integer  "moderatable_id"
+    t.string   "moderatable_type",               :null => false
+    t.string   "attr_name",        :limit => 60, :null => false
+    t.text     "attr_value",                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "privileges", :force => true do |t|
     t.integer   "specialist_id"
     t.integer   "hospital_id"
@@ -134,37 +143,51 @@ ActiveRecord::Schema.define(:version => 20111011191817) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "specialists", :force => true do |t|
-    t.string    "firstname"
-    t.string    "lastname"
-    t.string    "address1"
-    t.string    "address2"
-    t.string    "postalcode"
-    t.string    "city"
-    t.string    "province"
-    t.string    "phone1"
-    t.string    "fax"
-    t.text      "status"
-    t.text      "interest"
-    t.integer   "waittime"
-    t.integer   "specialization_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "direct_phone"
-    t.string    "contact_name"
-    t.string    "contact_phone"
-    t.string    "contact_email"
-    t.text      "red_flags"
-    t.string    "responds_via"
-    t.string    "referral_criteria"
-    t.string    "saved_token"
-    t.string    "contact_notes"
-    t.string    "referral_mechanism"
-    t.integer   "lagtime"
-    t.string    "referral_request"
-    t.boolean   "patient_can_book",        :default => false
-    t.string    "urgent_mechanism"
-    t.text      "required_investigations"
-    t.text      "not_performed"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "postalcode"
+    t.string   "city"
+    t.string   "province"
+    t.string   "phone1"
+    t.string   "fax"
+    t.text     "practise_limitations"
+    t.text     "interest"
+    t.integer  "waittime"
+    t.integer  "specialization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "direct_phone"
+    t.string   "contact_name"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+    t.text     "red_flags"
+    t.string   "responds_via"
+    t.string   "referral_criteria"
+    t.string   "saved_token"
+    t.string   "contact_notes"
+    t.text     "not_interested"
+    t.text     "all_procedure_info"
+    t.string   "referral_other_details"
+    t.integer  "lagtime"
+    t.string   "referral_request"
+    t.boolean  "patient_can_book",        :default => false
+    t.string   "urgent_other_details"
+    t.text     "required_investigations"
+    t.text     "not_performed"
+    t.string   "semiretired"
+    t.string   "status_details"
+    t.string   "location_opened"
+    t.integer  "status_mask"
+    t.boolean  "referral_fax"
+    t.boolean  "referral_phone"
+    t.boolean  "respond_by_fax"
+    t.boolean  "respond_by_phone"
+    t.boolean  "respond_by_mail"
+    t.boolean  "respond_to_patient"
+    t.boolean  "urgent_fax"
+    t.boolean  "urgent_phone"
   end
 
   create_table "specializations", :force => true do |t|
