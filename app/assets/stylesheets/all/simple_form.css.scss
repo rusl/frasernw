@@ -20,6 +20,7 @@ form.simple_form {
       margin-right:-5px;
     }
     p {
+      font-size:1.15em;
       margin-top:-14px;
     }
     h3{
@@ -30,8 +31,21 @@ form.simple_form {
       margin-right:-5px;
       border-top:1px solid #DDD;
     }
+    .quiet{
+      font-size:0.9em;
+      font-style:italic;
+      color:#444;
+    }
     .button{
       margin-top:5px;
+    }
+    .button.remove_nested_fields{
+      height:auto;
+      line-height:normal;
+      padding:3px;
+      vertical-align:top;
+      margin:2px 0;
+      margin-top:2px;
     }
     &.nested{
       p {
@@ -46,6 +60,9 @@ form.simple_form {
         select {
           min-width:200px;
         }
+        input.string {
+          width:391px;
+        }
       }
     }
   }
@@ -57,6 +74,7 @@ form.simple_form {
     border-left-color:#999;
     font-size:1.2em;
     width:291px;
+	  vertical-align:top;
     &:focus{
       border:1px solid #4D90FE;
       outline:none;
@@ -64,10 +82,13 @@ form.simple_form {
     }
   }
   label{
+	  padding-top:5px;
+	  text-align:right;
     color:#111;
     display:inline-block;
     font-size:1.2em;
     line-height:1.5em;
+	  margin-right:25px;
     width:200px;
     abbr {
       display:none;
@@ -75,6 +96,8 @@ form.simple_form {
     &.collection_check_boxes{
       display:inline-block;
       font-weight:normal;
+      width:auto;
+	  padding-top:0;
     }
   }
   textarea{
@@ -82,6 +105,44 @@ form.simple_form {
     width:391px;
   }
   div{
+    &.mechanisms {
+      margin-top:10px;
+      span.inputs {
+        display:inline-block;
+      }
+      span.label {
+        text-align:right;
+        color:#111;
+        display:inline-block;
+        font-size:1.2em;
+        line-height:1.5em;
+        margin-right:25px;
+        width:200px;
+      }
+      input.boolean {
+        margin:3px;
+        width:auto;
+        display:inline-block;
+      }
+      input.string {
+        margin-left:-15px;
+        margin-top:-5px;
+      }
+      label {
+        vertical-align:top;
+        width:auto;
+        padding-top:0;
+      }
+    }
+    &.integer{
+      span.hint{
+        display:inline-block;
+        margin-left:auto;
+        vertical-align:top;
+        padding-top:10px;
+        padding-left:5px;
+      }
+    }
     &.add{
       padding:5px;
       border-top:1px solid #bbb;
@@ -116,50 +177,38 @@ form.simple_form {
       span.quiet {
         color:#555;
         font-size:0.9em;
+        font-style:italic;
       }
     }
   }
-  .firstname, .lastname, .city, .province, .postalcode {
-    display:inline-block;
-    label{
-      display:block;
-    }
-  }
-  .firstname, .lastname {
-    input {
-      width:138px;
-    }
-  }
-  .city input{
-    width:136px;
-  }
-  .province input{
-    width:50px;
-  }
-  .postalcode input{
-    width:75px;
-  }
   .hint{
     clear: left;
-    margin-left: 200px;
+    margin-left: 275px;
     font-size:    12px;
     color: #555;
     display: block;
     font-style: italic;
   }
   input{
+    &.radio{
+      width:auto;
+      margin:10px;
+    }
     &.integer{
       display:inline;
       width:35px;
     }
     &.check_boxes{
       width:auto;
+      vertical-align:middle;
       margin:0 5px;
       display:inline-block;
     }
   }
 }
 select{
+  text-align:right;
+  vertical-align:top;
   margin:0;
   -webkit-appearance: none;
   -moz-border-radius: 0;
@@ -196,11 +245,4 @@ select{
     background-image: none;
     padding: 0;
   }
-}
-.button.remove_nested_fields{
-  height:auto;
-  line-height:normal;
-  padding:3px;
-  vertical-align:top;
-  margin:2px 0;
 }
