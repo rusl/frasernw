@@ -74,7 +74,7 @@
       %span.label How does this office accept requests for standard referrals?
       = f.input :referral_fax, as: :boolean, label: "Fax", wrapper: false
       = f.input :referral_phone, as: :boolean, label: "Phone", wrapper: false
-      = f.input :referral_other_details, as: :boolean, label: "Other", wrapper: false
+      = f.input :referral_other_details, label: "Other", wrapper: false
 
     = f.input :lagtime, label: "Average length of time to give a booking date", hint: "in weeks", as: :integer, input_html: {min: 0}
     = f.input :waittime, label: "Average wait time from request for consultation to appointment", hint: "in weeks", as: :integer, input_html: {min: 0}
