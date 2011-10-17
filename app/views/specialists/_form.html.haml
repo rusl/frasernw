@@ -72,9 +72,9 @@
     %h2 Referral Details
     .mechanisms
       %span.label How does this office accept requests for standard referrals?
-      = f.input :referral_fax, label: "Fax", wrapper: false
-      = f.input :referral_phone, label: "Phone", wrapper: false
-      = f.input :referral_other_details, label: "Other", wrapper: false
+      = f.input :referral_fax, as: :boolean, label: "Fax", wrapper: false
+      = f.input :referral_phone, as: :boolean, label: "Phone", wrapper: false
+      = f.input :referral_other_details, as: :boolean, label: "Other", wrapper: false
 
     = f.input :lagtime, label: "Average length of time to give a booking date", hint: "in weeks", as: :integer, input_html: {min: 0}
     = f.input :waittime, label: "Average wait time from request for consultation to appointment", hint: "in weeks", as: :integer, input_html: {min: 0}
@@ -83,11 +83,11 @@
       %span.label This office will respond to referral requests
       %span.inputs
         To the referring office by:
-        = f.input :respond_by_fax, label: "Fax", wrapper: false
-        = f.input :respond_by_phone, label: "Phone", wrapper: false
-        = f.input :respond_by_mail, label: "Mail", wrapper: false
+        = f.input :respond_by_fax, as: :boolean, label: "Fax", wrapper: false
+        = f.input :respond_by_phone, as: :boolean, label: "Phone", wrapper: false
+        = f.input :respond_by_mail, as: :boolean, label: "Mail", wrapper: false
         %br
-        = f.input :respond_to_patient, label: "Directly to patient", wrapper: false
+        = f.input :respond_to_patient, as: :boolean, label: "Directly to patient", wrapper: false
     -# = f.input :referral_response_mask, label: "Office will respond to referral requests"
     = f.input :patient_can_book, as: :select, label: "Patient can book appointment?"
     = f.input :red_flags, label: "Red Flags", as: :text, hint: "Urgent situations, and process for having them addressed"
