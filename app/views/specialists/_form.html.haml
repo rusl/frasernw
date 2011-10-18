@@ -16,11 +16,11 @@
       =@specialization.name
     = f.input :firstname, label: 'First Name'
     = f.input :lastname, label: 'Last Name'
+    = f.input :direct_phone, label: "Direct Phone Number"
 
   %fieldset.contact_info
     %h2 Office / Contact Information
     = f.input :phone1, label: "Phone"
-    = f.input :direct_phone, label: "Direct Phone"
     = f.input :fax
 
     = f.input :address1, label: "Street Address"
@@ -41,46 +41,49 @@
   %fieldset
     %h2 Status
     = f.input :status_mask, as: :select, collection: Specialist::STATUS_HASH, label: "Current Status", label_method: :last, value_method: :first
-    = f.input :status_details, label: "Details"
-    = f.input :practise_limitations, label: "Other practice Limitations (optional)"
+    = f.input :status_details, label: "Additional Details (if any)"
+    = f.input :practise_limitations, label: "Other practice Limitations (if any)"
     = f.input :location_opened, label: "Practice opened at this location", as: :select, collection: ["Prior to 2010", 2010, 2011]
 
-  %fieldset.nested
-    %h2 Areas of Practise
-    %p In addition to history, PH, meds, allergies and previous OR/consultation reports, the following information/investigations are required for ALL patients.
-    = f.input :required_investigations, label: "Required Investigations"
+  %fieldset
+    %h2 Areas of Practice
+    %p
+      In addition to history, PH, meds, allergies and previous OR/consultation reports, the following information/investigations are required for ALL patients.
+      %span.quiet eg. XRs, MRIs, scans, blood work, etc.
+    = f.input :required_investigations, label: false, input_html: { class: "full" }
     
     %h3 Pertinent Areas of Practice/Expertise
-    %p
-      Referrals accepted in the following areas of practise.
-      %br
-      %span.quiet You can specify additional information/investigations required for an area of practise in the text field to the right of the drop-down menu.
+    %div.nested
 
-    = f.simple_fields_for :capacities do |i|
-      = i.association :procedure, as: :select, label: false, collection: @specialist.specialization.procedures.done_by_specialists, wrapper: false
-      = i.input :investigation, label: false, wrapper: false
-      = i.hidden_field :_destroy
-      = i.link_to_remove "×", class: "button"
-    = f.link_to_add "Add an area of practice", :capacities, class: "button"
+      %span.first Referrals accepted in the following areas of practise.
+      %span.last Additional information/investigations required for the following specific areas of practice.
+
+      = f.simple_fields_for :capacities do |i|
+        = i.association :procedure, as: :select, label: false, collection: @specialist.specialization.procedures.done_by_specialists, wrapper: false
+        = i.input :investigation, label: false, wrapper: false
+        = i.hidden_field :_destroy
+        = i.link_to_remove "×", class: "button"
+      = f.link_to_add "Add an area of practice", :capacities, class: "button"
 
     %hr
 
-    = f.input :interest, as: :text, label: "Interested In"
-    = f.input :not_performed, as: :text, label: "Does not see or do"
+    = f.input :interest, as: :text, label: "I am most interested in"
+    = f.input :not_performed, as: :text, label: "I do not see or do"
 
   %fieldset.referral_details
     %h2 Referral Details
     .mechanisms
-      %span.label How does this office accept requests for standard referrals?
+      %span.label How does your office accept requests for standard referrals?
       = f.input :referral_fax, as: :boolean, label: "Fax", wrapper: false
       = f.input :referral_phone, as: :boolean, label: "Phone", wrapper: false
       = f.input :referral_other_details, label: "Other", wrapper: false
 
-    = f.input :lagtime, label: "Average length of time to give a booking date", hint: "in weeks", as: :integer, input_html: {min: 0}
+    = f.input :referral_form, label: "Does your office have a referral form?", as: :radio
+    = f.input :lagtime, label: "Average length of time to notify GP of a booking date", hint: "in weeks", as: :integer, input_html: {min: 0}
     = f.input :waittime, label: "Average wait time from request for consultation to appointment", hint: "in weeks", as: :integer, input_html: {min: 0}
 
     .mechanisms
-      %span.label This office will respond to referral requests
+      %span.label Our office will respond to referral requests
       %span.inputs
         To the referring office by:
         = f.input :respond_by_fax, as: :boolean, label: "Fax", wrapper: false
@@ -88,9 +91,13 @@
         = f.input :respond_by_mail, as: :boolean, label: "Mail", wrapper: false
         %br
         = f.input :respond_to_patient, as: :boolean, label: "Directly to patient", wrapper: false
-    -# = f.input :referral_response_mask, label: "Office will respond to referral requests"
-    = f.input :patient_can_book, as: :select, label: "Patient can book appointment?"
-    = f.input :red_flags, label: "Red Flags", as: :text, hint: "Urgent situations, and process for having them addressed"
+    = f.input :patient_can_book, as: :radio, label: "Will your office accept direct calls from patients to book their own appointments?"
+    = f.input :red_flags, label: "What conditions (red flags) does your office feel warrant urgent consultation?", as: :text, input_html: { class: "full" }
+    .mechanisms
+      %span.label Optimal method of referral for urgent appointments
+      = f.input :urgent_fax, as: :boolean, label: "Fax", wrapper: false
+      = f.input :urgent_phone, as: :boolean, label: "Phone", wrapper: false
+      = f.input :urgent_other_details, label: "Other", wrapper: false
 
   %fieldset
     %h2 Hospital Privileges

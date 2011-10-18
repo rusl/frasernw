@@ -12,6 +12,15 @@ form.simple_form {
     margin-bottom:3em;
     padding:0 5px 5px;
     margin-right:7%;
+    &.referral_details {
+      div.input {
+        &> label {
+          width:auto;
+          display:block;
+          text-align:left;
+        }
+      } 
+    }
     h2 {
       background:#EEE;
       border-bottom:1px solid #ddd;
@@ -47,21 +56,6 @@ form.simple_form {
       margin:2px 0;
       margin-top:2px;
     }
-    &.nested{
-      p {
-        margin-bottom:.5em;
-      }
-      & > div.fields {
-        padding:.2em 0;
-        width:100%;
-        display:block;
-        background:white;
-        position:relative;
-        select {
-          min-width:200px;
-        }
-      }
-    }
   }
   input:not([type=submit]), textarea {
     padding:5px;
@@ -85,10 +79,14 @@ form.simple_form {
     display:inline-block;
     font-size:1.2em;
     line-height:1.5em;
-	  margin-right:25px;
-    width:200px;
+	  margin-right:15px;
+    width:250px;
     abbr {
       display:none;
+    }
+    &.collection_radio{
+      width:auto;
+      display:inline;
     }
     &.collection_check_boxes{
       display:inline-block;
@@ -100,21 +98,43 @@ form.simple_form {
   textarea{
     height:5em;
     width:391px;
+    &.full {
+      width:98%;
+    }
   }
   div{
+    &.nested{
+      .first {
+        width:253px;
+      }
+      .last {
+        width:291px;
+      }
+      span {
+        vertical-align:top;
+        display:inline-block;
+        border:1px solid #EEE;
+        background:#F6F6F6;
+        padding:5px;
+        margin-bottom:0;
+      }
+      select{
+        width:265px;
+      }
+    }
     &.mechanisms {
       margin-top:10px;
       span.inputs {
         display:inline-block;
       }
       span.label {
-        text-align:right;
+        text-align:left;
         color:#111;
-        display:inline-block;
+        display:block;
         font-size:1.2em;
         line-height:1.5em;
-        margin-right:25px;
-        width:200px;
+        width:auto;
+        margin-bottom:10px;
       }
       input.boolean {
         margin:3px;
@@ -122,7 +142,7 @@ form.simple_form {
         display:inline-block;
       }
       input.string {
-        margin-left:-15px;
+        margin-left:-10px;
         margin-top:-5px;
       }
       label {
@@ -164,7 +184,7 @@ form.simple_form {
         border-bottom:1px solid #EEE;
       }
     }
-    & > p{
+    & > p {
       font-style:normal;
       padding:.5em 5px;
       font-size:1.1em;
@@ -189,7 +209,8 @@ form.simple_form {
   input{
     &.radio{
       width:auto;
-      margin:10px;
+      margin:4px;
+      display:inline;
     }
     &.integer{
       display:inline;
