@@ -103,12 +103,25 @@ form.simple_form {
     }
   }
   div{
-    &.nested{
+    &.fields > a {
+      vertical-align:bottom;
+      margin-bottom:5px;
+      display:inline-block;
+    }
+    &.nested {
+      & > p {
+        margin:0;
+        padding:0;
+        display:block;
+        background:#FFF;
+        border:none;
+      }
       .first {
         width:253px;
       }
       .last {
         width:291px;
+        margin-left:-1px;
       }
       span {
         vertical-align:top;

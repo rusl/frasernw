@@ -1,4 +1,4 @@
-/ a bit messy, and probably there is a better way of handling multiple controllers reusing this form
+-# a bit messy, and probably there is a better way of handling multiple controllers reusing this form
 - form_method    = params[:action]     == 'new' ? :post   : :put
 - current_action = params[:action]     == 'new' ? :create : :update
 - form_action    = params[:controller] == 'specialists_editor' ? :update : current_action
@@ -16,7 +16,7 @@
       =@specialization.name
     = f.input :firstname, label: 'First Name'
     = f.input :lastname, label: 'Last Name'
-    = f.input :direct_phone, label: "Direct Phone Number"
+    = f.input :direct_phone, label: "Direct Number (for physician contact)"
 
   %fieldset.contact_info
     %h2 Office / Contact Information
@@ -24,7 +24,7 @@
     = f.input :fax
 
     = f.input :address1, label: "Street Address"
-    = f.input :address2, label: "Apt, Suite, Bldg. (Optional)"
+    = f.input :address2, label: "Suite"
     = f.input :city
     = f.input :province
     = f.input :postalcode, label: "Postal Code"
@@ -43,7 +43,7 @@
     = f.input :status_mask, as: :select, collection: Specialist::STATUS_HASH, label: "Current Status", label_method: :last, value_method: :first
     = f.input :status_details, label: "Additional Details (if any)"
     = f.input :practise_limitations, label: "Other practice Limitations (if any)"
-    = f.input :location_opened, label: "Practice opened at this location", as: :select, collection: ["Prior to 2010", 2010, 2011]
+    = f.input :location_opened, label: "Practice opened at this location", as: :select, collection: ["Prior to 2010", 2010, 2011], prompt: "Select ..."
 
   %fieldset
     %h2 Areas of Practice
@@ -54,15 +54,15 @@
     
     %h3 Pertinent Areas of Practice/Expertise
     %div.nested
-
-      %span.first Referrals accepted in the following areas of practise.
-      %span.last Additional information/investigations required for the following specific areas of practice.
+      %p
+        %span.first Referrals accepted in the following areas of practise.
+        %span.last Additional information/investigations required for the specified area of practice.
 
       = f.simple_fields_for :capacities do |i|
-        = i.association :procedure, as: :select, label: false, collection: @specialist.specialization.procedures.done_by_specialists, wrapper: false
+        = i.association :procedure, as: :select, label: false, collection: @specialist.specialization.procedures.done_by_specialists, prompt: 'Select ...', wrapper: false
         = i.input :investigation, label: false, wrapper: false
         = i.hidden_field :_destroy
-        = i.link_to_remove "×", class: "button"
+        = i.link_to_remove "remove"
       = f.link_to_add "Add an area of practice", :capacities, class: "button"
 
     %hr
@@ -96,7 +96,7 @@
         = f.input :respond_by_mail, as: :boolean, label: "Mail", wrapper: false
         %br
         = f.input :respond_to_patient, as: :boolean, label: "Directly to patient", wrapper: false
-    = f.input :patient_can_book, as: :radio, label: "Will your office accept direct calls from patients to book their own appointments?"
+    = f.input :patient_can_book, as: :radio, label: "After you receive our referral, will your office accept direct calls from patients to book their own appointments?"
     = f.input :red_flags, label: "What conditions (red flags) does your office feel warrant urgent consultation?", as: :text, input_html: { class: "full" }
     .mechanisms
       %span.label Optimal method of referral for urgent appointments
@@ -108,7 +108,7 @@
     %h2 Hospital Privileges
     = f.association :hospitals, as: :check_boxes, label: false
     = link_to "Add a Hospital", new_hospital_path, class: "button"
-  
+
   %fieldset
     %h2 Sub-Specialty Clinics
     = f.association :clinics, as: :check_boxes, label: false, collection: @specialization_clinics
@@ -119,4 +119,4 @@
   %p
     = f.input :specialization_id, as: :hidden
 
-    = f.submit
+  = f.submit
