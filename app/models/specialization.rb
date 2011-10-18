@@ -5,4 +5,7 @@ class Specialization < ActiveRecord::Base
   has_many :specialists
   has_many :clinics
   has_many :procedures
+
+  default_scope order('name')
+
 end
