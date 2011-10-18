@@ -23,7 +23,7 @@
             = link_to "Track Specialists", tracker_path, class: "left button"
             = link_to "Manage Users", users_path, class: "middle button"
             = link_to "Activity", all_versions_path, class: "middle button"
-            = link_to "Review Changes", reviews_path, class: 'middle button'
+            = link_to "Review Queue (#{Review.count})", reviews_path, class: 'middle button'
           - if logged_in?
             = link_to "Home", '/', class: "middle button"
             = link_to "Logout", logout_url, class: "right button"
