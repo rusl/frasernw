@@ -79,8 +79,13 @@
       = f.input :referral_other_details, label: "Other", wrapper: false
 
     = f.input :referral_form, label: "Does your office have a referral form?", as: :radio
-    = f.input :lagtime, label: "Average length of time to notify GP of a booking date", hint: "in weeks", as: :integer, input_html: {min: 0}
-    = f.input :waittime, label: "Average wait time from request for consultation to appointment", hint: "in weeks", as: :integer, input_html: {min: 0}
+    .input.optional
+      = f.input :lagtime, label: "Average length of time to notify GP of a booking date", as: :integer, input_html: {min: 0}, wrapper: false
+      = f.input :lag_uom, label: false, wrapper: false, as: :select, collection: %w(days weeks months)
+    
+    .input.optional
+      = f.input :waittime, label: "Average wait time from request for consultation to appointment", as: :integer, input_html: {min: 0}, wrapper: false
+      = f.input :wait_uom, label: false, wrapper: false, as: :select, collection: %w(days weeks months)
 
     .mechanisms
       %span.label Our office will respond to referral requests
