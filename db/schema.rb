@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018000424) do
+ActiveRecord::Schema.define(:version => 20111018172928) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -188,6 +188,8 @@ ActiveRecord::Schema.define(:version => 20111018000424) do
     t.boolean  "urgent_fax"
     t.boolean  "urgent_phone"
     t.boolean  "referral_form"
+    t.string   "lag_uom"
+    t.string   "wait_uom"
   end
 
   create_table "specializations", :force => true do |t|
