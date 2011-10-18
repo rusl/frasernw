@@ -74,9 +74,8 @@ class Specialist < ActiveRecord::Base
   private
 
     def default_values
-      lag_uom ||= "weeks"
-      wait_uom ||= "weeks"
+      self.lag_uom ||= "weeks"
+      self.wait_uom ||= "weeks"
     end
-
 
 end
