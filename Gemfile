@@ -52,11 +52,11 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   # can't include rb-fsevent here as heroku doesn't like it
   # gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
-  gem 'growl'
-  gem 'growl_notify'
+  gem "ruby_gntp", "~> 0.3.4"
   gem 'heroku'
   gem 'taps'
 end
