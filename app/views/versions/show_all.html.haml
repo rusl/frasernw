@@ -10,5 +10,5 @@
     - else
       unknown
     = link_to "#{version.evented}", show_version_path(version)
-    by #{version.whodunnit.to_i.to_s == version.whodunnit ? User.find(version.whodunnit).username : 'unknown'}
+    by #{whodunnit_name(version)}
     %span{:class=> "muted"}= "#{time_ago_in_words(version.created_at)} ago"

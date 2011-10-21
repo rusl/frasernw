@@ -1,6 +1,6 @@
 class Specialist < ActiveRecord::Base
   attr_accessible :firstname, :lastname, :address1, :address2, :postalcode, :city, :province, :phone1, :fax, :practise_limitations, :interest, :waittime, :specialization_id, :procedure_ids, :direct_phone, :red_flags, :clinic_ids, :responds_via, :contact_name, :contact_email, :contact_phone, :contact_notes, :referral_criteria, :status_mask, :location_opened, :referral_fax, :referral_phone, :referral_other_details, :urgent_fax, :urgent_phone, :urgent_other_details, :respond_by_fax, :respond_by_phone, :respond_by_mail, :respond_to_patient, :status_details, :required_investigations, :not_performed, :lagtime, :patient_can_book, :lag_uom, :wait_uom, :referral_form, :hospital_ids, :capacities_attributes
-  has_paper_trail
+  has_paper_trail ignore: :saved_token
   
   belongs_to :specialization
 

@@ -5,6 +5,7 @@ class SpecialistsEditorController < ApplicationController
   def edit
     @token      = params[:token]
     @specialist = Specialist.find(params[:id])
+    @specialist.capacities.build if @specialist.capacities.count == 0
     @specialization = @specialist.specialization
     @specialization_clinics = @specialization.clinics.collect { |clinic| [clinic.name, clinic.id] }.sort
     @specialist_clinics = @specialist.clinics.collect {|c| c.id}
@@ -16,12 +17,25 @@ class SpecialistsEditorController < ApplicationController
   def update
     params[:specialist][:procedure_ids] ||= []
     @specialist = Specialist.find(params[:id])
-    if @specialist.update_attributes(params[:specialist])
-      @edit = @specialist.edits.build(:notes => request.remote_ip)
-      @edit.save
-      redirect_to specialist_self_edit_path(@specialist), :notice => "Successfully updated."
+    PaperTrail.whodunnit = "MOA"
+    @specialist.attributes = params[:specialist]
+    if @specialist.valid?
+      Review.create({
+          :item_type => @specialist.class.name,
+          :item_id => @specialist.id,
+          :object => @specialist.attributes.to_yaml,
+          :whodunnit => current_user,
+          :object_changes => @specialist.changes})
+      redirect_to specialist_self_edit_path(@specialist), :notice => "You have successfully updated the information for #{@specialist.name}."
     else
-      render :action => 'edit'
+      @token = params[:token]
+      @specialist.capacities.build if @specialist.capacities.count == 0
+      @specialization = @specialist.specialization
+      @specialization_clinics = @specialization.clinics.collect { |clinic| [clinic.name, clinic.id] }.sort
+      @specialist_clinics = @specialist.clinics.collect {|c| c.id}
+      @view = @specialist.views.build(:notes => request.remote_ip)
+      @view.save
+      render :template => 'specialists/edit'
     end
   end
 
