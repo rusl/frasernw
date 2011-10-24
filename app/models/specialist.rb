@@ -28,6 +28,8 @@ class Specialist < ActiveRecord::Base
   has_many  :views
   has_many  :edits
 
+  has_many :offices
+
   validates_presence_of :firstname, :on => :save, :message => "can't be blank"
   validates_presence_of :lastname, :on => :save, :message => "can't be blank"
   validates_presence_of :specialization_id, :on => :save, :message => "can't be blank"
