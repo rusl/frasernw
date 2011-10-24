@@ -29,6 +29,7 @@ class Specialist < ActiveRecord::Base
   has_many  :edits
 
   has_many :offices
+  accepts_nested_attributes_for :offices
 
   validates_presence_of :firstname, :on => :save, :message => "can't be blank"
   validates_presence_of :lastname, :on => :save, :message => "can't be blank"

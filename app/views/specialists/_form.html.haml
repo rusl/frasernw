@@ -20,14 +20,15 @@
 
   %fieldset.contact_info
     %h2 Office / Contact Information
-    = f.input :phone1, label: "Phone"
-    = f.input :fax
+    = f.simple_fields_for :offices do |i|
+      = i.input :phone1, label: "Phone"
+      = i.input :fax
 
-    = f.input :address1, label: "Street Address"
-    = f.input :address2, label: "Suite"
-    = f.input :city
-    = f.input :province
-    = f.input :postalcode, label: "Postal Code"
+      = i.input :address1, label: "Street Address"
+      = i.input :address2, label: "Suite"
+      = i.input :city
+      = i.input :province
+      = i.input :postalcode, label: "Postal Code"
 
   - if current_user && current_user.admin?    
     %fieldset
