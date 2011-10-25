@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111024190040) do
+ActiveRecord::Schema.define(:version => 20111025224337) do
 
   create_table "attendances", :force => true do |t|
     t.integer   "specialist_id"
@@ -107,16 +107,16 @@ ActiveRecord::Schema.define(:version => 20111024190040) do
   end
 
   create_table "offices", :force => true do |t|
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "postalcode"
-    t.string   "city"
-    t.string   "province"
-    t.string   "phone1"
-    t.string   "fax"
-    t.integer  "specialist_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "address1"
+    t.string    "address2"
+    t.string    "postalcode"
+    t.string    "city"
+    t.string    "province"
+    t.string    "phone1"
+    t.string    "fax"
+    t.integer   "specialist_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "offices", ["specialist_id"], :name => "index_offices_on_specialist_id"
@@ -228,13 +228,14 @@ ActiveRecord::Schema.define(:version => 20111024190040) do
   end
 
   create_table "versions", :force => true do |t|
-    t.string    "item_type",      :null => false
-    t.integer   "item_id",        :null => false
-    t.string    "event",          :null => false
+    t.string    "item_type",                        :null => false
+    t.integer   "item_id",                          :null => false
+    t.string    "event",                            :null => false
     t.string    "whodunnit"
     t.text      "object"
     t.timestamp "created_at"
     t.text      "object_changes"
+    t.boolean   "reviewed",       :default => true
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
