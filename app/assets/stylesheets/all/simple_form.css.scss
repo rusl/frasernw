@@ -12,6 +12,13 @@ form.simple_form {
     margin-bottom:3em;
     padding:0 5px 5px;
     margin-right:7%;
+    &.office {
+      h4 {
+        position:absolute;
+        font-weight:bold;
+        padding-top:5px;
+      }
+    }
     &.referral_details {
       div.input {
         &> label {
@@ -27,10 +34,11 @@ form.simple_form {
       padding-left:5px;
       margin-left:-5px;
       margin-right:-5px;
+      margin-bottom:5px;
     }
     p {
       font-size:1.15em;
-      margin-top:-14px;
+      margin-bottom:5px;
     }
     h3{
       padding-left:5px;
@@ -38,6 +46,7 @@ form.simple_form {
       margin-top:10px;
       margin-left:-5px;
       margin-right:-5px;
+      margin-bottom:5px;
       border-top:1px solid #DDD;
     }
     .quiet{
@@ -183,9 +192,9 @@ form.simple_form {
     }
     &.check_boxes{
       padding:0;
-      margin-top:-18px;
+      margin-top:-5px;
       margin-right:-5px;
-      margin-bottom:-5px;
+      margin-bottom:0;
       & > span {
         padding:.2em 0;
         margin-left:-5px;
@@ -213,7 +222,7 @@ form.simple_form {
   }
   .hint{
     clear: left;
-    margin-left: 275px;
+    margin-left: 265px;
     font-size:    12px;
     color: #555;
     display: block;

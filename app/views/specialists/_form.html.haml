@@ -18,9 +18,10 @@
     = f.input :lastname, label: 'Last Name'
     = f.input :direct_phone, label: "Direct Number (for physician contact)"
 
-  %fieldset.contact_info
+  %fieldset.office
     %h2 Office / Contact Information
     = f.simple_fields_for :offices do |i|
+      %h4.location_header Location 1
       = i.input :phone1, label: "Phone"
       = i.input :fax
 
@@ -29,6 +30,8 @@
       = i.input :city
       = i.input :province
       = i.input :postalcode, label: "Postal Code"
+      %hr
+    = f.link_to_add "Add a second office", :offices, class: "button", id: "add_office"
 
   - if current_user && current_user.admin?    
     %fieldset

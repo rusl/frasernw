@@ -16,6 +16,7 @@ class SpecialistsController < ApplicationController
     @specialization = Specialization.find(params[:specialization_id])
     @specialist     = @specialization.specialists.build
     @specialist.capacities.build
+    @specialist.offices.build
     @specialization_clinics = @specialization.clinics.collect { |clinic| [clinic.name, clinic.id] }.sort
     @specialist_clinics = @specialist.clinics.collect {|c| c.id}    
   end
