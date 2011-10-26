@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def info_for_paper_trail
-    { :reviewed => (!current_user.admin? rescue true) }
+    { to_review: (!current_user.admin? rescue true) }
   end
 end
