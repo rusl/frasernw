@@ -1,5 +1,5 @@
 class AddReviewColumns < ActiveRecord::Migration
   def change
-    add_column :versions,  :reviewed, :boolean, default: 1
+    add_column :versions,  :to_review, :boolean
   end
 end
