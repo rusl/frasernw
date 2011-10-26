@@ -17,15 +17,7 @@ class SpecialistsEditorController < ApplicationController
   def update
     params[:specialist][:procedure_ids] ||= []
     @specialist = Specialist.find(params[:id])
-    PaperTrail.whodunnit = "MOA"
-    @specialist.attributes = params[:specialist]
-    if @specialist.valid?
-      Review.create({
-          :item_type => @specialist.class.name,
-          :item_id => @specialist.id,
-          :object => @specialist.attributes.to_yaml,
-          :whodunnit => current_user,
-          :object_changes => @specialist.changes})
+    if @specialist.update_attributes!(params[:specialist])
       redirect_to specialist_self_edit_path(@specialist), :notice => "You have successfully updated the information for #{@specialist.name}."
     else
       @token = params[:token]
