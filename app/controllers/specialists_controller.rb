@@ -23,7 +23,7 @@ class SpecialistsController < ApplicationController
 
   def create
     @specialist = Specialist.new(params[:specialist])
-    if @specialist.save
+    if @specialist.save!
       redirect_to @specialist, :notice => "Successfully created specialist. #{undo_link}"
     else
       render :action => 'new'
@@ -42,21 +42,10 @@ class SpecialistsController < ApplicationController
 
   def update
     @specialist = Specialist.find(params[:id])
-    if current_user.admin?
-      if @specialist.update_attributes(params[:specialist])
-        redirect_to @specialist, :notice => "Successfully updated specialist. #{undo_link}"
-      else
-        render :edit
-      end
+    if @specialist.update_attributes!(params[:specialist])
+      redirect_to @specialist, :notice => "Successfully updated specialist. #{undo_link}"
     else
-      @specialist.attributes = params[:specialist]
-      Review.create({
-          :item_type => @specialist.class.name,
-          :item_id => @specialist.id,
-          :object => @specialist.attributes.to_yaml,
-          :whodunnit => current_user,
-          :object_changes => @specialist.changes})
-      redirect_to @specialist, notice: "Your update has been submitted for review"
+      render :edit
     end
   end
 
