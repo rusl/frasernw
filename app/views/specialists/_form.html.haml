@@ -1,54 +1,126 @@
-/ a bit messy, and probably there is a better way of handling multiple controllers reusing this form
+-# a bit messy, and probably there is a better way of handling multiple controllers reusing this form
 - form_method    = params[:action]     == 'new' ? :post   : :put
 - current_action = params[:action]     == 'new' ? :create : :update
 - form_action    = params[:controller] == 'specialists_editor' ? :update : current_action
 
-= simple_form_for @specialist, :url => {:controller => params[:controller], :action => form_action}, :method => form_method do |f|
+= simple_nested_form_for @specialist, :url => {:controller => params[:controller], :action => form_action}, :method => form_method do |f|
   = f.error_messages
   - if @view
     .error_messages
       %h2 You are editing your record in the Fraser NW Division of Family Practice Resource database
-      %p This database exists to make make our practices, and your practice more efficient. By providing the information requested below you are making it easier for family doctors to find your practice, ensure that they are providing you with the correct information, and that your scopes of practice are fully understood.
+      %p This database exists to make make our practices, and your practice more efficient. By providing the information requested below you are making it easier for family doctors to find your practice, ensure that they are providing you with the correct information, and that your scope of practice is fully understood.
 
   %fieldset
-    %legend Doctor Information
-    = f.input :firstname, label: 'First Name', wrapper_html: {class: 'firstname'}
-    = f.input :lastname, label: 'Last Name', wrapper_html: {class: 'lastname'}
-    = f.input :phone1, label: "Phone"
-    = f.input :direct_phone, label: "Direct Phone"
-    = f.input :fax
-    %hr
-    %p Address
-    = f.input :address1, label: "Street Address"
-    = f.input :address2, label: "Apt, Suite, Bldg. (Optional)"
-    = f.input :city, wrapper_html: {class: 'city'}
-    = f.input :province, wrapper_html: {class: 'province'}
-    = f.input :postalcode, label: "Postal Code", wrapper_html: {class: 'postalcode'}
+    %h2 
+      Specialist: 
+      =@specialization.name
+    = f.input :firstname, label: 'First Name'
+    = f.input :lastname, label: 'Last Name'
+    = f.input :direct_phone, label: "Direct Number (for physician contact)"
+
+  %fieldset.office
+    %h2 Office / Contact Information
+    = f.simple_fields_for :offices do |i|
+      %h4.location_header Location 1
+      = i.input :phone1, label: "Phone"
+      = i.input :fax
+
+      = i.input :address1, label: "Street Address"
+      = i.input :address2, label: "Suite"
+      = i.input :city
+      = i.input :province
+      = i.input :postalcode, label: "Postal Code"
+      %hr
+    = f.link_to_add "Add a second office", :offices, class: "button", id: "add_office"
 
   - if current_user && current_user.admin?    
-    %fieldset.contact
-      %legend Contact Information
-      Allow specialists to edit their own forms - this information is only visible to admins.
-      = f.input :contact_name
-      = f.input :contact_email
-      = f.input :contact_phone
-      = f.input :contact_notes, hint: "Include contact's role (MOA, etc.) and anything else we should know."
+    %fieldset
+      %h2 Senior MOA Contact Information
+      %p Allows specialists to edit their own form. This information is only visible to admins.
+      = f.input :contact_name, label: "Name"
+      = f.input :contact_email, label: "Email"
+      = f.input :contact_phone, label: "Phone"
+      = f.input :contact_notes, label: "Notes", hint: "Include contact's role (MOA, etc.) and anything else we should know."
 
-  = f.input :responds_via, as: :text, hint: "How does the Dr. respond to referral requests (phone to GP office, fax to GP office, phone to patient, other...)"
-  = f.input :status, as: :text
-  = f.input :referral_criteria, as: :text, hint: "Criteria for referral, what forms and investigations are required for referrals for different procedures"
-  = f.input :interest, as: :text
-  = f.input :red_flags, as: :text, hint: "Urgent situations, and process for having them addressed"
-  = f.input :waittime, label: "Wait Time", hint: "(avg in weeks)", as: :integer, input_html: {min: 0}
+  %fieldset
+    %h2 Status
+    = f.input :status_mask, as: :select, collection: Specialist::STATUS_HASH, label: "Current Status", label_method: :last, value_method: :first
+    = f.input :status_details, label: "Additional Details (if any)"
+    = f.input :practise_limitations, label: "Other practice Limitations (if any)"
+    = f.input :location_opened, label: "Practice opened at this location", as: :select, collection: ["Prior to 2010", 2010, 2011], prompt: "Select ..."
 
-  = f.association :clinics, as: :check_boxes, collection: @specialization_clinics
+  %fieldset
+    %h2 Areas of Practice
+    %p
+      In addition to history, PH, meds, allergies and previous OR/consultation reports, the following information/investigations are required for ALL patients.
+      %span.quiet eg. XRs, MRIs, scans, blood work, etc.
+    = f.input :required_investigations, label: false, input_html: { class: "full" }
+    
+    %h3 Pertinent Areas of Practice/Expertise
+    %div.nested
+      %p
+        %span.first Referrals accepted in the following areas of practise.
+        %span.last Additional information/investigations required for the specified area of practice.
 
-  = f.association :hospitals, as: :check_boxes
+      = f.simple_fields_for :capacities do |i|
+        = i.association :procedure, as: :select, label: false, collection: @specialist.specialization.procedures.done_by_specialists, prompt: 'Select ...', wrapper: false
+        = i.input :investigation, label: false, wrapper: false
+        = i.hidden_field :_destroy
+        = i.link_to_remove "remove"
+      = f.link_to_add "Add an area of practice", :capacities, class: "button"
 
-  = f.association :procedures, as: :check_boxes, collection: @specialist.specialization.procedures.done_by_specialists
+    %hr
 
-  / FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
+    = f.input :interest, as: :text, label: "I am most interested in"
+    = f.input :not_performed, as: :text, label: "I do not see or do"
+
+  %fieldset.referral_details
+    %h2 Referral Details
+    .mechanisms
+      %span.label How does your office accept requests for standard referrals?
+      = f.input :referral_fax, as: :boolean, label: "Fax", wrapper: false
+      = f.input :referral_phone, as: :boolean, label: "Phone", wrapper: false
+      = f.input :referral_other_details, label: "Other", wrapper: false
+
+    = f.input :referral_form, label: "Does your office have a referral form?", as: :radio
+    .input.optional
+      = f.input :lagtime, label: "Average length of time to notify GP of a booking date", as: :integer, input_html: {min: 0}, wrapper: false
+      = f.input :lag_uom, label: false, wrapper: false, as: :select, collection: %w(days weeks months)
+    
+    .input.optional
+      = f.input :waittime, label: "Average wait time from request for consultation to appointment", as: :integer, input_html: {min: 0}, wrapper: false
+      = f.input :wait_uom, label: false, wrapper: false, as: :select, collection: %w(days weeks months)
+
+    .mechanisms
+      %span.label Our office will respond to referral requests
+      %span.inputs
+        To the referring office by:
+        = f.input :respond_by_fax, as: :boolean, label: "Fax", wrapper: false
+        = f.input :respond_by_phone, as: :boolean, label: "Phone", wrapper: false
+        = f.input :respond_by_mail, as: :boolean, label: "Mail", wrapper: false
+        %br
+        = f.input :respond_to_patient, as: :boolean, label: "Directly to patient", wrapper: false
+    = f.input :patient_can_book, as: :radio, label: "After you receive our referral, will your office accept direct calls from patients to book their own appointments?"
+    = f.input :red_flags, label: "What conditions (red flags) does your office feel warrant urgent consultation?", as: :text, input_html: { class: "full" }
+    .mechanisms
+      %span.label Optimal method of referral for urgent appointments
+      = f.input :urgent_fax, as: :boolean, label: "Fax", wrapper: false
+      = f.input :urgent_phone, as: :boolean, label: "Phone", wrapper: false
+      = f.input :urgent_other_details, label: "Other", wrapper: false
+
+  %fieldset
+    %h2 Hospital Privileges
+    = f.association :hospitals, as: :check_boxes, label: false
+    = link_to "Add a Hospital", new_hospital_path, class: "button"
+
+  %fieldset
+    %h2 Sub-Specialty Clinics
+    = f.association :clinics, as: :check_boxes, label: false, collection: @specialization_clinics
+    = link_to "Add a Clinic", new_specialization_clinic_path(@specialization), class: "button"
+
+
+  -# FIXME - This shouldn't be in the view. Should be set by parent resource in controller.
   %p
     = f.input :specialization_id, as: :hidden
 
-    = f.submit
+  = f.submit

@@ -25,6 +25,7 @@ gem 'carrierwave'
 gem 'paper_trail', '~> 2'
 gem 'will_paginate', '~> 3.0.0'
 gem "simple_form", "~> 1.5.1"
+gem "nested_form", :git => "https://github.com/ryanb/nested_form.git", :ref => "57f32788f1952bcd633057b4b56b69b51df17610"
 gem 'exception_notification'
 
 # Use unicorn as the web server
@@ -46,15 +47,16 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'wirble'
+  gem 'spork', '> 0.9.0rc'
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
   # can't include rb-fsevent here as heroku doesn't like it
   # gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
-  gem 'growl'
-  gem 'growl_notify'
+  gem "ruby_gntp", "~> 0.3.4"
   gem 'heroku'
   gem 'taps'
 end

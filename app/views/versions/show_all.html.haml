@@ -2,13 +2,17 @@
 
 = will_paginate @versions
 
-%ul
-- @versions.each do |version|
-  %li
-    - if version.reify and version.reify.id
-      = link_to "#{version.reify.name}", version.reify
-    - else
-      unknown
-    = link_to "#{version.evented}", show_version_path(version)
-    by #{version.whodunnit.to_i.to_s == version.whodunnit ? User.find(version.whodunnit).username : 'unknown'}
-    %span{:class=> "muted"}= "#{time_ago_in_words(version.created_at)} ago"
+%ul.versions
+  - @versions.each do |version|
+    %li
+      = activity_badge(version)
+      %span.item= link_to_item(version)
+      #{version.evented.titlecase} by #{whodunnit_name(version)}
+      %span.muted #{time_ago_in_words(version.created_at)} ago
+      -# - if version.reify and version.reify.id
+      -#   = link_to "#{version.reify.name}", version.reify
+      -# - else
+      -#   unknown
+      -# = link_to "#{version.evented}", show_version_path(version)
+      -# by #{whodunnit_name(version)}
+      -# %span{:class=> "muted"}= "#{time_ago_in_words(version.created_at)} ago"

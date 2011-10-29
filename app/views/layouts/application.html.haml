@@ -24,7 +24,7 @@
             = link_to "Track Specialists", tracker_path
             = link_to "Manage Users", users_path
             = link_to "Activity", all_versions_path
-            = link_to "Review Changes", reviews_path
+            = link_to "Review Queue (#{Review.count})", reviews_path
           - if logged_in?
             = link_to "Logout", logout_url
 

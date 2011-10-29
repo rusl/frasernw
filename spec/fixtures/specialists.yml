@@ -8,7 +8,6 @@ one:
   province: MyString
   phone1: MyString
   fax: MyString
-  status: MyText
   interest: MyText
   waittime: 1
   specialization_id: 1
@@ -23,7 +22,6 @@ two:
   province: MyString
   phone1: MyString
   fax: MyString
-  status: MyText
   interest: MyText
   waittime: 1
   specialization_id: 1

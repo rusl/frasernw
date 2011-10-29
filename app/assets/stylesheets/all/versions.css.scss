@@ -1,3 +1,32 @@
 // Place all the styles related to the versions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ul.versions{
+  list-style-type:none;
+  padding-left:0;
+  li {
+    padding:5px;
+    border:1px solid #EEE;
+//    margin-bottom:10px;
+    span{
+      display:inline-block;
+    }
+    .type {
+      background:#EEE;
+      padding:4px;
+      width:120px;
+      color:#222;
+      text-align:right;
+    }
+    .item {
+      width:250px;
+    }
+    .who {
+      width:250px;
+    }
+    p {
+      margin-left:20px;
+      margin-bottom:0;
+    }
+  }
+}
