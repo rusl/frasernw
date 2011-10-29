@@ -1,0 +1,59 @@
+.toolbar
+    %a.button#backButton{:href => "#"}= ""
+    %h1#pageTitle= "Pathways"
+/    %a.button{:href => "#searchForm"}= "Search"
+
+%ul#home{:title => "Pathways", :selected => "true"}
+    %li
+        %a{:href => "#specializations"}= "Specialities"
+    %li
+        %a{:href => "#specialists"}= "Specialists"
+    %li
+        %a{:href => "#clinics"}= "Clinics"
+
+%ul#specializations{:title => "Specialities"}
+    - for specialization in @specializations
+        %li
+            %a{:href => "#" + specialization.name.gsub(/\s+/, ""), :onclick => "javascript:linkto('" + specialization_path(specialization) +"')"}= specialization.name
+
+- for specialization in @specializations
+    %ul{:id => specialization.name.gsub(/\s+/, ""), :title => specialization.name}
+        - for procedure in specialization.procedures
+            %li
+                %a{:href => "#" + procedure.name.gsub(/\s+/, ""), :onclick => "javascript:linkto('" + procedure_path(procedure) +"')"}= procedure.name
+                
+    - for procedure in specialization.procedures
+        %ul{:id => procedure.name.gsub(/\s+/, ""), :title => procedure.name}
+            
+            - if not procedure.specialists.empty?
+                %li.group Specialists
+            - for specialist in procedure.specialists.sort! { |a,b| a.lastname.downcase + a.firstname.downcase <=> b.lastname.downcase + b.firstname.downcase }
+                %li
+                    %a{:href => "javascript:linkto('" + url_for(specialist) + "')"}= specialist.name
+
+            - if not procedure.clinics.empty?
+                %li.group Clinics
+            - for clinic in procedure.clinics.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+                %li
+                    %a{:href => "javascript:linkto('" + url_for(clinic) + "')"}= clinic.name
+
+
+%ul#specialists{:title => "Specialists"}
+    - curLetter = "-"
+    - for specialist in @specialists.sort! { |a,b| a.lastname.downcase <=> b.lastname.downcase }
+        -next if specialist.name.strip == ''
+        -if specialist.lastname[0].upcase != curLetter
+            - curLetter = specialist.lastname[0]
+            %li.group= curLetter.upcase
+        %li
+            %a{:href => "javascript:linkto('" + url_for(specialist) + "')"}= specialist.name
+
+
+%ul#clinics{:title => "Clinics"}
+    - curLetter = "-"
+    - for clinic in @clinics.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+        -if clinic.name[0].upcase != curLetter
+            - curLetter = clinic.name[0]
+            %li.group= curLetter.upcase
+        %li
+            %a{:href => "javascript:linkto('" + url_for(clinic) + "')"}= clinic.name

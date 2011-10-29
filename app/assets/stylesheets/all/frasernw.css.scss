@@ -1,30 +1,110 @@
-a {
-  text-decoration:none;
-}
+@import "_globals";
 
-#flash_notice {
+#flash_notice 
+{
   clear: both;
 }
 
-#flash_alert {
+#flash_alert 
+{
   clear: both;
 }
 
-/* Sortable tables */
-
-table.sortable {
-  font-size: 10px;
-  thead {
-      background-color:#eee;
-      color:#666666;
-      font-weight: bold;
-      cursor: default;
+#header 
+{
+  height:75px;
+  text-align:right;
+  background:$FNW_LIGHT_GREEN;
+  border-bottom: 4px solid $FNW_MID_GREEN;
+  box-shadow: 0 0 3px 0 $FNW_MID_GREEN;
+  font-family: Helvetica, Arial, sans-serif;
+  #logo
+  {
+    text-align: center;
+    font-size: 36px;
+    text-shadow: 0px 0px 3px $FNW_MID_GREEN;
+    padding-top: 20px;
+    font-family: Archer-semibold, Helvetica, Arial, sans-serif;
+    
+    a, a:hover, a:visited, a:active
+    {
+      text-decoration: none;
+      color: $FNW_ORANGE;
+    }
+  }
+  #nav
+  {
+    margin-top: 50px;
+  }
+  #nav a
+  {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration:none;
+    color:$FNW_DARK;
+    margin-right: 10px;
+  }
+  #nav a:hover
+  {
+    color: $FNW_DARK_GREEN;
   }
 }
 
-#content{
-  border-left:1px solid #999;
-  border-right:1px solid #999;
-  background:#fff;
-  padding-top:.675em;
+#searchbox
+{
+    background-color: $FNW_LIGHT;
+    border-right: 1px solid #DDD;
+    overflow-y:hidden;
+    min-height: 80%;
+}
+
+#content
+{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.25em;
+    border-top:4px solid $FNW_LIGHT_GREEN;
+    background: $FNW_LIGHT;
+    box-shadow: 0 0 3px 0 $FNW_MID_GREEN;
+}
+
+#wrapper
+{
+    padding-top: 26px;
+}
+
+#container
+{
+    padding-right: 3.8%;
+    div
+    {
+      margin-top: 13px;
+    }
+    div.collapseup
+    {
+      margin-top: 0;
+    }
+    strong
+    {
+      font-weight: bold;
+      color: $FNW_DARK_GREEN;
+    }
+    h1
+    {
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 6px;
+        color: $FNW_ORANGE;
+    }
+    h2
+    {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 6px;
+        color: $FNW_DARK;
+    }
+    ul
+    {
+      margin: 0;
+    }
 }

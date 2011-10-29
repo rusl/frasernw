@@ -1,3 +1,5 @@
+@import "_globals";
+
 form.simple_form {
   fieldset{
     width:303px;
@@ -5,7 +7,6 @@ form.simple_form {
     p, legend{
       font-weight:bold;
       font-size:1.1em;
-      text-shadow:1px 1px 1px #fff;
     }
   }
   fieldset, div.text, div.check_boxes{

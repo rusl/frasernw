@@ -1,13 +1,18 @@
-#user_sessions_page {
-  #container {
+@import "_globals";
+
+#user_sessions_page 
+{
+  #container 
+  {
+    background-color: $FNW_LIGHT;
     width:350px;
     margin:auto;
     margin-top:50px;
     padding:25px;
     /*FIXME - needs Compass mixins to generate cross browser compatible markup. */
-    box-shadow:0 0 5px #888;
+    box-shadow:0 0 5px $FNW_MID_GREEN;
     border-radius:4px;
-    border-color:#bbb;
+    border-color:#FNW_MID_GREEN;
     > h1 {
       margin-top:0;
     }

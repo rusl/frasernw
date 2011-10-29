@@ -33,3 +33,23 @@ $.tablesorter.addParser({
     // set type, either numeric or text 
     type: 'text'
 });
+// added by rpw to sort by last name
+$.tablesorter.addParser({ 
+    // set a unique id 
+    id: 'bylastname', 
+    is: function(s) { 
+      return false; 
+    }, 
+		format: function(s) {
+			var t = s.split(" ");
+			if (t.length == 1) {
+				return s;
+			} else {
+				first = t[0];
+				last = t[t.length - 1];
+				return last + first;
+			}
+		}, 
+    // set type, either numeric or text 
+    type: 'text'
+});

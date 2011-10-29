@@ -17,26 +17,25 @@
   %body{:id => "#{params[:controller]}_page"}
     .container
       #header.row
-        / FIXME - nav should be a %ul for accessibility.
-        #nav.twelvecol.last
+        #logo.fourcol 
+          %a{:href => "/"} PATHWAYS
+        #nav.eightcol.last
           - if logged_in? and current_user.admin?
-            = link_to "Track Specialists", tracker_path, class: "left button"
-            = link_to "Manage Users", users_path, class: "middle button"
-            = link_to "Activity", all_versions_path, class: "middle button"
-            = link_to "Review Changes", reviews_path, class: 'middle button'
+            = link_to "Track Specialists", tracker_path
+            = link_to "Manage Users", users_path
+            = link_to "Activity", all_versions_path
+            = link_to "Review Changes", reviews_path
           - if logged_in?
-            = link_to "Home", '/', class: "middle button"
-            = link_to "Logout", logout_url, class: "right button"
+            = link_to "Logout", logout_url
 
       #content.row
         - unless params[:controller] == 'user_sessions'
-          %iframe.threecol{:src => "/searchbox.html", :id => 'searchbox'}
+          %iframe#searchbox.fourcol{:src => "/navigation"}
 
-        #container.ninecol.last{:class => "container_#{params[:controller]}"}
-          %div{:style => "margin-bottom: 5px; float: right;"} 
-
-          - flash.each do |name, msg|
-            = content_tag :div, raw(msg), :id => "flash_#{name}"
-          - if show_title?
-            %h1= yield(:title)
-          = yield
+        #wrapper.eightcol.last
+          #container{:class => "container_#{params[:controller]}"}
+            - flash.each do |name, msg|
+              = content_tag :div, raw(msg), :id => "flash_#{name}"
+            - if show_title?
+              %h1= yield(:title)
+            = yield

@@ -1,19 +1,13 @@
+@import "_globals";
+
 .clear {
   clear: both;
   height: 0px;
   overflow: hidden;
 }
 
-#container {
-/*  width: 60%;*/
-/*  margin: 0 auto;*/
-/*  margin: 48px 48px 0px 353px;*/
-  
-  background: white;
-/*  padding: 20px 40px;*/
-/*  border: solid 1px black;*/
-/*  margin-top: 48px;*/
-//  left: 353px;
+#container 
+{
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -21,14 +15,10 @@
   margin: 10px 0;
 }
 
-#flash_notice {
-  background-color: #ccffcc;
-  border: solid 1px #66cc66;
-}
-
-#flash_error, #flash_alert {
-  background-color: #ffcccc;
-  border: solid 1px #cc6666;
+#flash_notice, #flash_error, #flash_alert
+{
+  background-color: $FNW_LIGHT_GREEN;
+  border: solid 1px $FNW_ORANGE;
 }
 
 .fieldWithErrors {

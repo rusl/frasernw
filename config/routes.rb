@@ -42,6 +42,7 @@ Frasernw::Application.routes.draw do
 
   match 'searchtree'  => 'searchdoc#tree',  :as => :searchtree
   match 'searchindex' => 'searchdoc#index', :as => :searchindex
+  match 'navigation' => 'searchdoc#navigation', :as => :navigation
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

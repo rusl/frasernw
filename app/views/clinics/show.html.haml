@@ -2,40 +2,57 @@
 
 %h1
   = @clinic.name
-%p
-  %i
-    = @clinic.address + ", "
-    = @clinic.city + ', ' + @clinic.province + ', ' +  @clinic.postalcode
-    %br
-    = @clinic.phone1 + ', '
-    = "fax: #{@clinic.fax}"
-%p
-  %strong Scope of practice:
-  %br/
-  - @clinic.procedures.each do |procedure|
-    %span.light-highlight= procedure.name
-    %br/
-%p
+  
+#address.collapseup
+  = @clinic.address.strip + ", " + @clinic.city.strip + ', ' + @clinic.province.strip + ', ' +  @clinic.postalcode
+  
+#phone
+  %strong Phone:
+  = @clinic.phone1.presence || "unknown"
+ 
+#fax.collapseup
+  %strong Fax:
+  = @clinic.fax.presence || "unknown"
+
+#responds_via.collapseup
+  %strong Responds via:
+  = @clinic.responds_via.presence || "unspecified"
+  
+#status
   %strong Status:
   = @clinic.status
-%p
-  %strong Responds via:
-  = @clinic.responds_via
-%p
+
+#wait_time
+  %strong Average wait time:
+  = (@clinic.waittime.to_s().presence || "unknown") + " weeks"
+
+#referral_criteria
   %strong Referral Criteria:
-  = @clinic.referral_criteria
+  = @clinic.referral_criteria.presence || "unspecified"
 
-%p
+#referral_process
   %strong Referral Process:
-  = @clinic.referral_process
-%p
-  %strong Attending physicians:
-  - @clinic.specialists.each do |specialist|
-    = link_to(specialist.name, url_for(specialist)) + raw("<br/>")
-%p
-  %strong Wait time (avg in weeks): #{@clinic.waittime}
+  = @clinic.referral_process.presence || "unspecified"
+  
+#scope
+  %strong Scope of practice:
+  - if @clinic.procedures.empty? 
+    unspecified
+  - else 
+    %ul
+      - @clinic.procedures.each do |procedure|
+        %li= procedure.name
 
-%p
+#attending_physicians
+  %strong Attending physicians:
+  - if @clinic.specialists.empty? 
+    unspecified
+  - else 
+    %ul
+    - @clinic.specialists.each do |specialist|
+      %li= link_to(specialist.name, url_for(specialist))
+
+#edit
   = link_to "Edit", edit_specialization_clinic_path(@clinic.specialization, @clinic)
   |
   = link_to "Destroy", @clinic, :confirm => 'Are you sure?', :method => :delete

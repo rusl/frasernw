@@ -1,20 +1,60 @@
-td.name_column {
-  text-align: left;
-  min-width: 12em;
-  a {
-    text-decoration: none;
-  }
-  a.clinic {
-    color: purple;
-  }
-}
+@import "_globals";
+
+table
+{
+  margin-top: 20px;
+  margin-bottom: 20px;
   
-td.number_column {
-  text-align: right;
-  width: 3.5em;
+  tr
+  {
+    border-bottom: 1px solid $FNW_BORDER_COLOUR;
+    
+    th 
+    {
+      font-weight:bold;
+      background-color: $FNW_LIGHT_GREEN;
+    }
+
+    th, td, caption 
+    {
+      padding:6px 12px 6px 6px;
+    }
+    
+    td
+    {
+      vertical-align: top;
+      a, a:visited
+      {
+        color: $FNW_DARK_GREEN;
+        text-decoration: none;
+      }
+      
+      a:hover
+      {
+        color: $FNW_DARK_GREEN;
+        text-decoration: underline;
+      }
+    }
+
+    td.name_column 
+    {
+      text-align: left;
+    }
+
+    td.number_column 
+    {
+      text-align: right;
+    }
+
+    td.city_column 
+    {
+      text-align:left;
+    }
+
+    tfoot 
+    {
+      font-style:italic;
+    }
+  }
 }
 
-td.city_column {
-  text-align:left;
-  width: 9em;
-}

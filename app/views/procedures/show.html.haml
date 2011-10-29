@@ -3,33 +3,34 @@
 / FIXME, this should iterate through @procedure's specializations
 %h1
   = @procedure.name + ' - ' + @procedure.specialization.name
+%h2 Specialists and Clinics
 
-  %table{:class => 'tablesorter {sortlist: [[2,0],[3,0]]}', :id => 'specialist_table'}
-    %thead
+%table{:class => 'tablesorter {sortlist: [0,0]}', :id => 'specialist_table'}
+  %thead
+    %tr
+      %th{:class => "{sorter: 'bylastname'}"}  Name
+      / %th{:class => "{sorter: 'waittime'}"} Lag
+      %th{:class => "{sorter: 'waittime'}"} Wait Time
+      %th City
+      / %th Hospital
+      %th Clinics
+  %tbody
+    - (@procedure.specialists + @procedure.clinics).each do |specialist|
       %tr
-        %th Name
-        %th{:class => "{sorter: 'waittime'}"} Lag
-        %th{:class => "{sorter: 'waittime'}"} Wait
-        %th City
-        %th Hospital
-        %th Clinics
-    %tbody
-      - (@procedure.specialists + @procedure.clinics).each do |specialist|
-        %tr
-          %td{:class => "name_column"}
-            - type_of_row = specialist.class.to_s.downcase
-            - case type_of_row
-              - when 'specialist'
-                = link_to specialist.name, specialization_specialist_path(@procedure.specialization, specialist), :class => type_of_row
-              - when 'clinic'
-                = link_to specialist.name, specialization_clinic_path(@procedure.specialization, specialist), :class => type_of_row
-          %td{:class => "number_column"}
-          %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_or_blank
-          %td= specialist.city
-          %td= compressed_clinics(specialist.hospitals) if type_of_row == 'specialist'
-          %td= compressed_clinics(specialist.clinics) if type_of_row == 'specialist'
-          / %td= link_to "#{specialist.interest}"
-          / %td= specialists_procedures(specialist)
+        %td{:class => "name_column"}
+          - type_of_row = specialist.class.to_s.downcase
+          - case type_of_row
+            - when 'specialist'
+              = link_to specialist.name, specialization_specialist_path(@procedure.specialization, specialist), :class => type_of_row
+            - when 'clinic'
+              = link_to specialist.name, specialization_clinic_path(@procedure.specialization, specialist), :class => type_of_row
+        / %td{:class => "number_column"}
+        %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_or_blank
+        %td= specialist.city
+        / %td= compressed_clinics(specialist.hospitals) if type_of_row == 'specialist'
+        %td= compressed_clinics(specialist.clinics) if type_of_row == 'specialist'
+        / %td= link_to "#{specialist.interest}"
+        / %td= specialists_procedures(specialist)
 
 
 / %ul

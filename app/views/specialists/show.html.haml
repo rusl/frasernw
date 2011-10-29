@@ -3,62 +3,61 @@
 - if @is_version
   = render 'versions/info'
 
-- if current_user.admin?
-  #flash_notice
-    - if @specialist.contact_email
-      %h2 Email an invitation to this specialist
-      %p Clicking the below link will send an invitation to edit this record with the following special url.
-      %p= specialist_self_edit_path(@specialist, @specialist.token, :only_path => false)
-      %p=link_to "Email #{@specialist.contact_email}", specialist_email_path(@specialist), :method => :post
-    - else
-      %p To send this link with an invitation to #{link_to "edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)} this specialist and add contact information
-    %h4
-      This specialist was contacted through the application
-      = "never" if @specialist.contacts.length < 1
-    = render @specialist.contacts
+/
+  - if current_user.admin?
+    #flash_notice
+      - if @specialist.contact_email
+        %h2 Email an invitation to this specialist
+        %p Clicking the below link will send an invitation to edit this record with the following special url.
+        %p= specialist_self_edit_path(@specialist, @specialist.token, :only_path => false)
+        %p=link_to "Email #{@specialist.contact_email}", specialist_email_path(@specialist), :method => :post
+      - else
+        %p To send this link with an invitation to #{link_to "edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)} this specialist and add contact information
+      %h4
+        This specialist was contacted through the application
+        = "never" if @specialist.contacts.length < 1
+      = render @specialist.contacts
 
 %h1
-  = @specialist.firstname
-  = @specialist.lastname + ' - '
+  = @specialist.name + ' - '
   = @specialist.specialization.name
-%p
-  %i
-    = @specialist.address + ", "
-    = @specialist.city + ', ' + @specialist.province + ', ' +  @specialist.postalcode
-    %br
-    = @specialist.phone1 + ', '
-    = "fax: #{@specialist.fax}"
-%p
-  %strong Scope of practice:
-  %br/
-  = compressed_procedures_indented(@specialist).html_safe
-  / .procedures.each do |procedure|
-  / %span.light-highlight= procedure.name
-  / %br/
-%p
-  %strong Status:
-  = @specialist.status
-%p
+#address.collapseup
+  = @specialist.address + ", " + @specialist.city + ', ' + @specialist.province + ', ' +  @specialist.postalcode
+#phone  
+  %strong Phone:
+  = @specialist.phone1.presence || "unknown"
+#fax.collapseup
+  %strong Fax:
+  = @specialist.fax.presence || "unknown"
+#responds_via.collapseup
   %strong Responds via:
-  = @specialist.responds_via
-%p
-  %strong Referrial criteria, required forms, and investigations
-  = @specialist.referral_criteria
-%p
-  %strong Interest:
-  = @specialist.interest
-%p
-  %strong Red Flags (urgent situations, and process for having them addressed):
-  = @specialist.red_flags
-%p
-  %strong Clinics:
-  - @specialist.clinics.each do |clinic|
-    = link_to(clinic.name, url_for(clinic))
-    %br/
-%p
-  %strong Wait time (avg in weeks): #{@specialist.waittime}
-
-%p
+  = @specialist.responds_via.presence || "unspecified"
+#status
+  %strong Status:
+  = @specialist.status.presence || "unspecified"
+#wait_time
+  %strong Average wait time:
+  = (@specialist.waittime.to_s().presence || "unknown") + " weeks"
+#referral_criteria
+  %strong Referral criteria, required forms, and investigations: 
+  = @specialist.referral_criteria.presence || "unspecified"
+#red_flags
+  %strong Red Flags (urgent situations, and process for having them addressed): 
+  = @specialist.red_flags.presence || "unspecified"
+#interest
+  %strong Interest: 
+  = @specialist.interest.presence || "unspecified"
+#scope
+  %strong Scope of practice:
+  = compressed_procedures_indented(@specialist).html_safe
+#clinics
+  %strong Clinics: 
+  - if @specialist.clinics.empty? 
+    none
+  - else 
+    - @specialist.clinics.each do |clinic|
+      = link_to(clinic.name, url_for(clinic)) + ", "
+#edit
   = link_to "History", show_versions_path(@specialist)
   |
   = link_to "Edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)
