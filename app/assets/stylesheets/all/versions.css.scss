@@ -1,31 +1,62 @@
 // Place all the styles related to the versions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-ul.versions{
-  list-style-type:none;
-  padding-left:0;
-  li {
-    padding:5px;
-    border:1px solid #EEE;
-//    margin-bottom:10px;
+table.versions{
+  td {
+    vertical-align:top;
+    padding:0;
+    &.event {
+      text-align:right;
+      padding-right:5px;
+      & > span {
+        color:#888;
+        margin:0 -5px;
+        padding:4px;
+        white-space:nowrap;
+        border-bottom:1px solid #EEE;
+      }
+    }
+  }
+  tr {
+    border-top:1px solid #EEE;
+    border-bottom:1px solid #EEE;
+    margin-bottom:25px;
     span{
       display:inline-block;
+      &.title, &.event, &.who, &.when {
+        padding:4px;
+        border-bottom:1px solid #EEE;
+        white-space:nowrap;
+        width:100%;
+      }
+      &.title {
+      }
+      &.type {
+        float:right;
+        width:120px;
+        white-space:nowrap;
+        border-bottom:1px solid #EEE;
+        background:#EEE;
+        padding:4px;
+        color:#222;
+        text-align:right;
+      }
+      &.who {
+      }
+      &.actions {
+        padding:4px;
+        display:block;
+      }
     }
-    .type {
-      background:#EEE;
-      padding:4px;
-      width:120px;
-      color:#222;
-      text-align:right;
-    }
-    .item {
-      width:250px;
+    &.item {
+      width:100%;
     }
     .who {
       width:250px;
     }
+    
     p {
-      margin-left:20px;
+//      margin-left:20px;
       margin-bottom:0;
     }
   }

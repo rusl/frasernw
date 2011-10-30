@@ -2,23 +2,30 @@
 
 = will_paginate @reviews
 
-%ul.versions
-  - @reviews.each do |review|
-    %li
-      = activity_badge(review)
-      %span.item= link_to_item(review)
-      %span.who
-        #{review.evented.titlecase} by #{whodunnit_name(review)}
-        %span.muted #{time_ago_in_words(review.created_at)} ago
-      %span.actions
-        = button_to "Accept", review_accept_path(review), method: :put
-        = link_to "Reject", review_path(review), action: :destroy, method: :delete
-      - if review.changeset.present?
-        %p
-          - review.changeset.each do |k, v|
-            %b= k.titleize
-            from
-            %em= v[0]
-            to
-            %em= v[1]
-            %br
+%table.versions
+  %tbody
+    - @reviews.each do |version|
+      %tr
+        %td.what= activity_badge(version)
+        %td.item
+          %span.title= link_to_item(version)
+          = association_details(version)
+          - if version.changeset.present?
+            %p
+              - version.changeset.each do |k, v|
+                %b= k.titleize
+                from
+                %em= v[0]
+                to
+                %em= v[1]
+                %br
+          %span.actions
+            = button_to "Accept", review_accept_path(version), method: :put
+            = link_to "Reject", review_path(version), action: :destroy, method: :delete
+          
+        %td.event
+          %span #{version.evented.titlecase} by 
+        %td
+          %span.who= whodunnit_name(version)
+        %td
+          %span.when #{time_ago_in_words(version.created_at)} ago
