@@ -1,4 +1,6 @@
 class ClinicsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     unless params[:specialization_id]
       redirect_to specializations_path, :notice => "Need to specify a specialization" and return

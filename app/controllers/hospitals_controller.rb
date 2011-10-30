@@ -1,4 +1,6 @@
 class HospitalsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @hospitals = Hospital.all
   end
