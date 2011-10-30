@@ -1,4 +1,5 @@
 class SpecialistsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     # @specializations = Specialization.find(:all, :include => :specialists)

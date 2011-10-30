@@ -61,10 +61,12 @@
 %p
   = link_to "History", show_versions_path(@specialist)
   |
-  = link_to "Edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)
-  |
-  = link_to "Destroy", @specialist, :confirm => 'Are you sure?', :method => :delete
-  |
+  - if can? :update, @specialist
+    = link_to "Edit", edit_specialization_specialist_path(@specialist.specialization, @specialist)
+    |
+  - if can? :destroy, @specialist
+    = link_to "Destroy", @specialist, :confirm => 'Are you sure?', :method => :delete
+    |
   = link_to "View All #{@specialist.specialization.name}", specialization_path(@specialist.specialization)
   / |
   / # = link_to "View All Specialists", specialists_path
