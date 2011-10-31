@@ -2,30 +2,36 @@
 
 = will_paginate @reviews
 
-%table.versions
-  %tbody
-    - @reviews.each do |version|
-      %tr
-        %td.what= activity_badge(version)
-        %td.item
-          %span.title= link_to_item(version)
-          = association_details(version)
-          - if version.changeset.present?
-            %p
-              - version.changeset.each do |k, v|
-                %b= k.titleize
-                from
-                %em= v[0]
-                to
-                %em= v[1]
-                %br
-          %span.actions
-            = button_to "Accept", review_accept_path(version), method: :put
-            = link_to "Reject", review_path(version), action: :destroy, method: :delete
-          
-        %td.event
-          %span #{version.evented.titlecase} by 
-        %td
-          %span.who= whodunnit_name(version)
-        %td
-          %span.when #{time_ago_in_words(version.created_at)} ago
+%ul.versions
+  - @reviews.each do |version|
+    %li
+      .item
+        = activity_badge(version)
+        %span.event 
+          #{version.evented.titlecase} by 
+          = whodunnit_name(version)
+          #{time_ago_in_words(version.created_at)} ago
+
+          - if version.to_review == true
+            %span.actions
+              = button_to "Accept", review_accept_path(version), method: :put
+              = link_to "Reject", review_path(version), action: :destroy, method: :delete
+        %span.item 
+          = link_to_item(version)
+          - if association_details(version)
+            = "- #{association_details(version)}"
+
+
+      - if version.changeset.present?
+        %ul.changeset
+          - version.changeset.each do |attribute, changeset|
+            %li
+              %span.title= attribute.titleize
+              - if changeset[0].present?
+                %span.change
+                  %span.label From:
+                  = changeset[0]
+              - if changeset[1].present?
+                %span.change
+                  %span.label To:
+                  = changeset[1]

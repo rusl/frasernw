@@ -1,63 +1,67 @@
 // Place all the styles related to the versions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-table.versions{
-  td {
-    vertical-align:top;
-    padding:0;
-    &.event {
+ul.changeset, ul.versions{
+  list-style-type:none;
+  padding-left:0;
+}
+ul.versions{
+  & > li {
+    border:1px solid #EEE;
+    border-right:1px solid #CCC;
+    border-bottom:1px solid #CCC;
+  }
+  div.item {
+    display:block;
+    & > span.type {
+      float:left;
+      width:130px;
+      white-space:nowrap;
+      background:#AAA;
+      padding:8px;
+      color:#F6F6F6;
       text-align:right;
-      padding-right:5px;
-      & > span {
-        color:#888;
-        margin:0 -5px;
-        padding:4px;
-        white-space:nowrap;
-        border-bottom:1px solid #EEE;
+      margin-right:10px;
+    }
+    & > span.item {
+      display:block;
+      margin:auto;
+      padding:8px;
+      background:#F6F6FF;
+    }
+    & > span.event {
+      display:block;
+      float:right;
+      padding:3px;
+      margin-right:5px;
+      & > span.actions {
+        display:inline-block;
       }
     }
   }
-  tr {
-    border-top:1px solid #EEE;
-    border-bottom:1px solid #EEE;
-    margin-bottom:25px;
-    span{
+}
+ul.changeset {
+  padding:10px 0 0 20px;
+  border-top:1px solid #EEE;
+  span {
+    &.title {
+      display:block;
+      font-size:1.2em;
+      color:#422;
+    }
+    &.label {
       display:inline-block;
-      &.title, &.event, &.who, &.when {
-        padding:4px;
-        border-bottom:1px solid #EEE;
-        white-space:nowrap;
-        width:100%;
-      }
-      &.title {
-      }
-      &.type {
-        float:right;
-        width:120px;
-        white-space:nowrap;
-        border-bottom:1px solid #EEE;
-        background:#EEE;
-        padding:4px;
-        color:#222;
-        text-align:right;
-      }
-      &.who {
-      }
-      &.actions {
-        padding:4px;
-        display:block;
-      }
+      font-style:normal;
+      font-weight:bold;
+      color:#422;
+      width:40px;
     }
-    &.item {
-      width:100%;
-    }
-    .who {
-      width:250px;
-    }
-    
-    p {
-//      margin-left:20px;
-      margin-bottom:0;
+    &.change {
+      color:#555;
+      display:block;
+      margin-left:10px;
+      font-weight:normal;
+      font-style:italic;
     }
   }
 }
