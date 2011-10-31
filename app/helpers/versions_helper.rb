@@ -24,9 +24,6 @@ module VersionsHelper
   
   def link_to_item(version)
     begin
-      # if version.event == "destroy"
-      #   return "Item deleted"
-      # end
       case version.item_type
       when "Specialist"
         if version.event == "create"
@@ -51,7 +48,7 @@ module VersionsHelper
       when "Hospital"
         if version.event == "create"
           link_to version.item.name, hospital_path(version.item_id)
-        elsif version.event == "update"
+        elsif %w(update destroy).include? version.event
           link_to version.reify.name, hospital_path(version.item_id)
         end
       when "Clinic"
@@ -68,7 +65,7 @@ module VersionsHelper
         end
       end
     rescue
-      "does not exist"
+      "This item was deleted after this change was made."
     end
   end
   

@@ -2,11 +2,11 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @reviews = Version.needs_review.paginate(:page => params[:page], :per_page => 50)
+    @versions = Version.needs_review.paginate(:page => params[:page], :per_page => 50)
   end
 
   def accept
-    review = Version.find(params[:review_id])
+    review = Version.find(params[:id])
     review.accept
     redirect_to reviews_path, :notice => "Changes Accepted"
   end

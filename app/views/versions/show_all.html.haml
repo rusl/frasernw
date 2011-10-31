@@ -5,14 +5,33 @@
 %ul.versions
   - @versions.each do |version|
     %li
-      = activity_badge(version)
-      %span.item= link_to_item(version)
-      #{version.evented.titlecase} by #{whodunnit_name(version)}
-      %span.muted #{time_ago_in_words(version.created_at)} ago
-      -# - if version.reify and version.reify.id
-      -#   = link_to "#{version.reify.name}", version.reify
-      -# - else
-      -#   unknown
-      -# = link_to "#{version.evented}", show_version_path(version)
-      -# by #{whodunnit_name(version)}
-      -# %span{:class=> "muted"}= "#{time_ago_in_words(version.created_at)} ago"
+      .item
+        = activity_badge(version)
+        %span.event
+          #{version.evented.titlecase} by
+          = whodunnit_name(version)
+          #{time_ago_in_words(version.created_at)} ago
+
+          - if (version.to_review == true) && (controller_name == 'reviews')
+            %span.actions
+              = button_to "Accept", review_accept_path(version), method: :put
+              = link_to "Reject", review_path(version), action: :destroy, method: :delete
+        %span.item
+          = link_to_item(version)
+          - if association_details(version)
+            = "- #{association_details(version)}"
+
+
+      - if version.changeset.present?
+        %ul.changeset
+          - version.changeset.each do |attribute, changeset|
+            %li
+              %span.title= attribute.titleize
+              - if changeset[0].present?
+                %span.change
+                  %span.label From:
+                  = changeset[0]
+              - if changeset[1].present?
+                %span.change
+                  %span.label To:
+                  = changeset[1]

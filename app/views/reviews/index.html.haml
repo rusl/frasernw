@@ -1,9 +1,9 @@
-%h2 #{pluralize(@reviews.count, 'item')} to review
+%h2 #{pluralize(@versions.count, 'item')} to review
 
-= will_paginate @reviews
+= will_paginate @versions
 
 %ul.versions
-  - @reviews.each do |version|
+  - @versions.each do |version|
     %li
       .item
         = activity_badge(version)
@@ -12,7 +12,7 @@
           = whodunnit_name(version)
           #{time_ago_in_words(version.created_at)} ago
 
-          - if version.to_review == true
+          - if (version.to_review == true) && (controller_name == 'reviews')
             %span.actions
               = button_to "Accept", review_accept_path(version), method: :put
               = link_to "Reject", review_path(version), action: :destroy, method: :delete
