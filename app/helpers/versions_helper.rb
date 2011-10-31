@@ -2,7 +2,7 @@ module VersionsHelper
   def whodunnit_name(version)
      # ? User.find(version.whodunnit).username : 'unknown'
     if version.whodunnit.to_i.to_s == version.whodunnit
-      User.find(version.whodunnit).name
+      name_for(User.find(version.whodunnit))
     elsif version.whodunnit == "MOA"
       version.whodunnit
     else
@@ -11,7 +11,12 @@ module VersionsHelper
   end
 
   def activity_badge(version)
-    klass = version.item_type.downcase.gsub('attachment', 'file').gsub('privilege', 'hospital privileges').gsub('procedure', 'area of practise')
+    klass = version.item_type.downcase
+              .gsub('attachment', 'file')
+              .gsub('privilege', 'hospital privileges')
+              .gsub('procedure', 'area of practise')
+              .gsub('capacity', 'area of practise')
+              .gsub('office', 'office details')
     content_tag :span, class: ["type", klass] do
       klass.titlecase
     end
@@ -19,9 +24,6 @@ module VersionsHelper
   
   def link_to_item(version)
     begin
-      if version.event == "destroy"
-        return "Item deleted"
-      end
       case version.item_type
       when "Specialist"
         if version.event == "create"
@@ -31,10 +33,10 @@ module VersionsHelper
         else
           link_to version.reify.name, show_version_path(version)
         end
-      when ("Privilege" || "Capacity" || "Office")
+      when "Privilege", "Capacity", "Office"
         if version.event == "create"
           link_to version.item.specialist.name, specialist_path(version.item.specialist)
-        elsif version.event == "update"
+        elsif %w(update destroy).include? version.event
           link_to version.reify.specialist.name, specialist_path(version.reify.specialist)
         end
       when "Procedure"
@@ -46,7 +48,7 @@ module VersionsHelper
       when "Hospital"
         if version.event == "create"
           link_to version.item.name, hospital_path(version.item_id)
-        elsif version.event == "update"
+        elsif %w(update destroy).include? version.event
           link_to version.reify.name, hospital_path(version.item_id)
         end
       when "Clinic"
@@ -63,7 +65,24 @@ module VersionsHelper
         end
       end
     rescue
-      "does not exist"
+      "This item was deleted after this change was made."
+    end
+  end
+  
+  def association_details(version)
+    case version.item_type
+    when "Privilege"
+      if version.event == "create"
+        version.item.hospital.name
+      elsif %w(update destroy).include? version.event
+        version.reify.hospital.name
+      end
+    when "Capacity"
+      if version.event == "create"
+        version.item.procedure.name
+      elsif %w(update destroy).include? version.event
+        version.reify.procedure.name
+      end
     end
   end
 end

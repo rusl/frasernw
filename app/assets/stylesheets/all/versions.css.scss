@@ -1,32 +1,75 @@
 // Place all the styles related to the versions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-ul.versions{
+ul.changeset, ul.versions{
   list-style-type:none;
   padding-left:0;
   li {
-    padding:5px;
+    margin-bottom:1em;
+  }
+}
+ul.versions{
+  & > li {
     border:1px solid #EEE;
-//    margin-bottom:10px;
-    span{
-      display:inline-block;
-    }
-    .type {
-      background:#EEE;
-      padding:4px;
-      width:120px;
-      color:#222;
+    border-right:1px solid #CCC;
+    border-bottom:1px solid #CCC;
+  }
+  div.item {
+    display:block;
+    & > span.type {
+      float:left;
+      width:130px;
+      white-space:nowrap;
+      background:#AAA;
+      padding:8px;
+      color:#FFF;
       text-align:right;
+      margin-right:10px;
     }
-    .item {
-      width:250px;
+    & > span.item {
+      display:block;
+      margin:auto;
+      padding:8px;
+      background:#F7F7FF;
     }
-    .who {
-      width:250px;
+    & > span.event {
+      display:block;
+      float:right;
+      padding:8px;
+      margin-right:5px;
     }
-    p {
-      margin-left:20px;
-      margin-bottom:0;
+    & > span.actions {
+      float:right;
+      display:inline-block;
+      padding:3px;
+      form {
+        display:inline-block;
+      }
+    }
+  }
+}
+ul.changeset {
+  padding:10px 0 0 20px;
+  border-top:1px solid #EEE;
+  span {
+    &.title {
+      display:block;
+      font-size:1.1em;
+      color:#433;
+    }
+    &.label {
+      display:inline-block;
+      font-style:normal;
+      font-weight:bold;
+      color:#433;
+      width:40px;
+    }
+    &.change {
+      color:#555;
+      display:block;
+      margin-left:10px;
+      font-weight:normal;
+      font-style:italic;
     }
   }
 }
