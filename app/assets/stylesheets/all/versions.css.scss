@@ -35,13 +35,15 @@ ul.versions{
     & > span.event {
       display:block;
       float:right;
-      padding:3px;
+      padding:8px;
       margin-right:5px;
-      & > span.actions {
+    }
+    & > span.actions {
+      float:right;
+      display:inline-block;
+      padding:3px;
+      form {
         display:inline-block;
-        form {
-          display:inline-block;
-        }
       }
     }
   }
