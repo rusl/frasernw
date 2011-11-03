@@ -19,17 +19,16 @@
           - if association_details(version)
             = "- #{association_details(version)}"
 
-
       - if version.changeset.present?
         %ul.changeset
           - version.changeset.each do |attribute, changeset|
             %li
-              %span.title= attribute.titleize
+              %span.title= version.item_type.constantize.human_attribute_name(attribute)
               - if changeset[0].present?
                 %span.change
                   %span.label From:
-                  = changeset[0]
+                  = translate_changes(version, attribute, changeset[0])
               - if changeset[1].present?
                 %span.change
                   %span.label To:
-                  = changeset[1]
+                  = translate_changes(version, attribute, changeset[1])
