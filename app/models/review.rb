@@ -10,7 +10,7 @@ class Review < Version
     if event == 'create'
       item.destroy
     else
-      object = review.reify
+      object = self.reify
       object.save!
     end
     item_type.constantize.paper_trail_on

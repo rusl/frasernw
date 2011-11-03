@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   end
 
   def accept
-    review = Review.find(params[:id])
+    review = Review.find(params[:review_id])
     review.accept
     redirect_to reviews_path, :notice => "Changes Accepted"
   end
