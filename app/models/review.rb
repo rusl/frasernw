@@ -1,6 +1,10 @@
 class Review < Version
   default_scope { where(to_review: true) }
 
+  def accept
+    self.toggle!(:to_review)
+  end
+
   def reject!
     item_type.constantize.paper_trail_off
     if event == 'create'

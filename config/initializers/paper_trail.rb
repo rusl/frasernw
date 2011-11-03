@@ -6,8 +6,4 @@ class Version < ActiveRecord::Base
   def evented
     self.event.gsub('update','updated').gsub('destroy','destroyed').gsub('create','created')
   end
-
-  def accept
-    self.toggle!(:to_review)
-  end
 end
