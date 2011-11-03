@@ -12,11 +12,8 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    review = Version.find(params[:id])
-    object = review.reify
-    object.class.paper_trail_off
-    object.save!
-    object.class.paper_trail_on
+    review = Review.find(params[:id])
+    review.reject!
     review.destroy
     redirect_to reviews_path, :notice => "Changes Rejected"
   end
