@@ -57,6 +57,11 @@ li > a[selected], li > a:active {
     color: #FAFAF9 !important;
 }
 
+li > a.noarrow
+{
+    background-image: none !important;
+}
+
 li > a[selected="progress"] {
     background-image: url(../default/loading.gif), url(../default/selection.png) !important;
 }

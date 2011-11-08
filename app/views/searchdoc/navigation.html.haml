@@ -3,57 +3,66 @@
     %h1#pageTitle= "Pathways"
 /    %a.button{:href => "#searchForm"}= "Search"
 
-%ul#home{:title => "Pathways", :selected => "true"}
-    %li
-        %a{:href => "#specializations"}= "Specialities"
-    %li
-        %a{:href => "#specialists"}= "Specialists"
-    %li
-        %a{:href => "#clinics"}= "Clinics"
 
-%ul#specializations{:title => "Specialities"}
+%ul#home{:title => "Specialities", :selected => "true"}
     - for specialization in @specializations
         %li
             %a{:href => "#" + specialization.name.gsub(/\s+/, ""), :onclick => "javascript:linkto('" + specialization_path(specialization) +"')"}= specialization.name
 
+
 - for specialization in @specializations
-    %ul{:id => specialization.name.gsub(/\s+/, ""), :title => specialization.name}
-        - for procedure in specialization.procedures
+
+    - specializationLinkName = specialization.name.gsub(/\s+/, "")
+    - splitProcedureNames = []
+
+    %ul{:id => specializationLinkName, :title => specialization.name}
+        - if not specialization.clinics.empty?
             %li
-                %a{:href => "#" + procedure.name.gsub(/\s+/, ""), :onclick => "javascript:linkto('" + procedure_path(procedure) +"')"}= procedure.name
+                %a{:href => "#Clinics_" + specializationLinkName}= "Clinics"
+
+        - for procedure in specialization.procedures
+            - if procedure.name.include? " - "
+                - splitProcedureName = procedure.name[ 0, procedure.name.index(" - ") ]
+                - if not splitProcedureNames.include? splitProcedureName
+                    - splitProcedureNames.push splitProcedureName
+                    %li
+                        -# TODO: when scopes properly nest, we need a page that is only the subscope's listings
+                        %a{:href => "#" + specializationLinkName + "_" + splitProcedureName.gsub(/\s+/, "")}= splitProcedureName
+            - else
+                %li
+                    %a{:href => "#" + specializationLinkName + "_" + procedure.name.gsub(/\s+/, ""), :onclick => "javascript:linkto('" + procedure_path(procedure) +"')"}= procedure.name
+
+    - for splitProcedureName in splitProcedureNames
+        %ul{:id => specializationLinkName + "_" + splitProcedureName.gsub(/\s+/, ""), :title => splitProcedureName}
+            - for procedure in specialization.procedures
+                - if procedure.name.starts_with? splitProcedureName + " - "
+                    - splitProcedure = procedure.name[ procedure.name.index(" - ") + 3 .. -1 ]
+                    %li
+                        %a{:href => "#" + specializationLinkName + "_" + procedure.name.gsub(/\s+/, ""), :onclick => "javascript:linkto('" + procedure_path(procedure) +"')"}= splitProcedure
+                        
                 
     - for procedure in specialization.procedures
-        %ul{:id => procedure.name.gsub(/\s+/, ""), :title => procedure.name}
-            
-            - if not procedure.specialists.empty?
-                %li.group Specialists
+        - procedureName = ( procedure.name.include? " - " ) ? procedure.name[ procedure.name.index(" - ") + 3 .. -1 ] : procedure.name
+        %ul{:id => specializationLinkName + "_" + procedure.name.gsub(/\s+/, ""), :title => procedureName}
             - for specialist in procedure.specialists.sort! { |a,b| a.lastname.downcase + a.firstname.downcase <=> b.lastname.downcase + b.firstname.downcase }
                 %li
-                    %a{:href => "javascript:linkto('" + url_for(specialist) + "')"}= specialist.name
+                    %a.noarrow{:href => "javascript:linkto('" + url_for(specialist) + "')"}= specialist.name
 
-            - if not procedure.clinics.empty?
-                %li.group Clinics
-            - for clinic in procedure.clinics.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+
+    - if not specialization.clinics.empty?
+        %ul{:id => "Clinics_" + specialization.name.gsub(/\s+/, ""), :title => specialization.name + " Clinics"}
+            - for clinic in specialization.clinics.sort! { |a,b| a.name.downcase <=> b.name.downcase }
                 %li
-                    %a{:href => "javascript:linkto('" + url_for(clinic) + "')"}= clinic.name
+                    %a.noarrow{:href => "javascript:linkto('" + url_for(clinic) + "')"}= clinic.name
 
 
-%ul#specialists{:title => "Specialists"}
-    - curLetter = "-"
-    - for specialist in @specialists.sort! { |a,b| a.lastname.downcase <=> b.lastname.downcase }
-        -next if specialist.name.strip == ''
-        -if specialist.lastname[0].upcase != curLetter
-            - curLetter = specialist.lastname[0]
-            %li.group= curLetter.upcase
-        %li
-            %a{:href => "javascript:linkto('" + url_for(specialist) + "')"}= specialist.name
-
-
-%ul#clinics{:title => "Clinics"}
-    - curLetter = "-"
-    - for clinic in @clinics.sort! { |a,b| a.name.downcase <=> b.name.downcase }
-        -if clinic.name[0].upcase != curLetter
-            - curLetter = clinic.name[0]
-            %li.group= curLetter.upcase
-        %li
-            %a{:href => "javascript:linkto('" + url_for(clinic) + "')"}= clinic.name
+-# Commenting out, we decided against having specialists in the root navigation
+    %ul#specialists{:title => "Specialists"}
+        - curLetter = "-"
+        - for specialist in @specialists.sort! { |a,b| a.lastname.downcase <=> b.lastname.downcase }
+            -next if specialist.name.strip == ''
+            -if specialist.lastname[0].upcase != curLetter
+                - curLetter = specialist.lastname[0]
+                %li.group= curLetter.upcase
+            %li
+                %a{:href => "javascript:linkto('" + url_for(specialist) + "')"}= specialist.name
