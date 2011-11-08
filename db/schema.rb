@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(:version => 20111025224337) do
     t.string    "contact_email"
     t.text      "red_flags"
     t.string    "responds_via"
-    t.string    "referral_criteria"
+    t.string    "referral_criteria" #unused?
     t.string    "saved_token"
     t.string    "contact_notes"
     t.text      "not_interested"

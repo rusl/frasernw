@@ -22,36 +22,101 @@
   = @specialist.name + ' - '
   = @specialist.specialization.name
 #address.collapseup
-  = @specialist.address + ", " + @specialist.city + ', ' + @specialist.province + ', ' +  @specialist.postalcode
-#phone  
+  = @specialist.offices[0].full_address
+#phone.collapseup 
   %strong Phone:
-  = @specialist.phone1.presence || "unknown"
+  = @specialist.offices[0].phone1.presence || "unknown"
 #fax.collapseup
   %strong Fax:
-  = @specialist.fax.presence || "unknown"
-#responds_via.collapseup
-  %strong Responds via:
-  = @specialist.responds_via.presence || "unspecified"
+  = @specialist.offices[0].fax.presence || "unknown"
+#direct_contact.collapseup
+  %strong Direct number (for physician contact):
+  = @specialist.direct_phone.presence || "none"
+
+
+- if @specialist.offices[1] and @specialist.offices[1].exists?
+  #address
+    %strong Second office:
+    = @specialist.offices[1].full_address
+  #phone.collapseup 
+    %strong Phone:
+    = @specialist.offices[1].phone1.presence || "unknown"
+  #fax.collapseup
+    %strong Fax:
+    = @specialist.offices[1].fax.presence || "unknown"
+  
+  
 #status
   %strong Status:
-  = @specialist.status.presence || "unspecified"
-#wait_time
-  %strong Average wait time:
-  = (@specialist.waittime.to_s().presence || "unknown") + " weeks"
-#referral_criteria
-  %strong Referral criteria, required forms, and investigations: 
-  = @specialist.referral_criteria.presence || "unspecified"
+  = @specialist.status
+- if @specialist.status_details.presence
+  #status_details.collapseup
+    %strong Details: 
+    = @specialist.status_details
+- if @specialist.practice_limitations.presence
+  #practice_limitations.collapseup
+    %strong Practice limitations: 
+    = @specialist.practice_limitations
+
+
+#referrals_via
+  %strong Accepts referrals via:
+  = @specialist.accepts_referrals_via
+#referral_form.collapseup
+  %strong Has referral form:
+  = @specialist.referral_form ? "yes" : "no"
+  
+  
+#responds_via
+  %strong Responds via:
+  = @specialist.responds_via
+#lag_time.collapseup
+  %strong Average length of time to notify GP of a booking date:
+  = @specialist.lagtime_with_units
+#wait_time.collapseup
+  %strong Average patient wait time until appointment date:
+  = @specialist.waittime_with_units
+#patient_can_bokok.collapseup
+  %strong Patient can book after referral:
+  = @specialist.patient_can_book ? "yes, after referral this office accepts direct calls from patients to book their appointments" : "no, this office does not accept direct calls from patients"
+
+    
 #red_flags
-  %strong Red Flags (urgent situations, and process for having them addressed): 
+  %strong Conditons this office feels warrants urgent consultation:
   = @specialist.red_flags.presence || "unspecified"
-#interest
-  %strong Interest: 
-  = @specialist.interest.presence || "unspecified"
-#scope
-  %strong Scope of practice:
-  = compressed_procedures_indented(@specialist).html_safe
+#urgent_referral_via.collapseup
+  %strong Accepts urgent referrals via:
+  = @specialist.urgent_referrals_via
+  
+
+#referral_investigations
+  %strong Required investigations:
+  %span In addition to history, PH, medications, allergies, and previous OR and consultation reports, this office requires the following for all patients:
+  = @specialist.required_investigations.presence || "none"
+#scope.collapse_up
+  %strong Scope of practice (with additional required investigations):
+  = procedures_investigations_list(@specialist).html_safe
+  
+  
+#interested
+  %strong Interested in: 
+  = @specialist.interest.presence || "unspecified" 
+#not_interested.collapseup
+  %strong Not interested in: 
+  = @specialist.not_interested.presence || "unspecified"  
+  
+  
+#hospitals
+  %strong Hospital privileges: 
+  - if @specialist.hospitals.empty? 
+    none
+  - else 
+    - @specialist.hospitals.each do |hospital|
+      = link_to(hospital.name, url_for(hospital)) + ", "
+  
+  
 #clinics
-  %strong Clinics: 
+  %strong Works at clinics: 
   - if @specialist.clinics.empty? 
     none
   - else 
