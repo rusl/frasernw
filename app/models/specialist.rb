@@ -57,11 +57,11 @@ class Specialist < ActiveRecord::Base
     end
     
     def lagtime_with_units
-        self.lagtime.presence ? self.lagtime + " " + self.lag_uom : "unspecified"
+        self.lagtime.presence ? self.lagtime + " " + self.lag_uom : "n/a"
     end
     
     def waittime_with_units
-        self.waittime.presence ? self.waittime + " " + self.wait_uom : "unspecified"
+        self.waittime.presence ? self.waittime + " " + self.wait_uom : "n/a"
     end
     
     def token

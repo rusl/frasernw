@@ -26,7 +26,7 @@
             - when 'clinic'
               = link_to specialist.name, specialization_clinic_path(@specialization, specialist), :class => type_of_row
         / %td{:class => 'number_column'}
-        %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_or_blank
+        %td{:class => "number_column #{specialist.waittime?}"}= specialist.waittime_with_units
         / FIXME - make a clink to specialists from a certain city
         / %td= link_to "#{specialist.city}", specialization_city_path(@specialization, specialist.city)
         %td{:class => 'city_column'}= specialist.city
