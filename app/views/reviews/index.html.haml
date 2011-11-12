@@ -1,24 +1,5 @@
-%h2 #{pluralize(@reviews.count, 'item')} to review
+%h2 #{pluralize(@versions.count, 'item')} to review
 
-= will_paginate @reviews
+= will_paginate @versions
 
-%ul.versions
-  - @reviews.each do |review|
-    %li
-      = activity_badge(review)
-      %span.item= link_to_item(review)
-      %span.who
-        #{review.evented.titlecase} by #{whodunnit_name(review)}
-        %span.muted #{time_ago_in_words(review.created_at)} ago
-      %span.actions
-        = button_to "Accept", review_accept_path(review), method: :put
-        = link_to "Reject", review_path(review), action: :destroy, method: :delete
-      - if review.changeset.present?
-        %p
-          - review.changeset.each do |k, v|
-            %b= k.titleize
-            from
-            %em= v[0]
-            to
-            %em= v[1]
-            %br
+= render 'versions/list'

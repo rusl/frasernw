@@ -1,4 +1,5 @@
 class VersionsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     klass = params[:model].singularize.camelize.constantize

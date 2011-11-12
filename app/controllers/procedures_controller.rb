@@ -1,4 +1,6 @@
 class ProceduresController < ApplicationController
+  load_and_authorize_resource
+
   def index
     if params[:specialization_id] != nil
       @specialization = Specialization.find params[:specialization_id]

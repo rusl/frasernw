@@ -1,4 +1,15 @@
 module ApplicationHelper
+  def name_for(user)
+    unless user.name.blank?
+      if user.name.split(' ').length > 1
+        user.name.split[0] + ' ' + user.name.split[1][0,1] + '.'
+      else
+        user.name
+      end
+    else
+      user.login
+    end
+  end
     def listed_specialist(specialist)
         "#{specialist.firstname} #{specialist.lastname} - #{specialist.city}"
     end

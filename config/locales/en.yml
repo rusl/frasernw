@@ -3,3 +3,57 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    values:
+      specialist:
+        status_mask:
+          "1": "Accepting new patients"
+          "2": "Only doing follow up on previous patients"
+          "3": "Semi-retired"
+          "4": "Retired"
+    models:
+      procedure: "Area of Practice"
+    attributes:
+      office:
+        phone1: "Phone"
+        fax: "Fax"
+        address1: "Street Address"
+        address2: "Suite"
+        city: "City"
+        province: "Province"
+        postalcode: "Postal Code"
+      capacity:
+        procedure: "Area of Practice"
+        investigation: "Required Investigations"
+      specialist:
+        firstname: "First Name"
+        lastname: "Last Name"
+        direct_phone: "Direct Number"
+        contact_name: "MOA Name"
+        contact_email: "MOA Email"
+        contact_phone: "MOA Phone"
+        contact_notes: "MOA Notes"
+        status_mask: "Current Status"
+        status_details: "Additional Status Details"
+        practise_limitations: "Other Practice Limitations"
+        location_opened: "Practice Opened at This Location"
+        required_investigations: "Investigations Required for All Areas of Practice"
+        interest: "Most Interested In"
+        not_performed: "Does Not See or Do"
+        referral_fax: "Accepts Referrals by Fax"
+        referral_phone: "Accepts Referrals by Phone"
+        referral_other_details: "Other Methods of Referral"
+        referral_form: "Office Has Referral Form"
+        lagtime: "Average Length of Time to Notify GP of a Booking Date"
+        lag_uom: "Units of Measurement for Booking Date Notification"
+        waittime: "Average Wait Time From Request for Consultation to Appointment"
+        wait_uom: "Units of Measurement for Wait Time"
+        respond_by_fax: "Responds to Referral Request by Fax"
+        respond_by_phone: "Responds to Referral Request by Phone"
+        respond_by_mail: "Responds to Referral Request by Mail"
+        respond_to_patient: "Responds to Referral Request Directly to Patient"
+        patient_can_book: "Patient Can Book Own Appointment After Referral Request Received"
+        red_flags: "Red Flags Warranting Urgent Consultation"
+        urgent_fax: "Accepts Urgent Referrals by Fax"
+        urgent_phone: "Accepts Urgent Referrals by Phone"
+        urgent_other_details: "Other Methods for Urgent Referrals"

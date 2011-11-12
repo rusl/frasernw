@@ -1,5 +1,7 @@
 class UserSessionsController < ApplicationController
   skip_before_filter :login_required
+  skip_authorization_check
+
   def new
     @user_session = UserSession.new
     # render :layout=>false

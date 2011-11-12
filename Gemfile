@@ -27,6 +27,7 @@ gem 'will_paginate', '~> 3.0.0'
 gem "simple_form", "~> 1.5.1"
 gem "nested_form", :git => "https://github.com/ryanb/nested_form.git", :ref => "57f32788f1952bcd633057b4b56b69b51df17610"
 gem 'exception_notification'
+gem "cancan", "~> 1.6.7"
 
 # Use unicorn as the web server
 gem 'unicorn'

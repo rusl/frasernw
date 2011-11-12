@@ -5,7 +5,14 @@ class Review < Version
     self.toggle!(:to_review)
   end
 
-  def item
-    eval("#{item_type}.find(#{item_id})")
+  def reject!
+    item_type.constantize.paper_trail_off
+    if event == 'create'
+      item.destroy
+    else
+      object = self.reify
+      object.save!
+    end
+    item_type.constantize.paper_trail_on
   end
 end
