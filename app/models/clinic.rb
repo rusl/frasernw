@@ -20,13 +20,9 @@ class Clinic < ActiveRecord::Base
     address += self.address2 || ''
     address
   end
-  
-  def waittime_or_blank
-    self.waittime.blank? ? "n/a" : self.waittime
-  end
-  
-  def waittime?
-    self.waittime.blank? ? 'muted' : ''
+    
+  def waittime_with_units
+    self.waittime.presence ? self.waittime.to_s() + " weeks" : "n/a"
   end
 
 end
