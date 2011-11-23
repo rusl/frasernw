@@ -41,14 +41,7 @@ $.tablesorter.addParser({
       return false; 
     }, 
 		format: function(s) {
-			var t = s.split(" ");
-			if (t.length == 1) {
-				return s;
-			} else {
-				first = t[0];
-				last = t[t.length - 1];
-				return last + first;
-			}
+                        return s.split(" ").reverse().toString().toLowerCase();
 		}, 
     // set type, either numeric or text 
     type: 'text'
