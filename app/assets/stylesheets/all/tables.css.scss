@@ -2,59 +2,62 @@
 
 table
 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  
-  tr
-  {
-    border-bottom: 1px solid $FNW_BORDER_COLOUR;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
     
-    th 
+    tr
     {
-      font-weight:bold;
-      background-color: $FNW_LIGHT_GREEN;
+        border-bottom: 1px solid $FNW_BORDER;
+        
+        th 
+        {
+            color: $FNW_RED;
+            font-weight:normal;
+            background-color: $FNW_LIGHT_GRAY;
+        }
+        
+        th, td, caption 
+        {
+            padding-left: 12px;
+            line-height: 32px;
+        }
+        
+        td
+        {
+            vertical-align: top;
+            a, a:visited
+            {
+                color: $FNW_DARK_GRAY;
+                text-decoration: none;
+            }
+            
+            a:hover
+            {
+                color: $FNW_DARK_GRAY;
+                text-decoration: underline;
+            }
+        }
+        
+        .name_column 
+        {
+            text-align: left;
+        }
+        
+        .number_column 
+        {
+            text-align: right;
+        }
+        
+        .city_column 
+        {
+            text-align:left;
+        }
+        
+        tfoot 
+        {
+            font-style:italic;
+        }
     }
-
-    th, td, caption 
-    {
-      padding:6px 12px 6px 6px;
-    }
-    
-    td
-    {
-      vertical-align: top;
-      a, a:visited
-      {
-        color: $FNW_DARK_GREEN;
-        text-decoration: none;
-      }
-      
-      a:hover
-      {
-        color: $FNW_DARK_GREEN;
-        text-decoration: underline;
-      }
-    }
-
-    td.name_column 
-    {
-      text-align: left;
-    }
-
-    td.number_column 
-    {
-      text-align: right;
-    }
-
-    td.city_column 
-    {
-      text-align:left;
-    }
-
-    tfoot 
-    {
-      font-style:italic;
-    }
-  }
 }
 

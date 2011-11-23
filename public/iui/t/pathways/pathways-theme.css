@@ -3,6 +3,7 @@
 body
 {
     background-color: #FAFAF9;
+    font-family: "Helvetica Neue", Helvetica;
 }
 
 body > .toolbar {
@@ -17,7 +18,8 @@ body.landscape > .toolbar > h1, body.portrait > .toolbar > h1
     position: static;
     float: left;
     font-size: 16px;
-    color: #4a4845;
+    font-weight: normal;
+    color: #C44D58;
     text-shadow: none;
     padding-top: 12px;
     margin-left: 0;
@@ -29,6 +31,7 @@ body.landscape > .toolbar > h1, body.portrait > .toolbar > h1
 body > ul > li
 {
     font-size: 14px;
+    font-weight: normal;
     border-bottom: 1px solid #DDD;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -44,17 +47,17 @@ body > ul > li > a
 
 body 
 {
-    color: #4a4845;
+    color: #424242;
 }
 
 li > a[selected], li > a:hover {
-    background-color: #D6E1C7 !important;
+    background-color: #C7F464 !important;
 }
 
 li > a[selected], li > a:active {
-    background-color: #94C7B6 !important;
-    background-image: url(listArrowSel.png), none !important;
-    color: #FAFAF9 !important;
+    background-color: #C7F464 !important;
+    background-image: url(listArrow.png), none !important;
+    color: #424242 !important;
 }
 
 li > a.noarrow
@@ -68,16 +71,6 @@ li > a[selected="progress"] {
 
 /************************************************************************************************/
 
-.button {
-    -webkit-border-image: url(toolButton.png) 0 5 0 5;
-    -moz-border-image: url(toolButton.png) 0 5 0 5;
-}
-
-.blueButton {
-    -webkit-border-image: url(blueButton.png) 0 5 0 5;
-    -moz-border-image: url(blueButton.png) 0 5 0 5;
-}
-
 #backButton {
     -webkit-border-image: url(backButtonBrdr.png) 0 8 0 14;
     -moz-border-image: url(backButtonBrdr.png) 0 8 0 14;
@@ -87,24 +80,6 @@ li > a[selected="progress"] {
     position: static;
     margin-top: 6px;
     margin-right: 6px;
-}
-
-
-.whiteButton {
-    -webkit-border-image: url(whiteButton.png) 0 12 0 12;
-    -moz-border-image: url(whiteButton.png) 0 12 0 12;
-    text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
-}
-
-.redButton {
-    -webkit-border-image: url(redButton.png) 0 12 0 12;
-    -moz-border-image: url(redButton.png) 0 12 0 12;
-}
-
-.grayButton {
-    -webkit-border-image: url(grayButton.png) 0 12 0 12;
-    -moz-border-image: url(grayButton.png) 0 12 0 12;
-    color: #FFFFFF;
 }
 
 /************************************************************************************************/

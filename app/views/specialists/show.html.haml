@@ -19,14 +19,16 @@
       = render @specialist.contacts
 
 %h1
-  = @specialist.name + ' - '
+  = @specialist.name
+%h2
   = @specialist.specialization.name
-#address.collapseup
+%h3 
   = @specialist.offices[0].full_address
-#phone.collapseup 
+  
+#phone 
   %strong Phone:
   = @specialist.offices[0].phone1.presence || "unknown"
-#fax.collapseup
+#fax.collapseup 
   %strong Fax:
   = @specialist.offices[0].fax.presence || "unknown"
 #direct_contact.collapseup
@@ -35,20 +37,21 @@
 
 
 - if @specialist.offices[1] and @specialist.offices[1].exists?
-  #address
+  #address2
     %strong Second office:
     = @specialist.offices[1].full_address
-  #phone.collapseup 
+  #phone2.collapseup 
     %strong Phone:
     = @specialist.offices[1].phone1.presence || "unknown"
-  #fax.collapseup
+  #fax2.collapseup
     %strong Fax:
     = @specialist.offices[1].fax.presence || "unknown"
   
   
-#status
-  %strong Status:
-  = @specialist.status
+- if @specialist.status.presence
+  #status
+    %strong Status:
+    = @specialist.status
 - if @specialist.status_details.presence
   #status_details.collapseup
     %strong Details: 
@@ -65,12 +68,11 @@
 #referral_form.collapseup
   %strong Has referral form:
   = @specialist.referral_form ? "yes" : "no"
-  
-  
-#responds_via
+#responds_via.collapseup
   %strong Responds via:
   = @specialist.responds_via
-#lag_time.collapseup
+  
+#lag_time
   %strong Average length of time to notify GP of a booking date:
   = @specialist.lagtime_with_units
 #wait_time.collapseup

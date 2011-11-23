@@ -1,22 +1,57 @@
 @import "_globals";
 
+@font-face
+{
+    font-family: Quicksand;
+    src: url('/Quicksand_Book.otf');
+}
+
+@font-face
+{
+    font-family: QuicksandDash;
+    src: url('/Quicksand_Dash.otf');
+}
+
+
 html {font-size:100.01%;}
-body {font-size:75%;color:$FNW_DARK;background:$FNW_DARK;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
-h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
-h2 {font-size:2em;margin-bottom:0.75em;}
-h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
-h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
-h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
-h6 {font-size:1em;font-weight:bold;}
-h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+body {font-size:75%;color:$FNW_TEXT;background:$FNW_LIGHT_GRAY;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+strong
+{
+  font-weight: normal;
+  color: $FNW_RED;
+}
+
+h1
+{
+    font-family: Quicksand;
+    font-size: 24px;
+    margin-bottom: 6px;
+    color: $FNW_RED;
+}
+
+h2
+{
+    font-family: Quicksand;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: $FNW_RED;
+}
+
+h3
+{
+    font-family: Quicksand;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: $FNW_TEXT;
+}
+
 p {margin:0 0 1.5em;}
 p img.left {float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
 p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
 a:focus, a:hover {color:#000;}
-a, a:visited {color:$FNW_DARK;text-decoration:underline;}
+a, a:visited {color:$FNW_TEXT;text-decoration:underline;}
 blockquote {margin:1.5em;color:#666;font-style:italic;}
-strong {font-weight:bold;}
 em, dfn {font-style:italic;}
 dfn {font-weight:bold;}
 sup, sub {line-height:0;}
@@ -26,7 +61,7 @@ del {color:#666;}
 /*pre {margin:1.5em 0;white-space:pre;}*/
 /*pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}*/
 li ul, li ol {margin:0;}
-ul, ol {margin:0 1.5em 1.5em 0;padding-left:3.333em;}
+ul, ol {margin: 0; padding-left:3.333em;}
 ul {list-style-type:disc;}
 ol {list-style-type:decimal;}
 dl {margin:0 0 1.5em 0;}

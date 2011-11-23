@@ -10,9 +10,9 @@
     margin-top:50px;
     padding:25px;
     /*FIXME - needs Compass mixins to generate cross browser compatible markup. */
-    box-shadow:0 0 5px $FNW_MID_GREEN;
+    box-shadow:0 0 5px #000;
     border-radius:4px;
-    border-color:#FNW_MID_GREEN;
+    border-color: $FNW_DARK_GRAY;
     > h1 {
       margin-top:0;
     }
